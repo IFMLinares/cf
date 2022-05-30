@@ -1,0 +1,454 @@
+{% extends 'base/base.html' %}
+{% block title %}Productos{% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="breadcrumb-area breadcrumb-mt bg-gray breadcrumb-ptb-1">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <h2>Tienda </h2>
+                <p>Lorem ipsum dolor sit amet conse </p>
+            </div>
+        </div>
+        <div class="breadcrumb-img-1">
+            <img src="{% static 'assets/img/nino.jpg' %}" alt="">
+        </div>
+        <div class="breadcrumb-img-2">
+            <img src="{% static 'assets/img/nina.jpg' %}" alt="">
+        </div>
+    </div>
+
+<div class="product-details-area slider-mt-7 pt-120 pb-95">
+    <div class="container">
+        <div class="product-details-top-content">
+            <div class="product-details-content">
+                <h2>Nombre del Producto</h2>
+                <p class="pro-dec-paragraph-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque repellat libero </p>
+            </div>
+            <div class="product-details-content">
+                <div class="product-ratting-review-wrap product-ratting-mrg-none">
+                    <div class="product-ratting-digit-wrap">
+                        <div class="product-ratting">
+                            <i class="icon-rating"></i>
+                            <i class="icon-rating"></i>
+                            <i class="icon-rating"></i>
+                            <i class="icon-rating"></i>
+                            <i class="icon-star-empty"></i>
+                        </div>
+                        <div class="product-digit">
+                            <span>XXX</span>
+                        </div>
+                    </div>
+                    <div class="product-review-order">
+                        <span>XX Vistas</span>
+                        <span>XX ordenes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-padding-7">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-7 col-md-6">
+                    <div class="pro-details-6-img pro-details-img-zoom">
+                        <img src="assets/img/producto.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-6">
+                    <div class="product-details-content product-details-content-6">
+                        <div class="pro-details-price pro-details-price-4">
+                            <span>$ XXX</span>
+                            <span class="old-price">$ XXX</span>
+                        </div>
+                        <div class="pro-details-color-wrap">
+                            <span>Color:</span>
+                            <div class="pro-details-color-content">
+                                <ul>
+                                    <li><a class="white" href="#">Negro</a></li>
+                                    <li><a class="azalea" href="#">Azul</a></li>
+                                    <li><a class="dolly" href="#">Verde</a></li>
+                                    <li><a class="peach-orange" href="#">Naranja</a></li>
+                                    <li><a class="mona-lisa active" href="#">Rosado</a></li>
+                                    <li><a class="cupid" href="#">Gris</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pro-details-size">
+                            <span>Size:</span>
+                            <div class="pro-details-size-content">
+                                <ul>
+                                    <li><a href="#">XS</a></li>
+                                    <li><a href="#">S</a></li>
+                                    <li><a href="#">M</a></li>
+                                    <li><a href="#">L</a></li>
+                                    <li><a href="#">XL</a></li>
+                                    <li><a href="#">XXL</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pro-details-quality">
+                            <span>Cantidad</span>
+                            <div class="cart-plus-minus">
+                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
+                            </div>
+                        </div>
+                        <div class="product-details-meta">
+                            <ul>
+                                <li><span>Modelo:</span> <a href="#">XXXX</a></li>
+                                <!-- <li><span>Ship To</span> <a href="#">2834 Laurel Lane</a>, <a href="#">Mentone</a> , <a href="#">Texas</a></li> -->
+                            </ul>
+                        </div>
+                        <div class="pro-details-action-wrap">
+                            <div class="pro-details-buy-now">
+                                <a href="#">Comprar Ahora</a>
+                            </div>
+                            <div class="pro-details-action">
+                                <a title="Agregar al Carrito" href="#"><i class="icon-basket"></i></a>
+                                <a class="Redes" title="Social" href="#"><i class="icon-share"></i></a>
+                                <div class="product-dec-social">
+                                    <a class="facebook" title="Facebook" href="#"><i class="icon-social-facebook-square"></i></a>
+                                    <a class="twitter" title="Twitter" href="#"><i class="icon-social-twitter"></i></a>
+                                    <a class="instagram" title="Instagram" href="#"><i class="icon-social-instagram"></i></a>
+                                    <a class="pinterest" title="Pinterest" href="#"><i class="icon-social-pinterest"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="description-review-wrapper pb-155">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="dec-review-topbar nav mb-65">
+                    <a class="active" data-toggle="tab" href="#des-details1">Descripción</a>
+                    <a data-toggle="tab" href="#des-details2">Especificaciones</a>
+                    <a data-toggle="tab" href="#des-details3">Material </a>
+                    <a data-toggle="tab" href="#des-details4">Reseñas y calificaciones</a>
+                </div>
+                <div class="tab-content dec-review-bottom">
+                    <div id="des-details1" class="tab-pane active">
+                        <div class="description-wrap">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laborum quibusdam libero, necessitatibus voluptates voluptatibus fugiat,
+                                pariatur nihil quisquam, rem saepe optio mollitia? Ut hic corporis expedita repellendus esse cumque!</p>
+                            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit impedit laudantium molestiae autem,
+                                perspiciatis velit voluptatibus magni perferendis mollitia deserunt enim dicta sed, modi voluptatum fugit molestias eum libero veritatis?</p>
+                        </div>
+                    </div>
+                    <div id="des-details2" class="tab-pane">
+                        <div class="specification-wrap table-responsive">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="width1">Nombre</td>
+                                        <td>XXXXXXX</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SKU</td>
+                                        <td>XXXXX</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width1">Modelo</td>
+                                        <td>XXXXXX</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width1">Categoria</td>
+                                        <td>XXXXX</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width1">Talla</td>
+                                        <td>XXXXX</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width1">Marca </td>
+                                        <td>XXXXX</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width1">Color</td>
+                                        <td>XXXXXXX</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="des-details3" class="tab-pane">
+                        <div class="specification-wrap table-responsive">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="width1">XXXXX</td>
+                                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus cumque quisquam doloremque sequi exercitationem repudiandae quibusdam,
+                                            iusto magnam, obcaecati totam doloribus omnis minima cupiditate accusantium est accusamus libero ipsum aliquid.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abajo</td>
+                                        <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente eaque, ad consequuntur reprehenderit cupiditate
+                                            repudiandae quam ducimus temporibus quo dolorum, voluptate facere eveniet quasi facilis. At expedita nemo distinctio velit.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="des-details4" class="tab-pane">
+                        <div class="review-wrapper">
+                            <h2>1 review for Sleeve Button Cowl Neck</h2>
+                            <div class="single-review">
+                                <div class="review-img">
+                                    <img src="{% static 'assets/images/product-details/client-1.png' %}" alt="">
+                                </div>
+                                <div class="review-content">
+                                    <div class="review-top-wrap">
+                                        <div class="review-name">
+                                            <h5><span>John Snow</span> Mayo 2022</h5>
+                                        </div>
+                                        <div class="review-rating">
+                                            <i class="yellow icon-rating"></i>
+                                            <i class="yellow icon-rating"></i>
+                                            <i class="yellow icon-rating"></i>
+                                            <i class="yellow icon-rating"></i>
+                                            <i class="yellow icon-rating"></i>
+                                        </div>
+                                    </div>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque magnam, quod quibusdam rem quam officiis pariatu
+                                        r sapiente nulla necessitatibus laborum laudantium quia in quaerat facere eveniet aperiam ipsum. Tenetur, sed.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ratting-form-wrapper">
+                            <span>Agrega una reseña</span>
+                            <p>Su dirección de correo electrónico no será publicada. Los campos obligatorios están marcados <span>*</span></p>
+                            <div class="ratting-form">
+                                <form action="#">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="rating-form-style mb-20">
+                                                <label>Nombre <span>*</span></label>
+                                                <input type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="rating-form-style mb-20">
+                                                <label>Email <span>*</span></label>
+                                                <input type="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="star-box-wrap">
+                                                <div class="single-ratting-star">
+                                                    <a href="#"><i class="icon-rating"></i></a>
+                                                </div>
+                                                <div class="single-ratting-star">
+                                                    <a href="#"><i class="icon-rating"></i></a>
+                                                    <a href="#"><i class="icon-rating"></i></a>
+                                                </div>
+                                                <div class="single-ratting-star">
+                                                    <a href="#"><i class="icon-rating"></i></a>
+                                                    <a href="#"><i class="icon-rating"></i></a>
+                                                    <a href="#"><i class="icon-rating"></i></a>
+                                                </div>
+                                                <div class="single-ratting-star">
+                                                    <a href="#"><i class="icon-rating"></i></a>
+                                                    <a href="#"><i class="icon-rating"></i></a>
+                                                    <a href="#"><i class="icon-rating"></i></a>
+                                                    <a href="#"><i class="icon-rating"></i></a>
+                                                </div>
+                                                <div class="single-ratting-star">
+                                                    <a href="#"><i class="icon-rating"></i></a>
+                                                    <a href="#"><i class="icon-rating"></i></a>
+                                                    <a href="#"><i class="icon-rating"></i></a>
+                                                    <a href="#"><i class="icon-rating"></i></a>
+                                                    <a href="#"><i class="icon-rating"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="rating-form-style mb-20">
+                                                <label>Tu reseña <span>*</span></label>
+                                                <textarea name="Your Review"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-submit">
+                                                <input type="submit" value="Enviar">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="product-area pb-155">
+    <div class="container">
+        <div class="section-title-8 mb-65">
+            <h2>También te puede gustar</h2>
+        </div>
+        <div class="product-slider-active-4">
+            <div class="product-wrap-plr-1">
+                <div class="product-wrap">
+                    <div class="product-img product-img-zoom mb-25">
+                        <a href="{% url 'core:detailView' %}">
+                            <img src="{% static 'assets/images/product/product-151.jpg' %}" alt="">
+                        </a>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="{% url 'core:detailView' %}">Nombre del Producto</a></h4>
+                        <div class="product-price">
+                            <span>$ XXX</span>
+                            <span class="old-price">$ XXX</span>
+                        </div>
+                    </div>
+                    <div class="product-action-position-1 text-center">
+                        <div class="product-content">
+                            <h4><a href="{% url 'core:detailView' %}">Nombre del Producto</a></h4>
+                            <div class="product-price">
+                                <span>$ XXX</span>
+                                <span class="old-price">$ XXX</span>
+                            </div>
+                        </div>
+                        <div class="product-action-wrap">
+                            <div class="product-action-cart">
+                                <button title="Añadir al Carrito">Añadir al Carrito</button>
+                            </div>
+                            <button data-toggle="modal" data-target="#exampleModal"><i class="icon-zoom"></i></button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-wrap-plr-1">
+                <div class="product-wrap">
+                    <div class="product-img product-img-zoom mb-25">
+                        <a href="{% url 'core:detailView' %}">
+                            <img src="{% static 'assets/images/product/product-152.jpg' %}" alt="">
+                        </a>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="{% url 'core:detailView' %}">Nombre del Producto</a></h4>
+                        <div class="product-price">
+                            <span>$ XXX</span>
+                            <span class="old-price">$ XXX</span>
+                        </div>
+                    </div>
+                    <div class="product-action-position-1 text-center">
+                        <div class="product-content">
+                            <h4><a href="{% url 'core:detailView' %}">Nombre del Producto</a></h4>
+                            <div class="product-price">
+                                <span>$ XXX</span>
+                                <span class="old-price">$ XXX</span>
+                            </div>
+                        </div>
+                        <div class="product-action-wrap">
+                            <div class="product-action-cart">
+                                <button title="Añadir al Carrito">Añadir al Carrito</button>
+                            </div>
+                            <button data-toggle="modal" data-target="#exampleModal"><i class="icon-zoom"></i></button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-wrap-plr-1">
+                <div class="product-wrap">
+                    <div class="product-img product-img-zoom mb-25">
+                        <a href="{% url 'core:detailView' %}">
+                            <img src="{% static 'assets/images/product/product-153.jpg' %}" alt="">
+                        </a>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="{% url 'core:detailView' %}">Nombre del Producto</a></h4>
+                        <div class="product-price">
+                            <span>$ XXX</span>
+                            <span class="old-price">$ XXX</span>
+                        </div>
+                    </div>
+                    <div class="product-action-position-1 text-center">
+                        <div class="product-content">
+                            <h4><a href="{% url 'core:detailView' %}">Nombre del Producto</a></h4>
+                            <div class="product-price">
+                                <span>$ XXX</span>
+                                <span class="old-price">$ XXX</span>
+                            </div>
+                        </div>
+                        <div class="product-action-wrap">
+                            <div class="product-action-cart">
+                                <button title="Añadir al Carrito">Añadir al Carrito</button>
+                            </div>
+                            <button data-toggle="modal" data-target="#exampleModal"><i class="icon-zoom"></i></button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-wrap-plr-1">
+                <div class="product-wrap">
+                    <div class="product-img product-img-zoom mb-25">
+                        <a href="{% url 'core:detailView' %}">
+                            <img src="{% static 'assets/images/product/product-154.jpg' %}" alt="">
+                        </a>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="{% url 'core:detailView' %}">Nombre del Producto</a></h4>
+                        <div class="product-price">
+                            <span>$ XXX</span>
+                            <span class="old-price">$ XXX</span>
+                        </div>
+                    </div>
+                    <div class="product-action-position-1 text-center">
+                        <div class="product-content">
+                            <h4><a href="{% url 'core:detailView' %}">Nombre del Producto</a></h4>
+                            <div class="product-price">
+                                <span>$ XXX</span>
+                                <span class="old-price">$ XXX</span>
+                            </div>
+                        </div>
+                        <div class="product-action-wrap">
+                            <div class="product-action-cart">
+                                <button title="Añadir al Carrito">Añadir al Carrito</button>
+                            </div>
+                            <button data-toggle="modal" data-target="#exampleModal"><i class="icon-zoom"></i></button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-wrap-plr-1">
+                <div class="product-wrap">
+                    <div class="product-img product-img-zoom mb-25">
+                        <a href="{% url 'core:detailView' %}">
+                            <img src="{% static 'assets/images/product/product-152.jpg' %}" alt="">
+                        </a>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="{% url 'core:detailView' %}">Nombre del Producto</a></h4>
+                        <div class="product-price">
+                            <span>$ XXX</span>
+                            <span class="old-price">$ XXX</span>
+                        </div>
+                    </div>
+                    <div class="product-action-position-1 text-center">
+                        <div class="product-content">
+                            <h4><a href="{% url 'core:detailView' %}">Nombre del Producto</a></h4>
+                            <div class="product-price">
+                                <span>$ XXX</span>
+                                <span class="old-price">$ XXX</span>
+                            </div>
+                        </div>
+                        <div class="product-action-wrap">
+                            <div class="product-action-cart">
+                                <button title="Añadir al Carrito">Añadir al Carrito</button>
+                            </div>
+                            <button data-toggle="modal" data-target="#exampleModal"><i class="icon-zoom"></i></button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+{% endblock %}
