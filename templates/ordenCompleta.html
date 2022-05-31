@@ -1,0 +1,84 @@
+{% extends 'base/base.html' %}
+{% block title %}Orden Completa{% endblock %}
+{% load static %}
+
+{% block content %}
+ 
+<div class="breadcrumb-area breadcrumb-mt breadcrumb-ptb-2">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <h2>Orden Completa</h2>
+            <ul>
+                <li>
+                    <a href="{% url 'core:index' %}">Inicio </a>
+                </li>
+                <li><span> > </span></li>
+                <li>
+                    <a href="{% url 'core:store' %}">Productos </a>
+                </li>
+                <li><span> > </span></li>
+                <li class="active"> Orden Completa </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="cart-check-order-link-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 ml-auto mr-auto">
+                <div class="cart-check-order-link">
+                    <a href="{% url 'core:cart' %}">Carrito de compras</a>
+                    <a href="{% url 'core:check-out' %}">Verificar</a>
+                    <a class="active" href="{% url 'core:checkoutCompleta' %}">Orden completada</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <div class="order-complete-area bg-gray pt-50 pb-160">
+            <div class="container">
+                <div class="order-complete-title">
+                    <h3> Gracias. Tu orden ha sido recibida.</h3>
+                    <!-- <h3>su orden no ha sido procesada</h3> -->
+                </div>
+                <div class="order-product-details">
+                    <form action="#">
+                        <div class="table-content table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Orden NO°</th>
+                                        <th>Fecha</th>
+                                        <th>Total</th>
+                                        <th>Método de Pago</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            M XXXXX
+                                        </td>
+                                        <td>
+                                            XXXX XX XXXX
+                                        </td>
+                                        <td>
+                                            $XXXX
+                                        </td>
+                                        <td>
+                                            XXXXXXX
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+                <div class="back-continue-wrap">
+                    <a href="{% url 'core:check-out' %}"> Regresar</a>
+                    <a href="{% url 'core:store' %}">Ir a tienda</a>
+                </div>
+            </div>
+        </div>
+        
+
+        {% endblock %}

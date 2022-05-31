@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-{% block title %}{% endblock %}
+{% block title %}Inicio{% endblock %}
 {% load static %}
 
 {% block content %}
@@ -19,7 +19,7 @@
               <div class="btn-style-3 btn-hover">
                 <a
                   class="btn3-ptb-3 btn3-bg-brown animated"
-                  href="{% url 'core:detailView' %}"
+                  href="{% url 'core:checkoutCompleta' %}"
                   >Comprar Ahora <i class="icofont-long-arrow-right"></i
                 ></a>
               </div>
@@ -59,7 +59,7 @@
               <div class="btn-style-3 btn-hover">
                 <a
                   class="btn3-ptb-3 btn3-bg-brown animated"
-                  href="{% url 'core:detailView' %}"
+                  href="{% url 'core:checkoutCompleta' %}"
                   >Comprar Ahora <i class="icofont-long-arrow-right"></i
                 ></a>
               </div>
@@ -98,7 +98,7 @@
         <div class="product-wrap mb-30">
           <div class="product-img product-img-zoom mb-25">
             <a href="{% url 'core:detailView' %}">
-              <img src="{% static 'assets/img/niño.jpg' %}" alt="" />
+              <img src="{% static 'assets/img/nino.jpg' %}" alt="" />
             </a>
           </div>
           <div class="product-action-position-1 text-center">
@@ -114,7 +114,7 @@
         <div class="product-wrap mb-30">
           <div class="product-img product-img-zoom mb-25">
             <a href="{% url 'core:detailView' %}">
-              <img src="{% static 'assets/img/niña.jpg' %}" alt="" />
+              <img src="{% static 'assets/img/nina.jpg' %}" alt="" />
             </a>
           </div>
           <div class="product-action-position-1 text-center">
@@ -562,49 +562,9 @@
     </div>
   </div>
 </div>
-<div class="card-deck mb-50" style="border: none">
-  <div class="card">
-    <div class="image" style="display: flex; justify-content: center">
-      <img
-        src="{% static 'assets/img/tienda.png' %}"
-        class="card-img-top"
-        alt="..."
-        style="width: 80px; height: 80px"
-      />
-    </div>
-    <div class="card-body">
-      <div class="image" style="display: flex; justify-content: center">
-        <h5 class="card-title">Donde comprar?</h5>
-      </div>
-      <p class="card-text">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas
-        voluptatum suscipit, repellendus doloribus corrupti provident excepturi
-        laborum tempore maxime dolorum, labore quibusdam nulla sapiente ex
-        assumenda illo sed et. Ipsa?
-      </p>
-    </div>
-  </div>
-  <div class="card">
-    <div class="image" style="display: flex; justify-content: center">
-      <img
-        src="{% static 'assets/img/carrito.png' %}"
-        class="card-img-top"
-        alt="..."
-        style="width: 80px; height: 80px"
-      />
-    </div>
-    <div class="card-body">
-      <div class="image" style="display: flex; justify-content: center">
-        <h5 class="card-title">Compra</h5>
-      </div>
-      <p class="card-text">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis
-        fugiat, ut corpori s similique deleniti laboriosam harum. Optio porro
-        similique sint est fugiat, maxime eius culpa? Culpa repellat inventore
-        accusamus incidunt!
-      </p>
-    </div>
-  </div>
+
+<div class="card-deck mb-50 pl-50 w-100" >
+
   <div class="card">
     <div class="image" style="display: flex; justify-content: center">
       <img
@@ -616,7 +576,51 @@
     </div>
     <div class="card-body">
       <div class="image" style="display: flex; justify-content: center">
-        <h5 class="card-title">Registro</h5>
+        <h5 class="card-title">Registrate</h5>
+      </div>
+      <p class="card-text">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas
+        voluptatum suscipit, repellendus doloribus corrupti provident excepturi
+        laborum tempore maxime dolorum, labore quibusdam nulla sapiente ex
+        assumenda illo sed et. Ipsa?
+      </p>
+    </div>
+  </div>
+
+  <div class="card ">
+    <div class="image" style="display: flex; justify-content: center">
+      <img
+        src="{% static 'assets/img/carrito.png' %}"
+        class="card-img-top"
+        alt="..."
+        style="width: 80px; height: 80px"
+      />
+    </div>
+    <div class="card-body">
+      <div class="image" style="display: flex; justify-content: center">
+        <h5 class="card-title">Selecciona tus productos</h5>
+      </div>
+      <p class="card-text">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis
+        fugiat, ut corpori s similique deleniti laboriosam harum. Optio porro
+        similique sint est fugiat, maxime eius culpa? Culpa repellat inventore
+        accusamus incidunt!
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="image" style="display: flex; justify-content: center">
+      <img
+        src="{% static 'assets/img/tienda.png' %}"
+        class="card-img-top"
+        alt="..."
+        style="width: 80px; height: 80px"
+      />
+    </div>
+    <div class="card-body">
+      <div class="image" style="display: flex; justify-content: center">
+        <h5 class="card-title">Pagar</h5>
       </div>
       <p class="card-text">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. D icta

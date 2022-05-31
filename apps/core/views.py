@@ -15,3 +15,17 @@ class DetailView(TemplateView):
     template_name = 'detail-view.html'
 
 
+class FAQView(TemplateView):
+    template_name = 'faq.html'
+
+class cartView(TemplateView):
+    template_name = 'cart.html'
+
+class checkOutView(TemplateView):
+    template_name = 'check-out.html'
+
+class ordenCompletaView(TemplateView):
+    template_name = 'ordenCompleta.html'
+
+
+
