@@ -177,8 +177,8 @@
                   class="header-action-wrap header-action-flex header-action-mrg-1"
                 >
                   <div class="same-style header-cart">
-                    <a class="cart-active" href="#"
-                      ><i class="icofont-user-alt-3 pr-2"></i
+                    <a class=""data-toggle="modal" data-target="#exampleModal1"  href="#"
+                      ><i class="icofont-user-alt-3 pr-2 " ></i
                     ></a>
                   </div>
                   <div class="same-style header-cart">
@@ -459,10 +459,10 @@
       <!-- Modal end -->
 
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" style="background-color: white;">
+      <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" style="background-color: white;  overflow-y:hidden !important;">
         <div class="modal-dialog " role="document">
-          <div class="modal-content " style="">
-            <div class="modal-header">
+          <div class="modal-content " style="background-color: white; border: none;">
+            <div class="modal-header " style=" border: none; z-index: 15;">
               <button
                 type="button"
                 class="close"
@@ -472,15 +472,86 @@
                 <span aria-hidden="true">x</span>
               </button>
             </div>
-            <div class="modal-body">
-              <div class="row">  
-                .Registr
-
-
-
-
-
-              </div>
+            <div class="modal-body" style="position: relative; top:-80px; ">
+              <div class="login-register-area    ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                            <div class="login-register-wrapper">
+                                <div class="login-register-tab-list nav">
+                                    <a class="active" data-toggle="tab" href="#lg1">
+                                        <h4> Iniciar Sesión</h4>
+                                    </a>
+                                    <a data-toggle="tab" href="#lg2">
+                                        <h4> Regístrate </h4>
+                                    </a>
+                                </div>
+                                <div class="tab-content">
+                                    <div id="lg1" class="tab-pane active">
+                                      <h2 class="linea"><span>¿Eres nuevo en este sitio? Regístrate</span></h2>
+                                        <div class="login-form-container">
+                                            <div class="login-register-form">
+                                                <form action="#" method="post">
+                                                    <input type="text" name="user-name" placeholder="Usuario o Email">
+                                                    <input type="password" name="user-password" placeholder="Contraseña">
+                                                    <div class="button-box">
+                                                        <div class="login-toggle-btn">
+                                                            <input type="checkbox">
+                                                            <label>Recordar contrasñea</label>
+                                                            <a href="#" class="pt-15 pb-15">¿Olvido su contraseña?</a>
+                                                        </div>
+                                                        <button type="submit" style="width:100%;">Iniciar Sesión</button>
+                                                    </div>
+                                                    <h2 class="linea"><span>O conéctate con</span></h2>
+                                                    <div class="form-flex">
+                                                      <div class="form-img">
+                                                       <a href="">
+                                                         <img src="{% static 'assets/img/facebook.png' %}" alt="">
+                                                       </a> 
+                                                      </div>
+                                                      <div class="form-images">
+                                                        <a href="">
+                                                          <img src="{% static 'assets/img/google.jpg' %}" alt="">
+                                                        </a>
+                                                      </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="lg2" class="tab-pane">
+                                      <h2 class="linea"><span>¿Ya tienes un perfil personal? Inicia Sesión</span></h2>
+                                        <div class="login-form-container">
+                                            <div class="login-register-form">
+                                                <form action="#" method="post">
+                                                    <input type="text" name="user-name" placeholder="Usuario">
+                                                    <input type="password" name="user-password" placeholder="Contraseña">
+                                                    <input name="user-email" placeholder="Email" type="Email">
+                                                    <div class="button-box">
+                                                        <button type="submit" style="width:100%;">Regístrate</button>
+                                                    </div>
+                                                    <h2 class="linea"><span>O regístrate con</span></h2>
+                                                    <div class="form-flex">
+                                                      <div class="form-img">
+                                                       <a href="">
+                                                         <img src="{% static 'assets/img/facebook.png' %}" alt="">
+                                                       </a> 
+                                                      </div>
+                                                      <div class="form-images">
+                                                        <a href="">
+                                                          <img src="{% static 'assets/img/google.jpg' %}" alt="">
+                                                        </a>
+                                                      </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
           </div>
         </div>

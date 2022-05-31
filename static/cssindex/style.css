@@ -110,6 +110,51 @@
     color: white;
 }
 
+/* modal inicio de sesion */
+
+.form-flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+} 
+.form-img{ 
+}
+.form-img img{  
+  width: 30px;
+  margin-right: 25px;
+}
+.form-images img{
+  width: 30px;
+  margin-left: 25px;
+}
+h2 {
+  font: 15px sans-serif;
+  margin-top: 30px;
+  text-align: center;
+}
+h2.linea {
+  position: relative;
+  z-index: 1;
+}
+h2.linea:before {
+  border-top: 1px solid black;
+  content: "";
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 95%;
+  z-index: -1;
+}
+h2.linea span {
+
+  background: #fff;
+  padding: 0 15px;
+}
+
 /* Cuando la pantalla es menor a 900px  (tablets y teléfonos inteligentes)*/
 @media only screen and (max-width: 900px) {
   .pet-food-bg-img img{
