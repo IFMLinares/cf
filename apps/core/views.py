@@ -14,7 +14,6 @@ class Store(TemplateView):
 class DetailView(TemplateView):
     template_name = 'detail-view.html'
 
-
 class FAQView(TemplateView):
     template_name = 'faq.html'
 
