@@ -29989,7 +29989,7 @@ textarea:focus {
 }
 
 .login-register-wrapper .login-register-tab-list a.active h4 {
-  color: #0A1039;
+  color: #ED4ACA;
 }
 
 .login-register-wrapper .login-form-container {
@@ -30063,11 +30063,11 @@ textarea:focus {
 }
 
 .login-register-wrapper .login-form-container .login-register-form form .button-box .login-toggle-btn a:hover {
-  color: #0A1039;
+  color: #ED4ACA;
 }
 
 .login-register-wrapper .login-form-container .login-register-form form .button-box button {
-  background-color: #0A1039;
+  background-color: #ED4ACA;
   color: #fff;
   border: medium none;
   cursor: pointer;
@@ -30082,7 +30082,7 @@ textarea:focus {
 }
 
 .login-register-wrapper .login-form-container .login-register-form form .button-box button:hover {
-  background-color: #010225;
+  background-color: black;
 }
 
 /*-------- 26. My account style ---------*/
