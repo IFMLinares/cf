@@ -4971,14 +4971,14 @@ textarea:focus {
   text-align: center;
   line-height: 20px;
   padding: 19px 20px 20px;
-  background-color: #333;
-  color: black;
+  background-color: #ED4ACA;
+  color: white;
   text-transform: capitalize;
   font-size: 14px;
 }
 
 .sidebar-cart-active .sidebar-cart-all .cart-content .cart-checkout-btn a:hover {
-  background-color: #ED4ACA;
+  background-color: black;
 }
 
 .sidebar-cart-active .sidebar-cart-all .cart-content .cart-checkout-btn a:first-child {
@@ -30110,8 +30110,8 @@ textarea:focus {
 }
 
 .myaccount-tab-menu a:hover, .myaccount-tab-menu a.active {
-  background-color: #0A1039;
-  border-color: #0A1039;
+  background-color: #ED4ACA;
+  border-color: #ED4ACA;
   color: #ffffff;
 }
 
@@ -30144,8 +30144,7 @@ textarea:focus {
 }
 
 .myaccount-content h3 {
-  font-size: 20px;
-  border-bottom: 1px dashed #ccc;
+  font-size: 20px; 
   padding-bottom: 10px;
   margin-bottom: 25px;
   font-weight: 600;
@@ -30243,7 +30242,7 @@ textarea:focus {
 
 .saved-message {
   background-color: #fff;
-  border-top: 3px solid #0A1039;
+  border-top: 3px solid black;
   font-size: 14px;
   padding: 20px 0;
   color: #333;
