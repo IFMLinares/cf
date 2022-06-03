@@ -11,11 +11,6 @@ urlpatterns = [
     path('cart', cartView.as_view(), name='cart'),
     path('check-out', checkOutView.as_view(), name='check-out'),
     path('checkout-completa', ordenCompletaView.as_view(), name='checkoutCompleta'),
-<<<<<<< HEAD
-=======
     path('cuenta', miCuentaView.as_view(), name='cuenta'),
 
-
-
->>>>>>> d0f61709dd91401470f642fec20b3d40c9de6862
 ]
