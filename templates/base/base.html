@@ -132,6 +132,14 @@
                             <a href="#"> Solo hoy: envíos gratis </a>
                             <!-- <a href="">Llámanos al 914-123-456</a> -->
                           </li>
+                          {% if user.is_authenticated %}
+                          <li>
+                            <div
+                              class="same-style same-style-white header-cart pet-food-cart  ml-xl-3">
+                              <a class="pr-3" href="#" ><i class="icofont-user-alt-3 "></i>{{ user.username }}</a>
+                            </div>
+                          </li>
+                          {% else %}
                           <li>
                             <div
                               class="same-style same-style-white header-cart pet-food-cart" 
@@ -139,18 +147,24 @@
                               <a class="pr-3" href="#"  data-toggle="modal" data-target="#exampleModal1"><i class="icofont-user-alt-3 "></i> Login</a>
                             </div>
                           </li>
+                          {% endif %}
                         </ul>
                       </nav>
                     </div>
 
                     
                     <div
-                      class="same-style same-style-white header-cart pet-food-cart"
+                      class="same-style same-style-white header-cart pet-food-cart  ml-xl-3"
                     >
                       <a class="cart-active" href="#"
                         >0<i class="icofont-shopping-cart"></i
                       ></a>
                     </div>
+                      {% if user.is_authenticated %}
+                    <div class="same-style same-style-white header-cart pet-food-cart  ml-xl-3">
+                      <a class="pr-3" href="{% url 'account_logout' %}" >Salir<i class="icofont-logout"></i></a>
+                    </div>
+                      {% endif %}
                   </div>
                 </div>
               </div>
@@ -240,7 +254,7 @@
               <h4>Subtotal: <span>$ XXXX</span></h4>
             </div>
             <div class="cart-checkout-btn">
-              <a class="btn-hover cart-btn-style" href="">Ver Carrito</a>
+              <a class="btn-hover cart-btn-style" href="{% url 'core:cart' %}">Ver Carrito</a>
               <!-- <a class="no-mrg btn-hover cart-btn-style" href="">checkout</a> -->
             </div>
           </div>
@@ -491,9 +505,9 @@
                                       <h2 class="linea"><span>¿Eres nuevo en este sitio? Regístrate</span></h2>
                                         <div class="login-form-container">
                                             <div class="login-register-form">
-                                                <form action="#" method="post">
-                                                    <input type="text" name="user-name" placeholder="Usuario o Email">
-                                                    <input type="password" name="user-password" placeholder="Contraseña">
+                                                <form action="{% url 'account_login' %}" method="post">
+                                                    <input type="text" name="login" id="id_login" placeholder="Usuario o Email">
+                                                    <input type="password" name="password" id="id_password" placeholder="Contraseña">
                                                     <div class="button-box">
                                                         <div class="login-toggle-btn">
                                                             <input type="checkbox">
@@ -502,6 +516,21 @@
                                                         </div>
                                                         <button type="submit" style="width:100%;">Iniciar Sesión</button>
                                                     </div>
+                                                    {% csrf_token %}
+                                                    {% if form.errors %}
+                                                    {% for field in form %}
+                                                    {% for error in field.errors %}
+                                                    <div class="alert alert-error">
+                                                      <strong>{{ error|escape }}</strong>
+                                                    </div>
+                                                    {% endfor %}
+                                                    {% endfor %}
+                                                    {% for error in form.non_field_errors %}
+                                                    <div class="alert alert-error">
+                                                      <strong>{{ error|escape }}</strong>
+                                                    </div>
+                                                    {% endfor %}
+                                                    {% endif %}
                                                     <h2 class="linea"><span>O conéctate con</span></h2>
                                                     <div class="form-flex">
                                                       <div class="form-img">
