@@ -24,7 +24,7 @@ class checkOutView(TemplateView):
     template_name = 'check-out.html'
 
 class ordenCompletaView(TemplateView):
-    template_name = 'ordenCompleta.html'
+    template_name = 'ordenCompleta.html' 
 
-
-
+class miCuentaView(TemplateView):
+    template_name = 'cuenta.html' 
