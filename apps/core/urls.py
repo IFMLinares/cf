@@ -12,5 +12,4 @@ urlpatterns = [
     path('check-out', checkOutView.as_view(), name='check-out'),
     path('checkout-completa', ordenCompletaView.as_view(), name='checkoutCompleta'),
     path('cuenta', miCuentaView.as_view(), name='cuenta'),
-
 ]
