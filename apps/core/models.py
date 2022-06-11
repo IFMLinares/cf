@@ -7,6 +7,14 @@ from django.shortcuts import reverse
 import random
 # Create your models here.
 
+CATEGORY_CHOICES = (
+        ('A', '1-3 Años'),
+        ('B', 'Bebés'), 
+        ('C', '3 Años en Adelante'),
+        ('D', 'Otros'), 
+    )
+
+
 # PRODUCTOS
 class Item(models.Model):
     sku_code = models.CharField(max_length=100, blank=False, null=False)
@@ -14,6 +22,10 @@ class Item(models.Model):
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
     image = models.ImageField(upload_to = 'media', blank=False, null=False)
     stock = models.IntegerField(default=1, blank=False, null=False)
+    category = models.CharField(max_length=2, choices=CATEGORY_CHOICES)
+    discount_price = models.IntegerField(blank=True, null=True)
+    outstanding = models.BooleanField(default=False,blank=True, null=True)
+
     
     # Dimensiones
     l = models.FloatField(blank=False, null=False)
@@ -59,3 +71,73 @@ class Item(models.Model):
     class Meta:
         verbose_name = "Tienda: Producto"
         verbose_name_plural = "Tienda: Productos"
+
+class OrderItem(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
+    ordered = models.BooleanField(default=False)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    totalItem = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.item.description} x{self.quantity} \n"
+
+    def get_total_item_price(self):
+        return self.quantity * self.totalItem
+    def get_total_item_discount_price(self):
+        return self.quantity * self.item.discount_price
+    def get_amount_saved(self):
+        return self.get_total_item_price() - self.get_total_item_discount_price()
+
+    def get_final_price(self):
+        if self.item.discount_price:
+            return self.get_total_item_discount_price()
+        return self.get_total_item_price()
+
+    def espaciado(self):
+        return 149 - (len(self.item.description) + 1)
+    
+    def save(self, *args, **kwargs):
+        self.totalItem = self.item.sale_price
+        super(OrderItem, self).save(*args,**kwargs)
+
+    class Meta:
+        verbose_name = "Producto Ordenado"
+        verbose_name_plural = "Productos Ordenados"
+
+class Order(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    items = models.ManyToManyField(OrderItem)
+    start_date = models.DateTimeField(auto_now_add= True)
+    ordered_date = models.DateTimeField()
+    ordered = models.BooleanField(default=False)
+    message = models.TextField(null=True, blank=True)
+    billing_address = models.ForeignKey('Address', on_delete=models.SET_NULL, blank=True, null=True)
+    totalOrden = models.IntegerField(blank=True, null=True)
+
+    def __str__ (self):
+        return self.user.username
+
+    def get_total(self):
+        total = 0
+        for order_item in self.items.all():
+            total += order_item.get_final_price()
+        return total
+
+    class Meta:
+        verbose_name = "Tienda: Orden"
+        verbose_name_plural = "Tienda: Ordenes"
+
+class Address(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    street_address = models.CharField(max_length=100)
+    apartment_address = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"Dirección Exacta: {self.street_address} \n Departamento {self.apartment_address}"
+
+    class Meta:
+        verbose_name = "Usuario: Dirección"
+        verbose_name_plural = 'Usuario: Direcciones'
+

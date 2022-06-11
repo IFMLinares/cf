@@ -56,6 +56,7 @@ INSTALLED_APPS = [
 
     # django jet (theme for admin)
 
+    'django.contrib.humanize',
     # own apps
     'apps.core'
 ]

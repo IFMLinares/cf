@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="es">
+  {% load cart_template_tags %}
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -136,7 +137,7 @@
                           <li>
                             <div
                               class="same-style same-style-white header-cart pet-food-cart  ml-xl-3">
-                              <a class="pr-3" href="#" ><i class="icofont-user-alt-3 "></i>{{ user.username }}</a>
+                              <a class="pr-3" href="{% url 'core:account' %}" ><i class="icofont-user-alt-3 "></i>{{ user.username }}</a>
                             </div>
                           </li>
                           {% else %}
@@ -151,15 +152,15 @@
                         </ul>
                       </nav>
                     </div>
-
-                    
+                    {% if user.is_authenticated %}
                     <div
                       class="same-style same-style-white header-cart pet-food-cart  ml-xl-3"
                     >
                       <a class="cart-active" href="#"
-                        >0<i class="icofont-shopping-cart"></i
+                        >{{ request.user|cart_item_count }}<i class="icofont-shopping-cart"></i
                       ></a>
                     </div>
+                    {% endif %}
                       {% if user.is_authenticated %}
                     <div class="same-style same-style-white header-cart pet-food-cart  ml-xl-3">
                       <a class="pr-3" href="{% url 'account_logout' %}" >Salir<i class="icofont-logout"></i></a>
@@ -221,37 +222,27 @@
           <div class="cart-content">
             <h3>Carrito</h3>
             <ul>
+              
+              {% load humanize %}
+              {% for order_item in carro.items.all %}
               <li class="single-product-cart">
                 <div class="cart-img">
                   <a href="#"
-                    ><img src="{% static 'assets/img/producto.jpg' %}" alt=""
+                    ><img src="{{order_item.item.image.url}}" alt=""
                   /></a>
                 </div>
                 <div class="cart-title">
-                  <h4><a href="#">Nombre del Producto</a></h4>
-                  <span> 1 × $ XXXX </span>
+                  <h4><a href="#">{{order_item.item.description}}</a></h4>
+                  <span> {{ order_item.quantity }} × ${{ order_item.totalItem }} </span>
                 </div>
                 <div class="cart-delete">
-                  <a href="#">×</a>
+                  <a href="{% url 'core:remove-from-cart-modal' slug=order_item.item.slug  %}">×</a>
                 </div>
               </li>
-              <li class="single-product-cart">
-                <div class="cart-img">
-                  <a href="#"
-                    ><img src="{% static 'assets/img/producto.jpg' %}" alt=""
-                  /></a>
-                </div>
-                <div class="cart-title">
-                  <h4><a href="#">Nombre del Producto</a></h4>
-                  <span> 1 × $ XXXX </span>
-                </div>
-                <div class="cart-delete">
-                  <a href="#">×</a>
-                </div>
-              </li>
+              {% endfor %}
             </ul>
             <div class="cart-total">
-              <h4>Subtotal: <span>$ XXXX</span></h4>
+              <h4>Subtotal: <span>${{ carro.get_total|floatformat:"0" }}</span></h4>
             </div>
             <div class="cart-checkout-btn">
               <a class="btn-hover cart-btn-style" href="{% url 'core:cart' %}">Ver Carrito</a>
@@ -303,7 +294,6 @@
           </div>
         </div>
       </div>
-
       {% block content %}{% endblock %}
 
       <footer class="footer-area bg-brown">

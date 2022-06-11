@@ -40,33 +40,6 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="checkout-left-wrap">
-                            <div class="login-guest-top">
-                                <div class="checkout-tab nav">
-                                    <a href="#checkout-login" data-toggle="tab">
-                                        Iniciar Sesión
-                                    </a> 
-                                </div>
-                                <div class="tab-content">
-                                    <div id="checkout-login" class="tab-pane active">
-                                        <div class="checkout-login-wrap"> 
-                                            <div class="checkout-login-style">
-                                                <form action="#">
-                                                    <input type="text" name="user-name" placeholder="Usuario o Email">
-                                                    <input type="password" name="user-password" placeholder="Contraseña">
-                                                    <div class="checkout-button-box">
-                                                        <div class="checkout-login-toggle-btn">
-                                                            <input type="checkbox">
-                                                            <label>Recuerdame</label>
-                                                            <a href="#">¿Olvido su contraseña?</a>
-                                                        </div>
-                                                        <button type="submit">Iniciar Sesión</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </div>
-                            </div>
                             <div class="shipping-address-wrap">
                                 <h4 class="checkout-title">Dirección de Envío</h4>
                                 <div class="row">
@@ -119,13 +92,13 @@
                         <div class="payment-details mb-40">
                             <h4 class="checkout-title">  Detalles de pago</h4>
                             <ul>
-                                <li>Subtotal del carrito <span>$155.00</span></li>
-                                <li>Envío y Entrega <span>$15.00</span></li>
+                                <li>Subtotal del carrito <span>${{ order.get_total }}</span></li>
+                                <!-- <li>Envío y Entrega <span>$15.00</span></li> -->
                                 <li>  IVA <span>$00.00</span></li>
                             </ul>
                             <div class="total-order">
                                 <ul>
-                                    <li>Total del pedido <span>$170.00</span></li>
+                                    <li>Total del pedido <span>${{ order.get_total }}</span></li>
                                 </ul>
                             </div>
                         </div>

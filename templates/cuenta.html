@@ -39,7 +39,7 @@
                                             <div class="myaccount-content">
                                                 <h3>Dashboard</h3>
                                                 <div class="welcome">
-                                                    <p>Hola, <strong>XXXXXXXXXX</strong> (Si no eres <strong>XXXXX !</strong><a href="" class="logout"> Salir</a>)</p>
+                                                    <p>Hola, <strong>{{ request.user.first_name }} {{ request.user.first_name }}{{ request.user.last_name }}</strong> (Si no eres <strong>{{ request.user.username }} !</strong><a href="{% url 'account_logout' %}" class="logout"> Salir</a>)</p>
                                                 </div>
 
                                                 <p class="mb-0">Desde el panel de tu cuenta. puede verificar y ver fácilmente sus pedidos recientes, administrar sus direcciones de envío, facturación, editar su contraseña y los detalles de su cuenta.</p>

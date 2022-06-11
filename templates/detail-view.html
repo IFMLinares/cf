@@ -22,7 +22,7 @@
     <div class="container">
         <div class="product-details-top-content">
             <div class="product-details-content">
-                <h2>Nombre del Producto</h2>
+                <h2>{{ item.description }}</h2>
                 <p class="pro-dec-paragraph-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque repellat libero </p>
             </div>
             <div class="product-details-content">
@@ -52,16 +52,16 @@
             <div class="row">
                 <div class="col-lg-7 col-md-6">
                     <div class="pro-details-6-img pro-details-img-zoom">
-                        <img src="assets/img/producto.jpg" alt="">
+                        <img src="{{ item.image.url }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-6">
                     <div class="product-details-content product-details-content-6">
                         <div class="pro-details-price pro-details-price-4">
-                            <span>$ XXX</span>
-                            <span class="old-price">$ XXX</span>
+                            <span>$ {{ item.sale_price }}</span>
+                            <!-- <span class="old-price">$ XXX</span> -->
                         </div>
-                        <div class="pro-details-color-wrap">
+                        <!-- <div class="pro-details-color-wrap">
                             <span>Color:</span>
                             <div class="pro-details-color-content">
                                 <ul>
@@ -73,8 +73,8 @@
                                     <li><a class="cupid" href="#">Gris</a></li>
                                 </ul>
                             </div>
-                        </div>
-                        <div class="pro-details-size">
+                        </div> -->
+                        <!-- <div class="pro-details-size">
                             <span>Size:</span>
                             <div class="pro-details-size-content">
                                 <ul>
@@ -86,7 +86,7 @@
                                     <li><a href="#">XXL</a></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="pro-details-quality">
                             <span>Cantidad</span>
                             <div class="cart-plus-minus">

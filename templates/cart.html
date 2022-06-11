@@ -5,6 +5,18 @@
 {% block content %}
 
 
+<div class="container">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
 
 
 <div class="breadcrumb-area breadcrumb-mt breadcrumb-ptb-2">
@@ -59,84 +71,43 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    
+                                {% for order_item in carro.items.all %}
                                     <tr>
                                         <td class="cart-product">
                                             <div class="product-img-info-wrap">
                                                 <div class="product-img">
-                                                    <a href="#"><img src="{% static 'assets/img/producto.jpg' %}" alt=""></a>
+                                                    <a href="#"><img src="{{order_item.item.image.url}}" alt=""></a>
                                                 </div>
                                                 <div class="product-info">
-                                                    <h4><a href="#">Nombre del Producto</a></h4>
-                                                    <span>Color :  Negro</span>
-                                                    <span>Talla :   S</span>
+                                                    <h4><a href="#">{{order_item.item.description}}</a></h4>
+                                                    <!-- <span>Color :  Negro</span>
+                                                    <span>Talla :   S</span> -->
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="product-price"><span class="amount">XXXX</span></td>
+                                        <td class="product-price"><span class="amount"> ${{ order_item.totalItem }}</span></td>
                                         <td class="cart-quality">
                                             <div class="pro-details-quality">
                                                 <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box plus-minus-width-inc" type="text" name="qtybutton" value="02">
+                                                    <!-- <a class="dec qtybtn" href="{% url 'core:remove-single-item-from-cart' slug=order_item.item.slug %}">-</a>
+                                                    <input type="text" value="{{ order_item.quantity }}" readonly>
+                                                    <a class="inc qtybtn"  href="{% url 'core:add-to-cart' slug=order_item.item.slug %}">+</a> -->
+                                                    <input class="cart-plus-minus-box plus-minus-width-inc" type="text" name="qtybutton" value="{{ order_item.quantity }}">
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="product-total"><span>XXXX</span></td>
-                                        <td class="product-remove"><a href="#"><img class="inject-me" src="{% static 'assets/images/icon-img/close.svg' %}" alt=""></a></td>
+                                        {% load humanize %}
+                                        <td class="product-total"><span> ${{ order_item.get_total_item_price }}</span></td>
+                                        <td class="product-remove"><a href="{% url 'core:remove-from-cart' slug=order_item.item.slug  %}"><img class="inject-me" src="{% static 'assets/images/icon-img/close.svg' %}" alt=""></a></td>
                                     </tr>
-                                    <tr>
-                                        <td class="cart-product">
-                                            <div class="product-img-info-wrap">
-                                                <div class="product-img">
-                                                    <a href="#"><img src="{% static 'assets/img/producto.jpg' %}" alt=""></a>
-                                                </div>
-                                                <div class="product-info">
-                                                    <h4><a href="#">Nombre del Producto</a></h4>
-                                                    <span>Color :  Negro</span>
-                                                    <span>Talla :   S</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="product-price"><span class="amount">XXXX</span></td>
-                                        <td class="cart-quality">
-                                            <div class="pro-details-quality">
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box plus-minus-width-inc" type="text" name="qtybutton" value="02">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="product-total"><span>XXXX</span></td>
-                                        <td class="product-remove"><a href="#"><img class="inject-me" src="{% static 'assets/images/icon-img/close.svg' %}" alt=""></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cart-product">
-                                            <div class="product-img-info-wrap">
-                                                <div class="product-img">
-                                                    <a href="#"><img src="{% static 'assets/img/producto.jpg' %}" alt=""></a>
-                                                </div>
-                                                <div class="product-info">
-                                                    <h4><a href="#">Nombre del Producto</a></h4>
-                                                    <span>Color :  Negro</span>
-                                                    <span>Talla :   S</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="product-price"><span class="amount">XXXX</span></td>
-                                        <td class="cart-quality">
-                                            <div class="pro-details-quality">
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box plus-minus-width-inc" type="text" name="qtybutton" value="02">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="product-total"><span>XXXX</span></td>
-                                        <td class="product-remove"><a href="#"><img class="inject-me" src="{% static 'assets/images/icon-img/close.svg' %}" alt=""></a></td>
-                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
                         <div class="cart-shiping-update-wrapper">
-                            <a href="#">Continuar Comprando</a>
-                            <a href="#">Actualizar Carrito</a>
+                            <a href="{% url 'core:store' %}">Continuar Comprando</a>
+                            <a href="{% url 'core:cart' %}">Actualizar Carrito</a>
                             <a href="#">Limpiar Carrito</a>
                         </div>
                     </div>
