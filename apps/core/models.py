@@ -1,3 +1,4 @@
+from pyexpat import model
 from turtle import title
 from django.db import models
 from django.conf import settings
@@ -131,8 +132,11 @@ class Order(models.Model):
 class Address(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
+    country = models.CharField(max_length=100)
     street_address = models.CharField(max_length=100)
     apartment_address = models.CharField(max_length=100)
+    postal_code = models.CharField(max_length=100)
+    save = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Dirección Exacta: {self.street_address} \n Departamento {self.apartment_address}"

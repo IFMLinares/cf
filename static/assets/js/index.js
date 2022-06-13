@@ -24,3 +24,8 @@ $('#buynow').on('click', function(){
     event.preventDefault();
     $('#form-modal').submit()
 })
+
+function sendForm(){
+    // alert('asdasd')
+    $('#checkout').submit();
+}

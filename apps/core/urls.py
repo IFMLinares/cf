@@ -10,7 +10,7 @@ urlpatterns = [
     path('faq', FAQView.as_view(), name='faq'),
     path('cart', cartView.as_view(), name='cart'),
     path('check-out', checkOutView.as_view(), name='check-out'),
-    path('checkout-completa', ordenCompletaView.as_view(), name='checkoutCompleta'),
+    path('order-complete', CheckoutFinish.as_view(), name='CheckoutFinish'),
     path('account', miCuentaView.as_view(), name='account'),
     
     # FUNCIONES PARA EL CARRITO DE COMPRAS

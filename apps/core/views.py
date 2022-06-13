@@ -1,5 +1,7 @@
+from ast import Add
 import random
 from asyncio import constants
+from django import views
 from django.shortcuts import render
 
 # django libraries
@@ -13,8 +15,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic.base import ContextMixin
 from django.views.generic import TemplateView, ListView, DeleteView, DetailView, View
+from pytz import country_names
 from requests import request
-from .models import Item, OrderItem, Order
+from .models import Item, OrderItem, Order, Address
 # Create your views here.
 
 class CartMixin(ContextMixin):
@@ -95,26 +98,67 @@ class cartView(LoginRequiredMixin, View):
             return redirect('/')
 
 # Checkout
-class checkOutView(LoginRequiredMixin, CartMixin, TemplateView):
+class checkOutView(LoginRequiredMixin, CartMixin, View):
+    model = Address
     template_name = 'check-out.html'
     def get(self, request, *args, **kwargs):
         # form
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
+            address = list(Address.objects.filter(user=self.request.user))
             # user = User.objects.get(username=self.request.user.username)
             # form = CheckoutForm()
             context = {
                 # 'form': form,
                 'order': order,
+                # 'address': address
                 # 'user': user,
             }
+            if(len(address)>= 1 ):
+                context['addres'] = address
             return render(self.request, self.template_name, context)
         except ObjectDoesNotExist:
             messages.info(request, 'No tienes ninguna orden activa')
-            return redirect('core:checkout')
+            return redirect('core:check-out')
 
+    def post(self, *args, **kwargs):
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+
+            # country = self.request.POST['country']
+            # street_address = self.request.POST['street_address']
+            # apartment_address = self.request.POST['apartment_address']
+            # postal_code = self.request.POST['postal_code']
+            save = self.request.POST['save']
+            print(save)
+            # method = self.request.POST['payment_method']
+
+            # address = Address(
+            #     user = self.request.user,
+            #     street_address = street_address,
+            #     apartment_address = apartment_address,
+            #     postal_code = postal_code,
+            #     country = country,
+            #     # save = save
+            # )
+            
+            # address.save()
+            # order.billing_address = address
+            # mount = order.get_total()
+            # order.totalOrden = mount
+            # order.ordered = True
+            # order.save()
+            # print(order.totalOrden)
+            # print(mount)
+            return redirect('core:cart')
+        except ObjectDoesNotExist:
+            return redirect('core:index')
 # Orden Completa
 class ordenCompletaView(LoginRequiredMixin, CartMixin,View):
+    template_name = 'ordenCompleta.html' 
+
+# Cuenta de usuario
+class CheckoutFinish(LoginRequiredMixin, CartMixin,TemplateView):
     template_name = 'ordenCompleta.html' 
 
 # Cuenta de usuario
