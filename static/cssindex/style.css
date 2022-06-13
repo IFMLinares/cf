@@ -241,4 +241,9 @@ display: none;
     border: none;
     color: white;
 }
+
+/* card-deck */
+.card-deck{
+  width: 100%;
+}
 }
