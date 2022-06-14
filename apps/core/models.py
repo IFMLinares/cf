@@ -136,7 +136,7 @@ class Address(models.Model):
     street_address = models.CharField(max_length=100)
     apartment_address = models.CharField(max_length=100)
     postal_code = models.CharField(max_length=100)
-    save = models.BooleanField(default=False)
+    show = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Dirección Exacta: {self.street_address} \n Departamento {self.apartment_address}"

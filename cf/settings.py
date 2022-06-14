@@ -28,7 +28,7 @@ SECRET_KEY = 'be-a!7vw2o_n4@z+0kv0es2j50n3$81kf@*^4k+r=tauwfca#7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'ifmlinares.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', 'ifmlinares.pythonanywhere.com', '*']
 
 
 # Application definition
@@ -53,10 +53,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.facebook'
     # 'allauth.socialaccount.providers.google',
-
-    # django jet (theme for admin)
-
     'django.contrib.humanize',
+    'paypal.standard.ipn',
     # own apps
     'apps.core'
 ]
@@ -169,3 +167,7 @@ EMAIL_SUBJECT_PREFIX = 'Miguel Linares'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 LOGIN_REDIRECT_URL = '/'
+
+#  PAYPAL SETTINGS
+PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = 'sb-ylz7o15247147@business.example.com'
