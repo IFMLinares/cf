@@ -2295,7 +2295,8 @@ textarea:focus {
   background: -o-linear-gradient(266deg, #fcf9f2 0%, #fce4d3 100%);
   background: linear-gradient(184deg, #fcf9f2 0%, #fce4d3 100%); */
   background-image: url(../img/Portada\ Movil.png);
-  background-size: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .gradient-bg-7 {
@@ -3160,6 +3161,8 @@ textarea:focus {
 
 @media only screen and (max-width: 767px) {
   .btn-style-3 a {
+    position: relative;
+    top: 70px;
     font-size: 14px;
   }
 }
@@ -3290,7 +3293,7 @@ textarea:focus {
   .padding-100-row-col .row {
     margin-right: -15px;
     margin-left: -15px;
-  }
+  } 
 }
 
 .padding-100-row-col .row div[class^="col-"] {
@@ -8762,6 +8765,10 @@ textarea:focus {
 
 .pet-food-bg-img img {
   width: 100%;
+  background-size: contain;
+  position: relative;
+  top: 200px;
+  background-attachment:scroll;
 }
 
 .slider-content-6 {

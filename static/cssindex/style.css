@@ -153,8 +153,78 @@ h2.linea span {
   padding: 0 15px;
 }
 
+
+
+
+
+
+  
 /* Cuando la pantalla es menor a 900px  (tablets y teléfonos inteligentes)*/
-@media only screen and (max-width: 900px) {
+/* moto g4 */
+@media only screen and (min-device-width : 412px) and (max-device-width : 915px) {
+  .mobile-logo-width img{
+    width: 30% !important;
+    height: 100%;
+    }
+}
+/* samsung galaxy 20 */
+@media only screen and (min-device-width : 640px) and (max-device-width : 360px) {
+  .mobile-logo-width img{
+    width: 30% !important;
+    height: 50px !important; 
+    }
+}
+/* iphone x */
+@media only screen and (min-device-width: 320px)and (max-device-width: 736px) {
+  .mobile-logo img{
+    width: 75% !important;
+    height: 50px !important; 
+    }
+}
+
+/* tablets */
+@media only screen and (min-device-width: 1024px)and (max-device-width: 768px) {
+
+  .mobile-logo img{
+    width: 20% !important;
+    height: 50px !important; 
+    }
+    .pet-food-bg-img img {
+      width: 100%;
+      background-size: contain  !important;
+      position: relative;
+      top: 100px; 
+    } 
+    .header-small-device {
+      display: block;
+    }
+    .header-large-device {
+      display: none;
+    }
+}
+@media only screen and (min-device-width: 768px)and (max-device-width: 1024px) {
+
+  .mobile-logo img{
+    width: 20% !important;
+    height: 50px !important; 
+    }
+    .pet-food-bg-img img {
+      width: 100%;
+      background-size: contain  !important;
+      position: relative;
+      top: 100px; 
+    } 
+    .header-small-device {
+      display: block;
+    }
+    .header-large-device {
+      display: none;
+    }
+}
+
+
+
+@media only screen and (max-width: 900px) { 
   .pet-food-bg-img img{
     display: none;
   }
@@ -243,7 +313,8 @@ display: none;
 }
 
 /* card-deck */
-.card-deck{
-  width: 100%;
+.card-deck{ 
+width: 100%;
+padding-left: 0%;
 }
 }
