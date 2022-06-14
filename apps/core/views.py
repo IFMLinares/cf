@@ -1,15 +1,17 @@
-from ast import Add
+import uuid
 import random
+from ast import Add
 from asyncio import constants
 from django import views
 from django.shortcuts import render
-
+from django.conf import settings
 # django libraries
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.shortcuts import redirect
+from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
@@ -17,7 +19,9 @@ from django.views.generic.base import ContextMixin
 from django.views.generic import TemplateView, ListView, DeleteView, DetailView, View
 from pytz import country_names
 from requests import request
+from paypal.standard.forms import PayPalPaymentsForm
 from .models import Item, OrderItem, Order, Address
+from .forms.forms import CheckoutForm
 # Create your views here.
 
 class CartMixin(ContextMixin):
@@ -95,7 +99,7 @@ class cartView(LoginRequiredMixin, View):
             return render(self.request, self.template_name, context)
         except ObjectDoesNotExist:
             messages.error(self.request, 'No tienes ninguna orden activa')
-            return redirect('/')
+            return render(self.request, self.template_name)
 
 # Checkout
 class checkOutView(LoginRequiredMixin, CartMixin, View):
@@ -106,53 +110,78 @@ class checkOutView(LoginRequiredMixin, CartMixin, View):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             address = list(Address.objects.filter(user=self.request.user))
-            # user = User.objects.get(username=self.request.user.username)
-            # form = CheckoutForm()
+            form = CheckoutForm()
             context = {
-                # 'form': form,
                 'order': order,
-                # 'address': address
-                # 'user': user,
+                'form': form,
             }
-            if(len(address)>= 1 ):
+            if(len(address)>= 1):
                 context['addres'] = address
             return render(self.request, self.template_name, context)
         except ObjectDoesNotExist:
             messages.info(request, 'No tienes ninguna orden activa')
-            return redirect('core:check-out')
+            return redirect('core:cart')
 
     def post(self, *args, **kwargs):
+        form = CheckoutForm(self.request.POST or None)
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
+            if form.is_valid():
+                country = form.cleaned_data.get('country')
+                street_address = form.cleaned_data.get('street_address')
+                apartment_address =form.cleaned_data.get('apartment_address')
+                postal_code = form.cleaned_data.get('postal_code')
+                show = form.cleaned_data.get('save')
 
-            # country = self.request.POST['country']
-            # street_address = self.request.POST['street_address']
-            # apartment_address = self.request.POST['apartment_address']
-            # postal_code = self.request.POST['postal_code']
-            save = self.request.POST['save']
-            print(save)
-            # method = self.request.POST['payment_method']
+                address = Address(
+                    user = self.request.user,
+                    street_address = street_address,
+                    apartment_address = apartment_address,
+                    country = country,
+                    postal_code = postal_code,
+                    show = show,
+                )
+                address.save()
+                order.billing_address = address
 
-            # address = Address(
-            #     user = self.request.user,
-            #     street_address = street_address,
-            #     apartment_address = apartment_address,
-            #     postal_code = postal_code,
-            #     country = country,
-            #     # save = save
-            # )
-            
-            # address.save()
-            # order.billing_address = address
-            # mount = order.get_total()
-            # order.totalOrden = mount
-            # order.ordered = True
-            # order.save()
-            # print(order.totalOrden)
-            # print(mount)
-            return redirect('core:cart')
+                mount = order.get_total()
+                order.totalOrden = mount
+                order.save()
+                return redirect('core:payment')
+            else:
+                return redirect('core:index')
         except ObjectDoesNotExist:
             return redirect('core:index')
+
+# Checkout
+class PaymentView(LoginRequiredMixin, CartMixin, View):
+    model = Address
+    template_name = 'payment.html'
+    def get(self, request, *args, **kwargs):
+        # form
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            host = request.get_host()
+            paypal_dict = {
+                'business': settings.PAYPAL_RECEIVER_EMAIL,
+                'amount': str(order.get_total()),
+                'item_name': 'Order',
+                'invoice': str(uuid.uuid4()),
+                'currency_code': 'USD',
+                'notify_url': f'http://{host}{reverse("paypal-ipn")}',
+                'return_url': f'http://{host}{reverse("core:paypal_return")}',
+                'cancel_return': f'http://{host}{reverse("core:paypal_cancel")}',
+            }
+            formPaypal = PayPalPaymentsForm(initial=paypal_dict)
+            context = {
+                'order': order,
+                'paypal': formPaypal,
+            }
+            return render(self.request, self.template_name, context)
+        except ObjectDoesNotExist:
+            messages.info(request, 'No tienes ninguna orden activa')
+            return redirect('core:cart')
+
 # Orden Completa
 class ordenCompletaView(LoginRequiredMixin, CartMixin,View):
     template_name = 'ordenCompleta.html' 
@@ -165,6 +194,21 @@ class CheckoutFinish(LoginRequiredMixin, CartMixin,TemplateView):
 class miCuentaView(LoginRequiredMixin, CartMixin,TemplateView):
     template_name = 'cuenta.html' 
 
+@login_required
+def paypal_return(request):
+    try:
+        order = Order.objects.get(user=request.user, ordered=False)
+        order.ordered = True
+        order.save()
+        messages.success(request, 'Pago procesado exitosamente')
+        return render(request, 'ordenCompleta.html')
+    except ObjectDoesNotExist:
+        return redirect('core:cart')
+    
+@login_required
+def paypal_cancel(request):
+    messages.error(request, 'Pago Cancelado')
+    return redirect('core:index')
 
 # función de añadir al carro
 @login_required

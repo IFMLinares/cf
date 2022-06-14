@@ -30,7 +30,7 @@
                         <div class="cart-check-order-link">
                             <a href="{% url 'core:cart' %}">Carrito de compras</a>
                             <a class="active" href="{% url 'core:check-out' %}">Verificar</a>
-                            <a href="{% url 'core:CheckoutFinish' %}">Orden completada</a>
+                            <!-- <a href="{% url 'core:CheckoutFinish' %}">Orden completada</a> -->
                         </div>
                     </div>
                 </div>
@@ -44,28 +44,31 @@
                             <div class="shipping-address-wrap">
                                 <h4 class="checkout-title">Dirección de Envío</h4>
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <!-- <div class="col-lg-6">
                                         <div class="billing-info">
-                                            <!-- <input type="text" required="" placeholder="Nombre" name="name"> -->
+                                            <input type="text" required="" placeholder="Nombre" name="name">
                                         </div>
-                                    </div>
-                                    <div class="col-lg-6">
+                                    </div> -->
+                                    <!-- <div class="col-lg-6">
                                         <div class="billing-info">
-                                            <!-- <input type="text" required="" placeholder="Apellido" name="name"> -->
+                                            <input type="text" required="" placeholder="Apellido" name="name">
+                                        </div>
+                                    </div> -->
+                                    <div class="col-lg-12">
+                                        <div class="billing-info">
+                                            {{form.street_address}}
+                                            <!-- <input type="text" required="" placeholder="Dirección" name="street_address"> -->
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="billing-info">
-                                            <input type="text" required="" placeholder="Dirección" name="street_address">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="billing-info">
-                                            <input type="text" required="" placeholder="Apartamento" name="apartment_address">
+                                            {{form.apartment_address}}
+                                            <!-- <input type="text" required="" placeholder="Apartamento" name="apartment_address"> -->
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
-                                        <select class="nice-select nice-select-style-3 cart-tax-select" name="country">
+                                        {{form.country}}
+                                        <!-- <select class="nice-select nice-select-style-3 cart-tax-select" name="country">
                                             <option value="" disabled>Seleccionar País</option>
                                             <option value="AF">Afganistán</option>
                                             <option value="AL">Albania</option>
@@ -301,16 +304,17 @@
                                             <option value="YU">Yugoslavia</option>
                                             <option value="ZM">Zambia</option>
                                             <option value="ZW">Zimbabue</option>
-                                        </select>
+                                        </select> -->
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="billing-info">
-                                            <input type="text" required="" placeholder="Codígo Postal" name="postal_code">
+                                            <!-- <input type="text" required="" placeholder="Codígo Postal" name="postal_code"> -->
+                                            {{form.postal_code}}
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="checkout-save-info">
-                                            <input class="checkout-checkbox2" type="checkbox" name="save">
+                                            {{form.save}}
                                             <span> Guarda esta información para la próxima vez</span>
                                         </div>
                                     </div>
@@ -330,36 +334,6 @@
                                 <ul>
                                     <li>Total del pedido <span>${{ order.get_total }}</span></li>
                                 </ul>
-                            </div>
-                        </div>
-                        <div class="payment-details">
-                            <h4 class="checkout-title">Forma de Pago</h4>
-                            <div class="payment-method">
-                                <div class="pay-top sin-payment">
-                                    <input id="payment_method_1" class="input-radio" type="radio" value="paypal" checked="checked" name="payment_method">
-                                    <label for="payment_method_1"> Paypal </label>
-                                    <div class="payment-box payment_method_bacs">
-                                        <form action="#">
-                                            <input type="text" required="" placeholder="Enter Your Paypal Email" name="name">
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="pay-top sin-payment">
-                                    <input id="payment-method-2" class="input-radio" type="radio" value="Tarjeta" name="payment_method">
-                                    <label for="payment-method-2">Tarjeta </label>
-                                    <div class="payment-box payment_method_bacs">
-                                        <form action="#">
-                                            <input type="text" required="" placeholder="Ingrese el correo electrónico de su tarjeta" name="name">
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="pay-top sin-payment">
-                                    <input id="payment-method-3" class="input-radio" type="radio" value="Banco o cheque" name="payment_method">
-                                    <label for="payment-method-3"> banco o cheque </label>
-                                    <div class="payment-box payment_method_bacs">
-                                        <p> Realiza tu pago directamente en nuestra cuenta bancaria. Utilice su ID de pedido como referencia de pago.</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

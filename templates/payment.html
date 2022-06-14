@@ -1,0 +1,87 @@
+{% extends 'base/base.html' %}
+{% block title %}Verificación{% endblock %}
+{% load static %}
+
+{% block content %}
+<form action="{% url 'core:check-out' %}" method="post" id="checkout">
+    {% csrf_token %}
+        <div class="breadcrumb-area breadcrumb-mt breadcrumb-ptb-2">
+            <div class="container">
+                <div class="breadcrumb-content">
+                    <h2>Verificar</h2>
+                    <ul>
+                        <li>
+                            <a href="{% url 'core:index' %}">Inicio </a>
+                        </li>
+                        <li><span> > </span></li>
+                        <li>
+                            <a href="{% url 'core:store' %}">Productos </a>
+                        </li>
+                        <li><span> > </span></li>
+                        <li class="active"> Verificar </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="cart-check-order-link-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 ml-auto mr-auto">
+                        <div class="cart-check-order-link">
+                            <a href="{% url 'core:cart' %}">Carrito de compras</a>
+                            <a href="{% url 'core:check-out' %}">Verificar</a>
+                            <a class="active">Métodos de pago</a>
+                            <!-- <a href="{% url 'core:CheckoutFinish' %}">Orden completada</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="checkout-area bg-gray pt-50 pb-160">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-lg-6 text-center">
+                        <div class="payment-details">
+                            <h4 class="checkout-title">Forma de Pago</h4>
+                            <div class="payment-method">
+                                <div class="pay-top sin-payment">
+                                    <input id="payment_method_1" class="input-radio" type="radio" value="paypal" checked="checked" name="payment_method">
+                                    <label for="payment_method_1"> Paypal </label>
+                                    <div class="payment-box payment_method_bacs">
+                                        <form action="#">
+                                            <input type="text" required="" placeholder="Enter Your Paypal Email" name="name">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="pay-top sin-payment">
+                                    <input id="payment-method-2" class="input-radio" type="radio" value="Tarjeta" name="payment_method">
+                                    <label for="payment-method-2">Tarjeta </label>
+                                    <div class="payment-box payment_method_bacs">
+                                        <form action="#">
+                                            <input type="text" required="" placeholder="Ingrese el correo electrónico de su tarjeta" name="name">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="pay-top sin-payment">
+                                    <input id="payment-method-3" class="input-radio" type="radio" value="Banco o cheque" name="payment_method">
+                                    <label for="payment-method-3"> banco o cheque </label>
+                                    <div class="payment-box payment_method_bacs">
+                                        <p> Realiza tu pago directamente en nuestra cuenta bancaria. Utilice su ID de pedido como referencia de pago.</p>
+                                    </div>
+                                </div>
+
+                                {{ paypal.render }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="back-continue-wrap">
+                    <a href="{% url 'core:cart' %}"> Regresar</a>
+                    <a href="#" onclick="sendForm()">Continuar</a>
+
+                </div>
+            </div>
+        </div>
+<input type="hidden" name="price" value="${{ order.get_total }}">
+</form>
+        {% endblock %}
