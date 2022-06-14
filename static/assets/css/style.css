@@ -44,7 +44,8 @@
 /*  1. Template default CSS
 /*----------------------------------------*/
 /*-- Google Font --*/
-@import url("https://fonts.googleapis.com/css?family=Bubblegum+Sans|Rochester|Chewy|Montserrat:300,400,500,600,700,800,900|Pacifico|Poppins:300,400,500,600,700,800,900|Work+Sans:300,400,500,600,700,800,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
 /*-- Common Style --*/
 *,
 *::after,
@@ -64,7 +65,7 @@ body {
   font-style: normal;
   font-weight: 400;
   color: #333333;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 h1,
@@ -76,7 +77,7 @@ h6 {
   color: #333333;
   font-weight: 400;
   margin-top: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 p {
@@ -85,7 +86,7 @@ p {
   line-height: 24px;
   color: #777;
   margin-bottom: 15px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 h1 {
@@ -4358,6 +4359,7 @@ textarea:focus {
 
 .main-menu.main-menu-white > nav > ul > li > a {
   color: #FF66C4;
+  font-weight: bold;
 }
 
 .main-menu.main-menu-white > nav > ul > li:hover > a {
@@ -4437,7 +4439,7 @@ textarea:focus {
 .categories-dropdown .nice-select-style-1 {
   border-radius: 5px 0px 0px 5px;
   border: solid 1px #F3F3F3;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 12px;
   font-weight: 500;
   height: 45px;

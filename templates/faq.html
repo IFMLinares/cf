@@ -1,5 +1,106 @@
 {% extends 'base/base.html' %}
 {% block title %}FAQ{% endblock %}
+{% load static %}
 
-{% block content %}sadasd
+{% block content %}
+<br><br>
+
+<div class="breadcrumb-area breadcrumb-mt bg-gray breadcrumb-ptb-1">
+    <div class="container">
+        <div class="breadcrumb-content text-center">
+            <h2>FAQ </h2>
+            <p>Preguntas más frecuentes </p>
+        </div>
+    </div>
+    <div class="breadcrumb-img-1">
+        <img src="{% static 'assets/img/nino.jpg' %}" alt="">
+    </div>
+    <div class="breadcrumb-img-2">
+        <img src="{% static 'assets/img/nina.jpg' %}" alt="">
+    </div>
+</div>
+
+
+
+
+<!-- <div class="container">
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                ¿Cómo puedo agregar una nueva pregunta?
+              </button>
+            </h2>
+          </div>
+      
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              Para agregar una pregunta nueva, dirígete a la configuración de la aplicación y pulsa el botón "Administrar".
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                ¿Puedo agregar imágenes en mi sección de Preguntas Frecuentes?
+              </button>
+            </h2>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+                ¡Sí! Para agregar una imagen, sigue estos sencillos pasos:
+
+                Ingresar a la configuración de la app.
+                
+                Haz clic en el botón "Administrar".
+                
+                Haz clic en la pregunta a la que deseas adjuntar una imagen.
+                
+                Mientras editas tu pregunta, haz clic en el ícono de la misma y luego agrega una imagen de tu librería.
+                
+                
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                ¿Puedo agregar un video en mi sección de Preguntas Frecuentes?
+              </button>
+            </h2>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+                ¡Sí! Los usuarios pueden agregar videos de YouTube o Vimeo fácilmente:
+
+                Configuraciones de la App.
+                
+                Haz clic en el botón "Administrar".
+                
+                Haz clic en la pregunta a la que deseas adjuntar un video
+                
+                Cuando edites tu respuesta, haz clic en el icono de vídeo y luego pega la URL de vídeo de YouTube o Vimeo.
+                
+                ¡Eso es! Una miniatura de tu video aparecerá en la casilla del texto de la respuesta.            </div>
+          </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingFour">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    ¿Cómo edito o elimino el "Título de Preguntas Frecuentes"?"
+                </button>
+              </h2>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+              <div class="card-body">
+                El título de Preguntas Frecuentes se puede ajustar en la pestaña de la Configuración de la Aplicación. También puedes eliminar el título al desmarcar la casilla en la pestaña de Configuración.
+                   </div>
+            </div>
+          </div>
+      </div>
+</div> -->
 {% endblock %}

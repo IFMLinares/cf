@@ -158,6 +158,30 @@ h2.linea span {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 /* Cuando la pantalla es menor a 900px  (tablets y teléfonos inteligentes)*/
 /* moto g4 */
@@ -186,7 +210,7 @@ h2.linea span {
 @media only screen and (min-device-width: 1024px)and (max-device-width: 768px) {
 
   .mobile-logo img{
-    width: 20% !important;
+    width: 50% !important;
     height: 50px !important; 
     }
     .pet-food-bg-img img {
@@ -205,8 +229,8 @@ h2.linea span {
 @media only screen and (min-device-width: 768px)and (max-device-width: 1024px) {
 
   .mobile-logo img{
-    width: 20% !important;
-    height: 50px !important; 
+    width: 10% ;
+    height: 70px !important; 
     }
     .pet-food-bg-img img {
       width: 100%;
