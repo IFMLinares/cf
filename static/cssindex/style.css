@@ -153,7 +153,29 @@ h2.linea span {
   padding: 0 15px;
 }
 
+/* Card preguntas */
+.card{
+  border: none;
+}
 
+.card-header{
+  background-color: transparent;
+}
+.card-header button{
+  color: black;
+  text-decoration: none;
+}
+.card-header button:hover{
+  color: #ed4aca;
+  text-decoration: none;
+}
+.card-body {
+  color: black;
+  font-weight: bold;
+}
+.accordion{
+  border: none;
+}
 
 
 
