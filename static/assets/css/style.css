@@ -4004,7 +4004,7 @@ textarea:focus {
 .main-menu > nav > ul > li > ul {
   -webkit-box-shadow: 0px 1px 24px 0px rgba(0, 0, 0, 0.09);
           box-shadow: 0px 1px 24px 0px rgba(0, 0, 0, 0.09);
-  background-color: #262626;
+  background-color: white;
   position: absolute;
   top: 100%;
   left: 0;
@@ -4059,9 +4059,9 @@ textarea:focus {
 
 .main-menu > nav > ul > li > ul.sub-menu-width li a {
   display: block;
-  color: #D0D0D0;
+  color: #ED4ACA;
   font-size: 13px;
-  font-weight: 300;
+  font-weight: bold;
 }
 
 .main-menu > nav > ul > li > ul.sub-menu-width li a i {
@@ -5574,14 +5574,15 @@ textarea:focus {
 }
 
 .search-style-7 form .form-search-7 input {
-  background-color: #fff;
+  background-color: transparent;
   height: 40px;
-  border: none;
+  border: 1px solid #ED4ACA;
   border-radius: 5px;
-  color: #B3B5C2;
+  color: #ED4ACA;
   font-weight: 300;
   padding: 2px 50px 2px 33px;
   width: 494px;
+  font-weight: bolder;
 }
 
 @media only screen and (min-width: 1366px) and (max-width: 1600px) {
@@ -5604,12 +5605,12 @@ textarea:focus {
 }
 
 .search-style-7 form .form-search-7 input::-moz-input-placeholder {
-  color: #B3B5C2;
+  color: red;
   opacity: 1;
 }
 
 .search-style-7 form .form-search-7 input::-webkit-input-placeholder {
-  color: #B3B5C2;
+  color: #ED4ACA;
   opacity: 1;
 }
 
@@ -5622,7 +5623,7 @@ textarea:focus {
   right: 20px;
   border: none;
   padding: 0;
-  color: #081348;
+  color: #ED4ACA;
   font-size: 20px;
   background-color: transparent;
 }
