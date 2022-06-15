@@ -47,11 +47,6 @@
                                 <div class="pay-top sin-payment">
                                     <input id="payment_method_1" class="input-radio" type="radio" value="paypal" checked="checked" name="payment_method">
                                     <label for="payment_method_1"> Paypal </label>
-                                    <div class="payment-box payment_method_bacs">
-                                        <form action="#">
-                                            <input type="text" required="" placeholder="Enter Your Paypal Email" name="name">
-                                        </form>
-                                    </div>
                                 </div>
                                 <div class="pay-top sin-payment">
                                     <input id="payment-method-2" class="input-radio" type="radio" value="Tarjeta" name="payment_method">
@@ -69,19 +64,32 @@
                                         <p> Realiza tu pago directamente en nuestra cuenta bancaria. Utilice su ID de pedido como referencia de pago.</p>
                                     </div>
                                 </div>
-
-                                {{ paypal.render }}
+                                <div class="d-none">
+                                    {{ paypal.render }}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="back-continue-wrap">
                     <a href="{% url 'core:cart' %}"> Regresar</a>
-                    <a href="#" onclick="sendForm()">Continuar</a>
+                    <a href="#" id="continue-payment">Continuar</a>
 
                 </div>
             </div>
         </div>
 <input type="hidden" name="price" value="${{ order.get_total }}">
 </form>
-        {% endblock %}
+{% endblock %}
+
+
+{% block extra_js %}
+    <script>
+        $('#continue-payment').on('click', function(){
+            if($('input:radio[name=payment_method]:checked').val() === 'paypal'){
+                submit_paypal = $('input:image[name=submit]')
+                submit_paypal.click()
+            }
+        })
+    </script>
+{% endblock %}

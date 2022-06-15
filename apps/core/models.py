@@ -69,6 +69,14 @@ class Item(models.Model):
             'slug': self.slug
         })
 
+    def get_iva_item(self):
+        iva = round(float(self.sale_price ) * 0.07, 2)
+        return iva
+
+    def get_price_iva(self):
+        iva = self.get_iva_item() + float(self.sale_price)
+        return iva
+    
     class Meta:
         verbose_name = "Tienda: Producto"
         verbose_name_plural = "Tienda: Productos"
@@ -122,7 +130,19 @@ class Order(models.Model):
     def get_total(self):
         total = 0
         for order_item in self.items.all():
-            total += order_item.get_final_price()
+            total +=round(float(order_item.get_final_price()), 2)
+        total = round(float(total), 2)
+        return total
+
+    def get_iva_order(self):
+        total = 0
+        for order_item in self.items.all():
+            total += round(float(order_item.get_final_price()), 2)
+        total = round(float(total * 0.07), 2)
+        return total
+    
+    def get_total_order(self):
+        total = self.get_total() + self.get_iva_order()
         return total
 
     class Meta:

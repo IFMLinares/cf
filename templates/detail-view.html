@@ -101,7 +101,12 @@
                         </div>
                         <div class="pro-details-action-wrap">
                             <div class="pro-details-buy-now">
-                                <a href="#">Comprar Ahora</a>
+                                <a href="#" id="submitdetailform">Comprar Ahora</a>
+                                <form action="/addto/" method="post" id="detailform" class="d-none">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="slug" id="slug" value="{{ item.slug }}">
+                                </div>
+                                </form>
                             </div>
                             <div class="pro-details-action">
                                 <a title="Agregar al Carrito" href="#"><i class="icon-basket"></i></a>

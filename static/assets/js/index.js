@@ -26,6 +26,14 @@ $('#buynow').on('click', function(){
 })
 
 function sendForm(){
-    // alert('asdasd')
+    event.preventDefault();
     $('#checkout').submit();
 }
+$('#submitdetailform').on('click', function(){
+    event.preventDefault()
+    $('#detailform').submit()
+})
+
+$('#continue-payment').on('click', function(){
+    event.preventDefault();
+})

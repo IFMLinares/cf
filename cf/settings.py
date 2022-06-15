@@ -34,8 +34,8 @@ ALLOWED_HOSTS = ['localhost', 'ifmlinares.pythonanywhere.com', '*']
 # Application definition
 
 INSTALLED_APPS = [
-    # 'jet.dashboard',
-    # 'jet',
+    'jet.dashboard',
+    'jet',
     'django.contrib.admin',
 
     'django.contrib.auth',
