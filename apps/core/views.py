@@ -212,7 +212,8 @@ def paypal_return(request):
         totalIva = order.get_total_order()
         iva = order.get_iva_order()
         itemlist = []
-        # for item in order.items.all():
+        for item in order.items.all():
+            item.ordered = True
         #     quantity = str(round(float(item.quantity),2) ) + '0'
         #     precioItem = item.item.sale_price
         #     precioItem2 = str(round(float(precioItem * item.quantity),2))
