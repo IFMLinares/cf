@@ -198,7 +198,6 @@ class miCuentaView(LoginRequiredMixin, CartMixin,TemplateView):
     template_name = 'cuenta.html' 
 
 @csrf_exempt
-@login_required
 def paypal_return(request):
     try:
         order = Order.objects.get(user=request.user, ordered=False)
