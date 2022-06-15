@@ -11,6 +11,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.shortcuts import redirect
@@ -197,6 +198,7 @@ class CheckoutFinish(LoginRequiredMixin, CartMixin,TemplateView):
 class miCuentaView(LoginRequiredMixin, CartMixin,TemplateView):
     template_name = 'cuenta.html' 
 
+@login_required
 @csrf_exempt
 def paypal_return(request):
     try:
@@ -299,7 +301,8 @@ def paypal_return(request):
             'order': order
         }
         messages.success(request, 'Pago procesado exitosamente')
-        return render(request, 'ordenCompleta.html', context)
+        # return render(request, 'ordenCompleta.html', context)
+        return HttpResponse('ordenCompleta.html')
     except ObjectDoesNotExist:
         return redirect('core:cart')
     
