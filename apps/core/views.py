@@ -234,7 +234,7 @@ def paypal_return(request):
 
         # FACTURACIÓN THE FACTORYHKA
         numeroDocumentoFiscal =  ((7 - len(str(order.pk))) * '0') + str(order.pk)
-        wsdl = 'http://demoemision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
+        wsdl = 'http://demoemision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?wsdl'
         client = zeep.Client(wsdl=wsdl)
         datos = dict(
             tokenEmpresa="blzjnlwebrgp_tfhka",
