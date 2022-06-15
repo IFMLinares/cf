@@ -10,6 +10,7 @@ from django.conf import settings
 # django libraries
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.shortcuts import redirect
@@ -196,6 +197,7 @@ class CheckoutFinish(LoginRequiredMixin, CartMixin,TemplateView):
 class miCuentaView(LoginRequiredMixin, CartMixin,TemplateView):
     template_name = 'cuenta.html' 
 
+@csrf_exempt
 @login_required
 def paypal_return(request):
     try:
