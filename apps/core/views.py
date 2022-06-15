@@ -214,6 +214,7 @@ def paypal_return(request):
         itemlist = []
         for item in order.items.all():
             item.ordered = True
+            item.save()
         #     quantity = str(round(float(item.quantity),2) ) + '0'
         #     precioItem = item.item.sale_price
         #     precioItem2 = str(round(float(precioItem * item.quantity),2))
