@@ -1,4 +1,4 @@
-{% extends "account/base.html" %}
+{% extends "base/base.html" %}
 
 {% load i18n %}
 
@@ -7,7 +7,7 @@
 {% block content %}
 <h1>{% trans "Sign Up" %}</h1>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+<!-- <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
@@ -16,6 +16,149 @@
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
   <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+</form> -->
+
+{% block content %}
+  <div class="" role="document" style="margin-top: 10%;">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                      <div class="login-register-wrapper">
+                          <div class="login-register-tab-list nav">
+                              <a class="active" data-toggle="tab" href="#lg1">
+                                  <h4> Iniciar Sesión</h4>
+                              </a>
+                              <a data-toggle="tab" href="#lg2">
+                                  <h4> Regístrate </h4>
+                              </a>
+                          </div>
+                          <div class="tab-content">
+                              <div id="lg1" class="tab-pane ">
+                                <a href="{{ signup_url }}"><h2 class="linea"><span>¿Eres nuevo en este sitio? Regístrate</span></h2></a>
+                                  <div class="login-form-container" >
+                                      <div class="login-register-form">
+                                          <form action="{% url 'account_login' %}" method="post">
+                                            {% csrf_token %}
+                                              <input type="text" name="login" id="id_login" placeholder="Usuario o Email">
+                                              <input type="password" name="password" id="id_password" placeholder="Contraseña">
+                                              <div class="button-box">
+                                                  <div class="login-toggle-btn">
+                                                      <input type="checkbox">
+                                                      <label>Recordar contrasñea</label>
+                                                      <a href="{% url 'account_reset_password' %}" class="pt-15 pb-15">¿Olvido su contraseña?</a>
+                                                  </div>
+                                                  {% if redirect_field_value %}
+                                                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                                                  {% endif %}
+                                                  <button type="submit" style="width:100%;">Iniciar Sesión</button>
+                                                  <div class="container mx-auto">
+                                                    
+                                              {% if form.errors %}
+                                              {% for field in form %}
+                                              {% for error in field.errors %}
+                                              <div class="alert alert-error">
+                                                <strong>{{ error|escape }}</strong>
+                                              </div>
+                                              {% endfor %}
+                                              {% endfor %}
+                                              {% for error in form.non_field_errors %}
+                                              <div class="alert alert-error">
+                                                <strong>{{ error|escape }}</strong>
+                                              </div>
+                                              {% endfor %}
+                                              {% endif %}
+                                                  </div>
+                                              </div>
+                                              <h2 class="linea"><span>O conéctate con</span></h2>
+                                              <div class="form-flex">
+                                                <div class="form-img">
+                                                 <a href="">
+                                                   <img src="{% static 'assets/img/facebook.png' %}" alt="">
+                                                 </a> 
+                                                </div>
+                                                <div class="form-images">
+                                                  <a href="">
+                                                    <img src="{% static 'assets/img/google.jpg' %}" alt="">
+                                                  </a>
+                                                </div>
+                                              </div>
+                                          </form>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div id="lg2" class="tab-pane active">
+                                <h2 class="linea"><span>¿Ya tienes un perfil personal? Inicia Sesión</span></h2>
+                                  <div class="login-form-container">
+                                      <div class="login-register-form">
+                                          <form method="post" action="{% url 'account_signup' %}">
+                                            {% csrf_token %}
+                                            <input type="text" name="username" placeholder="Usuario" id="id_username">
+                                            <input type="password"  name="password1" id="id_password1" placeholder="Contraseña">
+                                            <input type="password" name="password2" id="id_password2" placeholder="Contraseña (de nuevo)">
+                                            <input name="email" placeholder="Email" id="email" type="Email">
+                                              <div class="button-box">
+                                                  <button type="submit" style="width:100%;">Regístrate</button>
+                                              </div>
+                                              <h2 class="linea"><span>O regístrate con</span></h2>
+                                              <div class="form-flex">
+                                                <div class="form-img">
+                                                 <a href="">
+                                                   <img src="{% static 'assets/img/facebook.png' %}" alt="">
+                                                 </a> 
+                                                </div>
+                                                <div class="form-images">
+                                                  <a href="">
+                                                    <img src="{% static 'assets/img/google.jpg' %}" alt="">
+                                                  </a>
+                                                </div>
+                                          </form>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+<!--   
+<h1>{% trans "Sign In" %}</h1>
+
+{% get_providers as socialaccount_providers %}
+
+{% if socialaccount_providers %}
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+<p>{% blocktrans %}If you have not created an account yet, then please
+<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+{% endif %}
+
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+</form> -->
+
+{% endblock %}
+
 
 {% endblock %}
