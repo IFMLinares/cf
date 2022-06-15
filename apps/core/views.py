@@ -302,8 +302,8 @@ def paypal_return(request):
             'order': order
         }
         messages.success(request, 'Pago procesado exitosamente')
-        # return render(request, 'ordenCompleta.html', context)
-        return HttpResponse('ordenCompleta.html')
+        return render(request, 'ordenCompleta.html', context)
+        # return HttpResponse('ordenCompleta.html')
     except ObjectDoesNotExist:
         return redirect('core:cart')
     
