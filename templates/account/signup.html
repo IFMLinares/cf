@@ -88,14 +88,11 @@
                                   <div class="login-form-container">
                                       <div class="login-register-form">
                                           <form method="post" action="{% url 'account_signup' %}">
-                                            
-                                          <div class="container mt-xl-3">
                                             {% if form.errors %}
                                                 <div class="alert alert-danger">
                                                     {{ form.errors }}
                                                 </div>
                                             {% endif %}
-                                          </div>
                                             {% csrf_token %}
                                             <input type="text" name="username" placeholder="Usuario" id="id_username">
                                             <input type="password"  name="password1" id="id_password1" placeholder="Contraseña">

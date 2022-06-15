@@ -37,6 +37,11 @@
                                   <div class="login-form-container" >
                                       <div class="login-register-form">
                                           <form action="{% url 'account_login' %}" method="post">
+                                            {% if form.errors %}
+                                                <div class="alert alert-danger">
+                                                    {{ form.errors }}
+                                                </div>
+                                            {% endif %}
                                             {% csrf_token %}
                                               <input type="text" name="login" id="id_login" placeholder="Usuario o Email">
                                               <input type="password" name="password" id="id_password" placeholder="Contraseña">
