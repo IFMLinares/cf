@@ -116,6 +116,7 @@ class checkOutView(LoginRequiredMixin, CartMixin, View):
             address = list(Address.objects.filter(user=self.request.user))
             form = CheckoutForm()
             context = {
+                'carro': order,
                 'order': order,
                 'form': form,
             }
