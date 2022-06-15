@@ -356,80 +356,88 @@
                               </a>
                           </div>
                           <div class="tab-content">
-                              <div id="lg1" class="tab-pane active">
-                                <h2 class="linea"><span>¿Eres nuevo en este sitio? Regístrate</span></h2>
-                                  <div class="login-form-container">
-                                      <div class="login-register-form">
-                                          <form action="{% url 'account_login' %}" method="post">
-                                              <input type="text" name="login" id="id_login" placeholder="Usuario o Email">
-                                              <input type="password" name="password" id="id_password" placeholder="Contraseña">
-                                              <div class="button-box">
-                                                  <div class="login-toggle-btn">
-                                                      <input type="checkbox">
-                                                      <label>Recordar contrasñea</label>
-                                                      <a href="#" class="pt-15 pb-15">¿Olvido su contraseña?</a>
-                                                  </div>
-                                                  <button type="submit" style="width:100%;">Iniciar Sesión</button>
-                                              </div>
-                                              {% csrf_token %}
-                                              {% if form.errors %}
-                                              {% for field in form %}
-                                              {% for error in field.errors %}
-                                              <div class="alert alert-error">
-                                                <strong>{{ error|escape }}</strong>
-                                              </div>
-                                              {% endfor %}
-                                              {% endfor %}
-                                              {% for error in form.non_field_errors %}
-                                              <div class="alert alert-error">
-                                                <strong>{{ error|escape }}</strong>
-                                              </div>
-                                              {% endfor %}
-                                              {% endif %}
-                                              <h2 class="linea"><span>O conéctate con</span></h2>
-                                              <div class="form-flex">
-                                                <div class="form-img">
-                                                 <a href="">
-                                                   <img src="{% static 'assets/img/facebook.png' %}" alt="">
-                                                 </a> 
+                            <div id="lg1" class="tab-pane active">
+                              <a href="{{ signup_url }}"><h2 class="linea"><span>¿Eres nuevo en este sitio? Regístrate</span></h2></a>
+                                <div class="login-form-container" >
+                                    <div class="login-register-form">
+                                        <form action="{% url 'account_login' %}" method="post">
+                                          {% csrf_token %}
+                                            <input type="text" name="login" id="id_login" placeholder="Usuario o Email">
+                                            <input type="password" name="password" id="id_password" placeholder="Contraseña">
+                                            <div class="button-box">
+                                                <div class="login-toggle-btn">
+                                                    <input type="checkbox">
+                                                    <label>Recordar contrasñea</label>
+                                                    <a href="{% url 'account_reset_password' %}" class="pt-15 pb-15">¿Olvido su contraseña?</a>
                                                 </div>
-                                                <div class="form-images">
-                                                  <a href="">
-                                                    <img src="{% static 'assets/img/google.jpg' %}" alt="">
-                                                  </a>
+                                                {% if redirect_field_value %}
+                                                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                                                {% endif %}
+                                                <button type="submit" style="width:100%;">Iniciar Sesión</button>
+                                                <div class="container mx-auto">
+                                                  
+                                            {% if form.errors %}
+                                            {% for field in form %}
+                                            {% for error in field.errors %}
+                                            <div class="alert alert-error">
+                                              <strong>{{ error|escape }}</strong>
+                                            </div>
+                                            {% endfor %}
+                                            {% endfor %}
+                                            {% for error in form.non_field_errors %}
+                                            <div class="alert alert-error">
+                                              <strong>{{ error|escape }}</strong>
+                                            </div>
+                                            {% endfor %}
+                                            {% endif %}
                                                 </div>
+                                            </div>
+                                            <h2 class="linea"><span>O conéctate con</span></h2>
+                                            <div class="form-flex">
+                                              <div class="form-img">
+                                               <a href="">
+                                                 <img src="{% static 'assets/img/facebook.png' %}" alt="">
+                                               </a> 
                                               </div>
-                                          </form>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div id="lg2" class="tab-pane">
-                                <h2 class="linea"><span>¿Ya tienes un perfil personal? Inicia Sesión</span></h2>
-                                  <div class="login-form-container">
-                                      <div class="login-register-form">
-                                          <form action="#" method="post">
-                                              <input type="text" name="user-name" placeholder="Usuario">
-                                              <input type="password" name="user-password" placeholder="Contraseña">
-                                              <input name="user-email" placeholder="Email" type="Email">
-                                              <div class="button-box">
-                                                  <button type="submit" style="width:100%;">Regístrate</button>
+                                              <div class="form-images">
+                                                <a href="">
+                                                  <img src="{% static 'assets/img/google.jpg' %}" alt="">
+                                                </a>
                                               </div>
-                                              <h2 class="linea"><span>O regístrate con</span></h2>
-                                              <div class="form-flex">
-                                                <div class="form-img">
-                                                 <a href="">
-                                                   <img src="{% static 'assets/img/facebook.png' %}" alt="">
-                                                 </a> 
-                                                </div>
-                                                <div class="form-images">
-                                                  <a href="">
-                                                    <img src="{% static 'assets/img/google.jpg' %}" alt="">
-                                                  </a>
-                                                </div>
-                                          </form>
-                                      </div>
-                                  </div>
-                              </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="lg2" class="tab-pane">
+                              <h2 class="linea"><span>¿Ya tienes un perfil personal? Inicia Sesión</span></h2>
+                                <div class="login-form-container">
+                                    <div class="login-register-form">
+                                        <form method="post" action="{% url 'account_signup' %}">
+                                          {% csrf_token %}
+                                          <input type="text" name="username" placeholder="Usuario" id="id_username">
+                                          <input type="password"  name="password1" id="id_password1" placeholder="Contraseña">
+                                          <input type="password" name="password2" id="id_password2" placeholder="Contraseña (de nuevo)">
+                                          <input name="email" placeholder="Email" id="email" type="Email">
+                                            <div class="button-box">
+                                                <button type="submit" style="width:100%;">Regístrate</button>
+                                            </div>
+                                            <h2 class="linea"><span>O regístrate con</span></h2>
+                                            <div class="form-flex">
+                                              <div class="form-img">
+                                               <a href="">
+                                                 <img src="{% static 'assets/img/facebook.png' %}" alt="">
+                                               </a> 
+                                              </div>
+                                              <div class="form-images">
+                                                <a href="">
+                                                  <img src="{% static 'assets/img/google.jpg' %}" alt="">
+                                                </a>
+                                              </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                           </div>
                       </div>
                   </div>
