@@ -326,6 +326,9 @@
                         <div class="payment-details mb-40">
                             <h4 class="checkout-title">  Detalles de pago</h4>
                             <ul>
+                                {% for item in order.items.all %}
+                                 <li>{{ item.item.description }} <span>${{ item.quantity }}</span></li>
+                                {% endfor %}
                                 <li>Subtotal del carrito <span>${{ order.get_total }}</span></li>
                                 <!-- <li>Envío y Entrega <span>$15.00</span></li> -->
                                 <li>  IVA <span>${{ order.get_iva_order }}</span></li>
