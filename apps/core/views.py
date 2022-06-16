@@ -52,9 +52,12 @@ class Index(View):
     
     def get(self, request, *args, **kwargs):
         try:
+            ip = request.META.get('REMOTE_ADDR')
+            print(ip)
             items = list(Item.objects.filter(outstanding=True))
             context = {
             }
+            context['ip'] = ip
             if len(items) > 0 and len(items) >= 5 :
                 items = random.sample(items,5)
                 context['items'] = items

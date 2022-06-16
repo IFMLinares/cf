@@ -206,11 +206,17 @@
                 <div
                   class="header-action-wrap header-action-flex header-action-mrg-1"
                 >
+                  {% if user.is_authenticated %}
+                  <div class="same-style header-cart">
+                    <a class="" href="{% url 'core:account' %}"
+                      ><i class="icofont-user-alt-3 pr-2"></i> </a>
+                  </div>
+                  {% else %}
                   <div class="same-style header-cart">
                     <a class=""data-toggle="modal" data-target="#exampleModal1"  href="#"
-                      ><i class="icofont-user-alt-3 pr-2 " ></i
-                    ></a>
+                      ><i class="icofont-user-alt-3 pr-2 " ></i></a>
                   </div>
+                  {% endif %}
                   <div class="same-style header-cart">
                     <a class="cart-active" href="#"
                       ><i class="icofont-shopping-cart"></i
