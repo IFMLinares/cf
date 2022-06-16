@@ -345,6 +345,7 @@
     $('.product-slider-active-4').slick({
         slidesToShow: 4,
         slidesToScroll: 1,
+        autoplay:true,  
         loop: true,
         dots: false,
         arrows: true,
@@ -354,7 +355,7 @@
                 breakpoint: 1500,
                 settings: {
                     slidesToShow: 4,
-                    slidesToScroll: 1, 
+                    slidesToScroll: 1,   
                 }
             },
             {
@@ -381,10 +382,11 @@
             },
             {
                 breakpoint: 575,
-                settings: {
+                settings: { 
                     autoplay: false,
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    autoplay:true,  
                 }
             }
         ]

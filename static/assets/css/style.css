@@ -4074,7 +4074,7 @@ textarea:focus {
 }
 
 .main-menu > nav > ul > li > ul.sub-menu-width li a:hover {
-  color: #ffffff;
+  color: #999;
   text-decoration: underline;
 }
 
@@ -5228,7 +5228,8 @@ textarea:focus {
   font-size: 18px;
   display: block;
   text-transform: capitalize;
-  color: #0A1039;
+  color: #ED4ACA;
+  font-weight: bold;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -5247,7 +5248,7 @@ textarea:focus {
   float: right;
   top: 3px;
   position: relative;
-  color: #0A1039;
+  color: #ED4ACA;
   -webkit-transition: all .3s ease 0s;
   -o-transition: all .3s ease 0s;
   transition: all .3s ease 0s;
@@ -5262,11 +5263,11 @@ textarea:focus {
 }
 
 .clickalbe-sidebar-wrapper-style-1 .clickalbe-sidebar-wrap .clickable-mainmenu-style1 > nav > ul > li:hover > a {
-  color: #333333;
+  color: #ED4ACA;
 }
 
 .clickalbe-sidebar-wrapper-style-1 .clickalbe-sidebar-wrap .clickable-mainmenu-style1 > nav > ul > li:hover > a i {
-  color: #333333;
+  color: #ED4ACA;
 }
 
 .clickalbe-sidebar-wrapper-style-1 .clickalbe-sidebar-wrap .clickable-mainmenu-style1 > nav > ul > li ul {
@@ -5288,7 +5289,8 @@ textarea:focus {
 }
 
 .clickalbe-sidebar-wrapper-style-1 .clickalbe-sidebar-wrap .clickable-mainmenu-style1 > nav > ul > li ul li a {
-  color: #0A1039;
+  color: #ED4ACA;
+  font-weight: bold;
   font-size: 14px;
   display: block;
 }
@@ -5307,7 +5309,7 @@ textarea:focus {
 }
 
 .clickalbe-sidebar-wrapper-style-1 .clickalbe-sidebar-wrap .clickable-mainmenu-style1 > nav > ul > li ul li:hover > a {
-  color: #333333;
+  color: #fd0000;
 }
 
 .clickalbe-sidebar-wrapper-style-1 .clickalbe-sidebar-wrap .clickable-mainmenu-style1 > nav > ul > li ul li:hover > a i {
@@ -15271,12 +15273,15 @@ textarea:focus {
   padding: 0 0;
   margin-bottom: 20px;
   background-color: transparent;
-  color: black;
+  color: white;
   font-size: 20px;
 }
 
 .product-wrap .product-action-wrap > button:hover {
-  color: white;
+  color: #ED4ACA;
+  background-color: white;
+  border-radius: 30px;
+  line-height: 30px;
   border: none;
 }
 

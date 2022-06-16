@@ -44,6 +44,10 @@
   background-color: #ed4aca;
   height: 500px;
 }
+/* cuadro ventas */
+.responsive-table{
+  display: none;
+}
 /* Cuadro contactanos index */
 
 .contain-form {
@@ -177,6 +181,14 @@ h2.linea span {
   color: black;
   font-weight: bold;
 }
+.card-body h5{
+  font-weight: bold;
+  font-size: 20px;
+}
+.card-body .card-text{
+  font-weight: bolder; 
+  color: black;
+}
 .accordion {
   border: none;
 }
@@ -194,6 +206,10 @@ h2.linea span {
   display: inline-block;
   cursor: pointer;
 }
+.product-slider-active-4 .priv_arrow:hover {
+  background-color: black;
+
+}
 .product-slider-active-4 .next_arrow {
   position: absolute;
   top: 80px;
@@ -206,6 +222,16 @@ h2.linea span {
   text-align: center;
   line-height: 50px;
   display: inline-block;
+}.product-slider-active-4 .next_arrow:hover {
+  background-color: black;
+
+}
+
+hr.hr-1 {
+  border: 0;
+  width: 50%;
+  height: 4px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #ed4aca, rgba(0, 0, 0, 0));
 }
 
 /* Cuando la pantalla es menor a 900px  (tablets y teléfonos inteligentes)*/
@@ -371,13 +397,17 @@ h2.linea span {
     position: relative;
     top: -100px;
   }
+  /* cuadro ventas */
+  .responsive-table{
+    display: block;
+  }
   /* cuadro contactanos index */
   .contain-form {
-    display: none;
+    padding-top: 10px;
   }
-  .contain-center {
-    height: 500px;
-    width: 50%;
+  .contain-center { 
+    height: 550px;
+    width: 100%;
     background-color: white;
   }
   .contain-titulo {
