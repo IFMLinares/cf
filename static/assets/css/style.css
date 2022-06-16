@@ -15080,11 +15080,11 @@ textarea:focus {
 
 .product-wrap .product-content h4 {
   font-size: 15px;
-  margin: 0 0 9px;
+  margin: 10px 0 9px;
 }
 
 .product-wrap .product-content h4 a {
-  color: #333;
+  color: white;
 }
 
 .product-wrap .product-content h4 a:hover {
@@ -15103,9 +15103,9 @@ textarea:focus {
 
 .product-wrap .product-action-position-1 {
   position: absolute;
-  background-color: #fff;
-  border: 1px solid #F0F0F0;
-  padding: 25px 10px 27px;
+  background-color: #ED4ACA;
+  border: none;
+  padding: 1px 1px 1px;
   left: 0;
   right: 0;
   bottom: -30px;
@@ -15230,11 +15230,11 @@ textarea:focus {
 }
 
 .product-wrap .product-action-wrap > .product-action-cart > button {
-  border: none;
+  border: white 1px solid;
   padding: 7px 32px 7px;
   background-color: #ED4ACA;
-  color: #fff;
-  font-weight: 500;
+  color: white;
+  font-weight: bolder;
   font-size: 12px;
   position: relative;
 }
@@ -15262,19 +15262,22 @@ textarea:focus {
 }
 
 .product-wrap .product-action-wrap > .product-action-cart > button:hover {
-  background-color: black;
+  background-color: white;
+  color: #ED4ACA;
 }
 
 .product-wrap .product-action-wrap > button {
   border: none;
-  padding: 0;
+  padding: 0 0;
+  margin-bottom: 20px;
   background-color: transparent;
   color: black;
   font-size: 20px;
 }
 
 .product-wrap .product-action-wrap > button:hover {
-  color: #ED4ACA;
+  color: white;
+  border: none;
 }
 
 .product-wrap .product-action-wrap.product-action-wrap-modify > .product-action-cart {
@@ -15540,12 +15543,12 @@ textarea:focus {
 .product-price span {
   font-size: 15px;
   font-weight: 500;
-  color: #333333;
+  color: white;
 }
 
 .product-price span.old-price {
-  color: #777777;
-  font-weight: 300;
+  color: black;
+  font-weight: bold;
   text-decoration: line-through;
   margin-left: 12px;
 }
@@ -28213,9 +28216,9 @@ textarea:focus {
 .sidebar-widget-3 h4.pro-sidebar-title,
 .sidebar-widget-3 h4.pro-sidebar-title-2,
 .sidebar-widget-3 h4.pro-sidebar-title-3 {
-  font-size: 18px;
-  color: #333;
-  font-weight: 600;
+  font-size: 20px;
+  color: #ED4ACA;
+  font-weight: bolder;
   margin: 0 0 0;
 }
 
@@ -28228,8 +28231,9 @@ textarea:focus {
 }
 
 .sidebar-widget-categori ul li a {
-  color: #777777;
+  color: #ED4ACA;
   font-size: 16px;
+  font-weight: bold;
   display: block;
   padding-left: 36px;
   position: relative;
@@ -28246,7 +28250,7 @@ textarea:focus {
   width: 5px;
   height: 0px;
   z-index: 9;
-  background-color: #333333;
+  background-color: #ED4ACA;
   -webkit-transition: all .3s ease 0s;
   -o-transition: all .3s ease 0s;
   transition: all .3s ease 0s;
@@ -28892,11 +28896,11 @@ textarea:focus {
 }
 
 .shop-top-bar .shop-top-bar-left .shop-tab a svg path {
-  fill: #ACACAC;
+  fill: #ED4ACA;
 }
 
 .shop-top-bar .shop-top-bar-left .shop-tab a.active svg path {
-  fill: #000;
+  fill: #ED4ACA;
 }
 
 .shop-page-list {

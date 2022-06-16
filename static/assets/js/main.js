@@ -347,12 +347,14 @@
         slidesToScroll: 1,
         loop: true,
         dots: false,
-        arrows: false,
+        arrows: true,
+        prevArrow: '<span class="priv_arrow"><i class="icofont-arrow-left"></i></span>',
+        nextArrow: '<span class="next_arrow"><i class="icofont-arrow-right"></i></span>',
         responsive: [{
                 breakpoint: 1500,
                 settings: {
                     slidesToShow: 4,
-                    slidesToScroll: 1,
+                    slidesToScroll: 1, 
                 }
             },
             {
@@ -386,9 +388,9 @@
                 }
             }
         ]
-    });
-    
-    
+    }); 
+
+
     /*--------------------------------
         Brand logo active
     -----------------------------------*/
