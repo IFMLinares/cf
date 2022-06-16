@@ -108,9 +108,9 @@
                               <li>
                                 <a href="{% url 'core:store' %}">Tienda</a>
                                 <ul class="sub-menu-width">
-                                  <li><a href="{% url 'core:store' %}">Bebes</a></li> 
-                                  <li><a href="{% url 'core:store' %}">Niños de 1 a 3 años</a></li> 
-                                  <li><a href="{% url 'core:store' %}">Niños 3 años en adelante</a></li>  
+                                  <li><a href="{% url 'core:store' %}">° Bebes</a></li> 
+                                  <li><a href="{% url 'core:store' %}">° Niños de 1 a 3 años</a></li> 
+                                  <li><a href="{% url 'core:store' %}">° Niños 3 años en adelante</a></li>  
                                 </ul>
                               </li>
                               <li><a href="{% url 'core:faq' %}">FAQ</a></li>
@@ -153,10 +153,14 @@
                           </li>
                           {% else %}
                           <li>
+                            <style>
+                              .food-color a:hover{
+                                color: black !important; 
+                              }
+                            </style>
                             <div
-                              class="same-style same-style-white header-cart pet-food-cart" 
-                            >
-                              <a class="pr-3" href="#"  data-toggle="modal" data-target="#exampleModal1"><i class="icofont-user-alt-3 "></i> Ingresar</a>
+                              class="same-style same-style-white header-cart pet-food-cart food-color" >
+                              <a class="pr-3" href="#"  data-toggle="modal" data-target="#exampleModal1"><i class="icofont-user-alt-3 "></i>Ingresar / Regístrate </a>
                             </div>
                           </li>
                           {% endif %}

@@ -93,18 +93,12 @@
   {% endif %}
 </div>
 <div class="product-area pb-10" style="margin-top: 50px">
-  <div class="container">
-    <!-- <div class="row middle-end"> 
-                    <div class="col-lg-4 col-md-4">
-                        <div class="banner-btn-4 banner-btn-4-modify banner-btn-4-right modify2-mt-65">
-                            <a href="">Ver todos los productos <img class="inject-me" src="assets/images/icon-img/right-arrow-banner.svg" alt=""></a>
-                        </div>
-                    </div>
-                </div> -->
+  <div class="container"> 
     <div class="row">
-      <div class="col-lg-4 col-md-4" style="outline:;">
-        <div class="product-wrap mb-30">
-          <div class="product-img product-img-zoom mb-25">
+      <div class="col-lg-4 col-md-4" >
+        <div class="product-wrap mb-30" >
+          <div class="product-img product-img-zoom mb-25" style="border : solid #ed4aca;
+          border-width : .5rem 1rem .5rem 1em;">
             <a href="">
               <img src="{% static 'assets/img/b.jpeg' %}" alt="" />
             </a>
@@ -118,9 +112,10 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-4">
+      <div class="col-lg-4 col-md-4"  >
         <div class="product-wrap mb-30">
-          <div class="product-img product-img-zoom mb-25">
+          <div class="product-img product-img-zoom mb-25" style="border : solid #ed4aca;
+          border-width : .5rem 1rem .5rem 1em;">
             <a href="">
               <img src="{% static 'assets/img/aa.jpeg' %}" alt="" />
             </a>
@@ -134,9 +129,10 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-4">
+      <div class="col-lg-4 col-md-4" >
         <div class="product-wrap mb-30">
-          <div class="product-img product-img-zoom mb-25">
+          <div class="product-img product-img-zoom mb-25" style="border : solid #ed4aca;
+          border-width : .5rem 1rem .5rem 1em;">
             <a href="">
               <img src="{% static 'assets/img/a.jpeg' %}" alt="" />
             </a>
@@ -166,8 +162,7 @@
         <div
           class="banner-btn-4 banner-btn-4-modify banner-btn-4-right modify2-mt-65"
         >
-          <a href=""
-            >Ver todos los productos
+          <a href="{% url 'core:store' %}">Ver todos los productos
             <img
               class="inject-me"
               src="{% static 'assets/images/icon-img/right-arrow-banner.svg' %}"
@@ -213,7 +208,8 @@
           </form>
           </div>
         </div>
-      </div>
+      </div> 
+      
       {% endfor %}
     </div>
   </div>
@@ -403,7 +399,7 @@
         <div
           class="banner-btn-4 banner-btn-4-modify banner-btn-4-right modify2-mt-65"
         >
-          <a href=""
+          <a href="{% url 'core:store' %}"
             >Ver todos los productos
             <img
               class="inject-me"
@@ -587,7 +583,21 @@
 
   <div class="card">
     <div class="image" style="display: flex; justify-content: center">
-      <i class="icofont-ui-file" style="font-size: 60px; color: #F45152;"></i>
+      <i class="icofont-ui-file" style="margin-top:10px ;font-size: 60px; color: #F45152;"></i>
+      <style>
+        .card{
+          box-shadow:  0 4px 6px rgba(0,0,0,0.25), 1px 0 3px 2px rgba(0,0,0,0.22);
+        }
+         .card-body h5{
+          color: black;
+          font-weight: bold;
+         }
+         .card-body p{
+          color: black;
+          font-weight: lighter;
+          text-align: justify;
+         }
+      </style>
     </div>
     <div class="card-body">
       <div class="image" style="display: flex; justify-content: center">
@@ -637,8 +647,8 @@
   </div>
 </div>
 
-<div class="contain-form">
-  <div class="contain-center">
+<div class="contain-form" >
+  <div class="contain-center" >
     <div class="contain-titulo">
       <h4>
         PARA PEDIDOS Y ENCARGOS ESPECIALES <br />
