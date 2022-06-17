@@ -70,7 +70,15 @@ class Index(View):
 
             return render(self.request, self.template_name, context)
         except ObjectDoesNotExist:
-            return render(self.request, self.template_name)
+            context = {
+            }
+            if len(items) > 0 and len(items) >= 5 :
+                items = random.sample(items,5)
+                context['items'] = items
+            elif len(items) > 0 and len(items)<5:
+                items = random.sample(items,len(items))
+                context['items'] = items
+            return render(self.request, self.template_name,context)
 
 
 # Lista de Productos
