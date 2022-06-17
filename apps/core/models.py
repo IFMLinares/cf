@@ -2,6 +2,7 @@ from pyexpat import model
 from turtle import title
 from django.db import models
 from django.conf import settings
+from django.forms import NullBooleanField
 from django.template.defaultfilters import slugify
 from django.shortcuts import reverse
 
@@ -115,7 +116,8 @@ class OrderItem(models.Model):
         verbose_name_plural = "Productos Ordenados"
 
 class Order(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
+    user_visitor = models.CharField(max_length=240, blank=True, null=True, unique=True)
     items = models.ManyToManyField(OrderItem)
     start_date = models.DateTimeField(auto_now_add= True)
     ordered_date = models.DateTimeField()
