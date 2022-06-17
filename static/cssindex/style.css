@@ -37,6 +37,7 @@
   font-size: 50px;
   color: white;
   width: 50%;
+  font-weight: bold;
   text-align: center;
 }
 .midle-baner_color {
@@ -48,6 +49,20 @@
 .responsive-table{
   display: none;
 }
+
+/* card */
+.card{
+  box-shadow:  0 4px 6px rgba(0,0,0,0.25), 1px 0 3px 2px rgba(0,0,0,0.22);
+}
+ .card-body h5{
+  color: black;
+  font-weight: bold;
+ }
+ .card-body p{
+  color: black;
+  font-weight: lighter;
+  text-align: justify;
+ }
 /* Cuadro contactanos index */
 
 .contain-form {
@@ -99,10 +114,12 @@
   width: 100%;
   display: flex;
   justify-content: center;
+
 }
 .contain_button {
-  width: 94%;
+  width: 92%;
   margin-top: 10px;
+
 }
 .contain_button button {
   width: 100%;
@@ -111,6 +128,8 @@
   border: none;
   font-weight: bold;
   color: white;
+  border-radius: 5px;
+
 }
 .contain_button button:hover {
   width: 100%;
@@ -195,7 +214,7 @@ h2.linea span {
 .product-slider-active-4 .priv_arrow {
   position: absolute;
   top: 80px;
-  left: -70px;
+  left: -80px;
   color: #ffff;
   width: 50px;
   height: 50px;
@@ -213,7 +232,7 @@ h2.linea span {
 .product-slider-active-4 .next_arrow {
   position: absolute;
   top: 80px;
-  left: 101%;
+  left: 102%;
   color: #ffff;
   width: 50px;
   height: 50px;
@@ -233,7 +252,25 @@ hr.hr-1 {
   height: 4px;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #ed4aca, rgba(0, 0, 0, 0));
 }
-
+/* laptop */
+@media only screen and (min-device-width: 800px) and (max-device-width: 1280px) {
+  .mobile-logo-width img {
+    width: 30% !important;
+    height: 100%;
+  }
+  .product-slider-active-4 .priv_arrow {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .product-slider-active-4 .next_arrow {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
 /* Cuando la pantalla es menor a 900px  (tablets y teléfonos inteligentes)*/
 /* moto g4 */
 @media only screen and (min-device-width: 412px) and (max-device-width: 915px) {
@@ -401,13 +438,26 @@ hr.hr-1 {
   .responsive-table{
     display: block;
   }
+  /* cuadro card */
+  .card{
+   margin: auto;
+    width: 90%;
+  } 
+   .card-body h5{
+    color: black;
+    font-weight: bold; 
+   }
   /* cuadro contactanos index */
   .contain-form {
     padding-top: 10px;
+    width: 100%;
   }
   .contain-center { 
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
     height: 550px;
-    width: 100%;
+    width: 90%;
     background-color: white;
   }
   .contain-titulo {
@@ -421,6 +471,7 @@ hr.hr-1 {
     text-align: center;
   }
   .contain-form_input {
+    width: 100%;
     display: flex;
     justify-content: center;
   }
@@ -441,7 +492,7 @@ hr.hr-1 {
     justify-content: center;
   }
   .contain_button {
-    width: 94%;
+    width: 85%;
     margin-top: 10px;
   }
   .contain_button button {

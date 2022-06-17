@@ -2205,8 +2205,8 @@ textarea:focus {
 .transparent-bar {
   left: 0;
   position: absolute;
-  top: 0;
-  width: 100%;
+  top: 0; 
+  width: 100%; 
   z-index: 99;  
 }
 
@@ -2954,7 +2954,7 @@ textarea:focus {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.904);
+  background: white;
   -webkit-transform: scaleY(0);
       -ms-transform: scaleY(0);
           transform: scaleY(0);
@@ -3131,7 +3131,9 @@ textarea:focus {
   background-color: #ED4ACA;
   color: white;
 }
-
+.btn-style-3 a.btn3-bg-brown:hover { 
+  color: #ED4ACA;
+}
 .btn-style-3 a.btn3-bg-white {
   background-color: #ffffff;
 }
@@ -3250,6 +3252,9 @@ textarea:focus {
 
 @media only screen and (max-width: 767px) {
   .btn-style-3 a.btn3-ptb-8 {
+    position: relative;
+    top: 0;
+    
     padding: 15px 22px 15px;
   }
 }
@@ -5612,7 +5617,7 @@ textarea:focus {
 }
 
 .search-style-7 form .form-search-7 input::-webkit-input-placeholder {
-  color: #ED4ACA;
+  color: rgba(0, 0, 0, 0.548);
   opacity: 1;
 }
 
@@ -30225,7 +30230,7 @@ textarea:focus {
 
 .myaccount-content .account-details-form .single-input-item button {
   border: none;
-  background-color: #0A1039;
+  background-color: #ED4ACA;
   text-transform: uppercase;
   font-weight: 600;
   padding: 9px 25px;
