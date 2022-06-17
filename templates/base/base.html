@@ -109,10 +109,10 @@
                                 <a href="{% url 'core:store' %}">Tienda</a>
                                 <ul class="sub-menu-width">
                                   <li><a href="{% url 'core:store' %}">° Todos</a></li> 
-                                  <li><a href="/store/B' %}">° Bebes</a></li> 
-                                  <li><a href="/store/A' %}">° Niños de 1 a 3 años</a></li> 
-                                  <li><a href="/store/C' %}">° Niños 3 años en adelante</a></li>
-                                  <li><a href="/store/D' %}">° Otros</a></li>    
+                                  <li><a href="{% url 'core:store_filter' category='B' %}">° Bebes</a></li> 
+                                  <li><a href="{% url 'core:store_filter' category='A' %}">° Niños de 1 a 3 años</a></li> 
+                                  <li><a href="{% url 'core:store_filter' category='C' %}">° Niños 3 años en adelante</a></li>
+                                  <li><a href="{% url 'core:store_filter' category='D' %}">° Otros</a></li>    
                                 </ul>
                               </li>
                               <li><a href="{% url 'core:faq' %}">FAQ</a></li>
@@ -291,13 +291,13 @@
                     <ul class="sub-menu-2">
                       <li><a href="{% url 'core:store' %}">Bebes</a></li> 
                       <hr>
-                      <li><a href="/store/B' %}">Bebes</a></li> 
+                      <li><a href="{% url 'core:store_filter' category='B' %}">Bebes</a></li> 
                       <hr>
-                      <li><a href="/store/A' %}">Niños de 1 a 3 años</a></li> 
+                      <li><a href="{% url 'core:store_filter' category='A' %}">Niños de 1 a 3 años</a></li> 
                       <hr>
-                      <li><a href="/store/C' %}">Niños 3 años en adelante</a></li>  
+                      <li><a href="{% url 'core:store_filter' category='C' %}">Niños 3 años en adelante</a></li>  
                      <hr>
-                      <li><a href="/store/D' %}">Otros</a></li>   
+                      <li><a href="{% url 'core:store_filter' category='D' %}">Otros</a></li>   
 
                     </ul>
                   </li>
