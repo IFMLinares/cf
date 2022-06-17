@@ -8784,8 +8784,7 @@ textarea:focus {
   width: 100%;
   background-size: contain;
   position: relative;
-  top: 200px;
-  background-attachment:scroll;
+  top: 200px; 
 }
 
 .slider-content-6 {
@@ -15128,6 +15127,18 @@ textarea:focus {
   transition: all .3s ease 0s;
   visibility: hidden;
   opacity: 0;
+}
+.bottom-product{
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  padding: 1px 1px 1px;
+  left: 28%;
+  right: 0;
+  bottom: 6px;
+  -webkit-transition: all .3s ease 0s;
+  -o-transition: all .3s ease 0s;
+  transition: all .3s ease 0s; 
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -29969,6 +29980,11 @@ textarea:focus {
 }
 
 /*-------- 25. Login register style ---------*/
+.login-register-wrapper{
+position: relative;
+top: -70px;
+z-index: 99;
+}
 .login-register-wrapper .login-register-tab-list {
   display: -webkit-box;
   display: -webkit-flex;
@@ -29978,7 +29994,8 @@ textarea:focus {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom:0px;
+ 
 }
 
 @media only screen and (max-width: 767px) {
@@ -30006,7 +30023,7 @@ textarea:focus {
 }
 
 .login-register-wrapper .login-register-tab-list a h4 {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 700;
   margin: 0 20px;
   text-transform: capitalize;
@@ -30027,7 +30044,7 @@ textarea:focus {
   background: transparent none repeat scroll 0 0;
   -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-  padding: 80px;
+  padding: 50px;
   text-align: left;
   background-color: #fff;
 }
@@ -30048,8 +30065,8 @@ textarea:focus {
   background-color: transparent;
   border: 1px solid #ebebeb;
   font-size: 14px;
-  height: 50px;
-  margin-bottom: 30px;
+  height: 40px;
+  margin-bottom:20px;
   padding: 0 15px;
   color: #010225;
 }

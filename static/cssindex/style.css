@@ -205,8 +205,9 @@ h2.linea span {
   font-size: 20px;
 }
 .card-body .card-text{
-  font-weight: bolder; 
+  font-weight: 800px; 
   color: black;
+
 }
 .accordion {
   border: none;
@@ -251,6 +252,17 @@ hr.hr-1 {
   width: 50%;
   height: 4px;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #ed4aca, rgba(0, 0, 0, 0));
+}
+.responsive-tab{
+  display: none;
+}
+.no-responsive{
+  display: block;
+}
+.pet-food-bg-img img {
+  width: 100% ;
+  height: 770px;
+  background-size: contain !important; 
 }
 /* laptop */
 @media only screen and (min-device-width: 800px) and (max-device-width: 1280px) {
@@ -393,6 +405,17 @@ hr.hr-1 {
 }
 
 @media only screen and (max-width: 900px) {
+  .no-responsive{
+    display: none;
+  }
+  .responsive-tab{
+    display: block
+  }
+  .contenedor-producto{
+    display: flex;
+    padding: 5px;  
+  }
+
   .btn-style_3{
     display: flex;
     justify-content: center;
@@ -410,6 +433,10 @@ hr.hr-1 {
     position: absolute;
     top: 0;
     left: 0;
+  }
+  .mobile-logo-width img {
+    width: 50% !important;
+    height: 50px !important;
   }
   .pet-food-bg-img img {
     display: none;

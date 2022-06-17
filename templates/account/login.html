@@ -86,21 +86,51 @@
                                       </div>
                                   </div>
                               </div>
-                              <div id="lg2" class="tab-pane" style="overflow-y: scroll;">
+                              <div id="lg2" class="tab-pane" >
                                 <h2 class="linea"><span>¿Ya tienes un perfil personal? Inicia Sesión</span></h2>
                                   <div class="login-form-container">
                                       <div class="login-register-form">
                                           <form method="post" action="{% url 'account_signup' %}" id="singup">
                                             {% csrf_token %}
-                                            
-                                            <input class="col-md-5" type="text" name="first_name" placeholder="nombre" id="id_first_name" required>
-                                            <input class="col-md-5" type="text" name="last_name" placeholder="apellido" id="id_last_name" required>
-                                            <input type="text" name="username" placeholder="nombre de usuario" id="id_username" required>
-                                            <input class="col-md-5" type="tel" name="phone" placeholder="telefono" id="id_phone" required>
-                                            <input class="col-md-5" type="text" name="doc" placeholder="numero de documento" id="id_doc" required>
-                                            <input name="email" placeholder="Email" id="email" type="Email" required>
-                                            <input type="password"  name="password1" id="id_password1" placeholder="Contraseña" required>
-                                            <input type="password" name="password2" id="id_password2" placeholder="Confirmar Contraseña" required>
+                                            <div class="row">
+                                              <div class="col">
+                                                <input class=" " type="text" name="first_name" placeholder="nombre" id="id_first_name" required>
+
+                                              </div>
+                                              <div class="col">
+                                                <input class=" " type="text" name="last_name" placeholder="apellido" id="id_last_name" required>
+
+                                              </div>
+                                            </div> 
+                                            <div class="row">
+                                              <div class="col">
+                                                <input type="text" name="username" placeholder="nombre de usuario" id="id_username" required> 
+                                              </div> 
+                                            </div> 
+                                            <div class="row">
+                                              <div class="col">
+                                                <input class="" type="tel" name="phone" placeholder="telefono" id="id_phone" required> 
+                                              </div>
+                                              <div class="col">
+                                                <input class="" type="text" name="doc" placeholder="numero de documento" id="id_doc" required> 
+                                              </div>
+                                            </div> 
+                                            <div class="row">
+                                              <div class="col">
+                                                <input name="email" placeholder="Email" id="email" type="Email" required> 
+                                              </div> 
+                                            </div> 
+                                            <div class="row">
+                                              <div class="col">
+                                                <input type="password"  name="password1" id="id_password1" placeholder="Contraseña" required>
+
+                                              </div> 
+                                            </div> 
+                                            <div class="row">
+                                              <div class="col">
+                                                <input type="password" name="password2" id="id_password2" placeholder="Confirmar Contraseña" required>
+                                              </div> 
+                                            </div> 
                                               <div class="button-box">
                                                   <button type="submit" style="width:100%;" form="singup">Regístrate</button>
                                               </div>
@@ -116,6 +146,7 @@
                                                     <img src="{% static 'assets/img/google.jpg' %}" alt="">
                                                   </a>
                                                 </div>
+                                              </div>
                                           </form>
                                       </div>
                                   </div>
