@@ -65,6 +65,7 @@ class Index(View):
                 context['items'] = items
             if self.request.user.is_authenticated:
                 order = (Order.objects.get(user=self.request.user, ordered=False))
+                context['items'] = items
                 context['carro'] = order
 
             return render(self.request, self.template_name, context)
