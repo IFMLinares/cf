@@ -62,27 +62,15 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            {% for order in orders %}
                                                             <tr>
-                                                                <td>X</td>
-                                                                <td>XXXXXXXXX</td>
-                                                                <td>XXXXXXX</td>
-                                                                <td>XXXXX</td>
-                                                                <td><a href="" class="check-btn sqr-btn ">XXXXX</a></td>
+                                                                <td>{{ order.pk }}</td>
+                                                                <td>{{ order.ordered_date|date:"d/m/Y"  }}</td>
+                                                                <td>{% if order.ordered %}Pagado{% endif %}</td>
+                                                                <td>{{ order.totalOrden }}</td>
+                                                                <td><a href="" class="check-btn sqr-btn ">{{ order. }}</a></td>
                                                             </tr>
-                                                            <tr>
-                                                                <td>X</td>
-                                                                <td>XXXXXXXXX</td>
-                                                                <td>XXXXXXX</td>
-                                                                <td>XXXXX</td>
-                                                                <td><a href="" class="check-btn sqr-btn ">XXXXX</a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>X</td>
-                                                                <td>XXXXXXXXX</td>
-                                                                <td>XXXXXXX</td>
-                                                                <td>XXXXX</td>
-                                                                <td><a href="" class="check-btn sqr-btn ">XXXXX</a></td>
-                                                            </tr>
+                                                            {% endfor %}
                                                         </tbody>
                                                     </table>
                                                 </div>
