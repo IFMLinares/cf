@@ -194,13 +194,12 @@
             </div>
           </div>
           <div class="product-action-position-1 text-center">
-            <div class="product-content">
+            <!-- <div class="product-content">
               <h4><a href="">{{ item.description }}</a></h4>
               <div class="product-price">
                 <span>$ {{ item.sale_price }}</span>
-                <!-- <span class="old-price">$ XXXX</span> -->
               </div>
-            </div>
+            </div> -->
             <form action="/addto/" method="post">
               {% csrf_token %}
             <div class="product-action-wrap">
@@ -478,13 +477,13 @@
             </div>
           </div>
           <div class="product-action-position-1 text-center">
-            <div class="product-content" style="display:none;">
+            <!-- <div class="product-content" style="display:none;">
               <h4><a href="">Nombre del Producto</a></h4>
               <div class="product-price">
                 <span>$ XXXX</span>
                 <span class="old-price">$ XXXX</span>
               </div>
-            </div>
+            </div> -->
             <div class="product-action-wrap">
               <div class="product-action-cart">
                 <button title="Agregar al Carrito">Agregar al Carrito</button>
