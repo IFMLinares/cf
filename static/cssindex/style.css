@@ -71,7 +71,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(../assets/img/ss.jpg);
+  background-image: url(../assets/img/ss.jpeg);
   background-size: cover; 
   background-repeat: no-repeat;
 }
@@ -393,6 +393,12 @@ hr.hr-1 {
 }
 
 @media only screen and (max-width: 900px) {
+  .btn-style_3{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: 0px;
+  }
   .product-slider-active-4 .priv_arrow {
     visibility: hidden;
     position: absolute;

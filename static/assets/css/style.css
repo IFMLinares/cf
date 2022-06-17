@@ -3097,15 +3097,21 @@ textarea:focus {
 .btn-style-2 a:hover {
   color: #fff;
 }
-
-.btn-style-3 a {
+.btn-style_3{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  left: 250px;
+}
+.btn-style-3 a {  
   display: inline-block;
   font-size: 16px; 
   color: black;
   line-height: 1;
   padding: 20px 48px 20px;
-  z-index: 2;
   position: relative;
+  top: 50px; 
+  z-index: 2; 
   /* background-color: black; */
 }
 .btn-style-3 a:hover {
@@ -3726,11 +3732,11 @@ textarea:focus {
 
 .header-action-wrap .same-style a {
   font-size: 20px;
-  color: #0A1039;
+  color: #ED4ACA;
 }
 
 .header-action-wrap .same-style a:hover {
-  color: #444E7A;
+  color: #ED4ACA;
 }
 
 .header-action-wrap .same-style.same-style-white a {
@@ -3761,7 +3767,7 @@ textarea:focus {
 }
 
 .header-action-wrap .header-info button span {
-  background-color: #0A1039;
+  background-color: #ED4ACA;
   border-radius: 2px;
   left: 0;
   display: block;
@@ -15091,7 +15097,7 @@ textarea:focus {
 }
 
 .product-wrap .product-content h4 a {
-  color: white;
+  color: black;
 }
 
 .product-wrap .product-content h4 a:hover {
@@ -15110,7 +15116,7 @@ textarea:focus {
 
 .product-wrap .product-action-position-1 {
   position: absolute;
-  background-color: #ED4ACA;
+  background-color: transparent;
   border: none;
   padding: 1px 1px 1px;
   left: 0;
@@ -15237,7 +15243,7 @@ textarea:focus {
 }
 
 .product-wrap .product-action-wrap > .product-action-cart > button {
-  border: white 1px solid;
+  border: none;
   padding: 7px 32px 7px;
   background-color: #ED4ACA;
   color: white;
@@ -15278,7 +15284,7 @@ textarea:focus {
   padding: 0 0;
   margin-bottom: 20px;
   background-color: transparent;
-  color: white;
+  color: #ED4ACA;
   font-size: 20px;
 }
 
@@ -15553,7 +15559,7 @@ textarea:focus {
 .product-price span {
   font-size: 15px;
   font-weight: 500;
-  color: white;
+  color: black;
 }
 
 .product-price span.old-price {

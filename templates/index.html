@@ -11,16 +11,13 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-7 col-md-6 col-12 col-sm-6">
-            <div class="slider-content-8 slider-animated-1">
-              <!-- <h1 class="animated">Rebajas</h1>
-                        <p class="animated">
+            <div class="slider-content-8 slider-animated-1" >
+              <!-- <h1 class="animated" style="display: flex; justify-content:center; position:relative; left:300px;">Rebajas</h1>
+                        <p style="display: flex; justify-content:center; position:relative; left:300px;" class="animated">
                           Descuentos de hasta 30% en accesorios
                         </p> -->
-              <div class="btn-style-3 btn-hover" style="display:flex; justify-content:center;">
-                <a
-                  class="btn3-ptb-3 btn3-bg-brown animated"
-                  href="{% url 'core:store' %}"
-                  >Comprar Ahora <i class="icofont-long-arrow-right"></i
+              <div class="btn-style-3 btn-hover btn-style_3" >
+                <a class="btn3-ptb-3 btn3-bg-brown animated" href="{% url 'core:store' %}"  >Comprar Ahora <i class="icofont-long-arrow-right"></i
                 ></a>
               </div>
             </div>
@@ -211,6 +208,68 @@
       </div> 
       
       {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="responsive-table">
+  <div class="product-area pb-100">
+    <div class="container"> 
+      <hr class="hr-1"> 
+      <div class="row middle-end">
+        <div class="col-md-4">
+          <div
+            class="banner-btn-4 banner-btn-4-modify banner-btn-4-right modify2-mt-65"
+          >
+            <a href="{% url 'core:store' %}">Ver todos los productos
+              <img
+                class="inject-me"
+                src="{% static 'assets/images/icon-img/right-arrow-banner.svg' %}"
+                alt=""
+            /></a>
+          </div>
+        </div>
+      </div>
+      <div class="product-slider-active-4">
+        {% for item in items %}
+        <div class="product-wrap-plr-1">
+          <div class="product-wrap">
+            <div class="product-img product-img-zoom mb-25">
+              <a href="{{ item.get_absolute_url }}">
+                <img src="{{ item.image.url }}" alt="" />
+              </a>
+            </div>
+            <div class="product-content">
+              <h4><a href="">{{ item.description }}</a></h4>
+              <div class="product-price">
+                <span>$ {{ item.sale_price }}</span>
+                <!-- <span class="old-price">$ XXXX</span> -->
+              </div>
+            </div>
+            <div class="product-action-position-1 text-center">
+              <div class="product-content">
+                <h4><a href="">{{ item.description }}</a></h4>
+                <div class="product-price">
+                  <span>$ {{ item.sale_price }}</span>
+                  <!-- <span class="old-price">$ XXXX</span> -->
+                </div>
+              </div>
+              <form action="/addto/" method="post">
+                {% csrf_token %}
+              <div class="product-action-wrap">
+                  <div class="product-action-cart">
+                      <input type="hidden" name="slug" id="slug" value="{{ item.slug }}">
+                      <button title="Añadir al Carrito" type="submit">Añadir al Carrito</button>
+                  </div>
+                  <button type="button" onclick="modalproduct('{{ item.sku_code }}','{{ item.description }}','{{ item.stock }}','{{ item.sale_price }}', '{{item.image.url}}', '{{item.slug}}')"><i class="icon-zoom"></i></button>
+                  <!-- <button data-toggle="modal" data-target="#exampleModal"><i class="icon-zoom"></i></button> -->
+              </div>
+            </form>
+            </div>
+          </div>
+        </div> 
+        
+        {% endfor %}
+      </div>
     </div>
   </div>
 </div>
@@ -425,7 +484,7 @@
             </div>
           </div>
           <div class="product-action-position-1 text-center">
-            <div class="product-content" >
+            <div class="product-content" style="display:none;">
               <h4><a href="">Nombre del Producto</a></h4>
               <div class="product-price">
                 <span>$ XXXX</span>
@@ -458,7 +517,7 @@
             </div>
           </div>
           <div class="product-action-position-1 text-center">
-            <div class="product-content">
+            <div class="product-content" style="display:none;">
               <h4><a href="">Nombre del Producto</a></h4>
               <div class="product-price">
                 <span>$ XXXX</span>
@@ -491,7 +550,7 @@
             </div>
           </div>
           <div class="product-action-position-1 text-center">
-            <div class="product-content">
+            <div class="product-content" style="display:none;">
               <h4><a href="">Nombre del Producto</a></h4>
               <div class="product-price">
                 <span>$ XXXX</span>
@@ -524,7 +583,7 @@
             </div>
           </div>
           <div class="product-action-position-1 text-center">
-            <div class="product-content">
+            <div class="product-content" style="display:none;">
               <h4><a href="">Nombre del Producto</a></h4>
               <div class="product-price">
                 <span>$ XXXX</span>
@@ -557,7 +616,7 @@
             </div>
           </div>
           <div class="product-action-position-1 text-center">
-            <div class="product-content">
+            <div class="product-content" style="display:none;">
               <h4><a href="">Nombre del Producto</a></h4>
               <div class="product-price">
                 <span>$ XXXX</span>
@@ -598,7 +657,7 @@
             </div>
             </div>
             <div class="product-action-position-1 text-center">
-              <div class="product-content" >
+              <div class="product-content" style="display:none;">
                 <h4><a href="">Nombre del Producto</a></h4>
                 <div class="product-price">
                   <span>$ XXXX</span>
@@ -631,7 +690,7 @@
             </div>
             </div>
             <div class="product-action-position-1 text-center">
-              <div class="product-content">
+              <div class="product-content" style="display:none;">
                 <h4><a href="">Nombre del Producto</a></h4>
                 <div class="product-price">
                   <span>$ XXXX</span>
@@ -664,7 +723,7 @@
             </div>
             </div>
             <div class="product-action-position-1 text-center">
-              <div class="product-content">
+              <div class="product-content" style="display:none;">
                 <h4><a href="">Nombre del Producto</a></h4>
                 <div class="product-price">
                   <span>$ XXXX</span>
@@ -697,7 +756,7 @@
             </div>
             </div>
             <div class="product-action-position-1 text-center">
-              <div class="product-content">
+              <div class="product-content" style="display:none;">
                 <h4><a href="">Nombre del Producto</a></h4>
                 <div class="product-price">
                   <span>$ XXXX</span>
@@ -730,7 +789,7 @@
             </div>
             </div>
             <div class="product-action-position-1 text-center">
-              <div class="product-content">
+              <div class="product-content" style="display:none;">
                 <h4><a href="">Nombre del Producto</a></h4>
                 <div class="product-price">
                   <span>$ XXXX</span>
