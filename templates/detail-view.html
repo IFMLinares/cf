@@ -3,27 +3,26 @@
 {% load static %}
 
 {% block content %}
-<div class="breadcrumb-area breadcrumb-mt bg-gray breadcrumb-ptb-1">
+<div class="breadcrumb-area  bg-gray mt-160" style="background-color: transparent;">
         <div class="container">
-            <div class="breadcrumb-content text-center">
-                <h2>Tienda </h2>
+            <div class="breadcrumb-content text-center" >
+                <h2>Producto Detallado </h2>
                 <p>Lorem ipsum dolor sit amet conse </p>
             </div>
         </div>
-        <div class="breadcrumb-img-1">
-            <img src="{% static 'assets/img/nino.jpg' %}" alt="">
+        <div class="breadcrumb-img-1 mt-10">
+            <img src="{% static 'assets/img/juguete.jpg' %}" alt="">
         </div>
         <div class="breadcrumb-img-2">
-            <img src="{% static 'assets/img/nina.jpg' %}" alt="">
+            <img src="{% static 'assets/img/juguetes.jpeg' %}" alt="">
         </div>
     </div>
 
-<div class="product-details-area slider-mt-7 pt-120 pb-95">
+<div class="product-details-area slider-mt-7 ">
     <div class="container">
         <div class="product-details-top-content">
             <div class="product-details-content">
-                <h2>{{ item.description }}</h2>
-                <p class="pro-dec-paragraph-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque repellat libero </p>
+                <h2>{{ item.description }}</h2> 
             </div>
             <div class="product-details-content">
                 <div class="product-ratting-review-wrap product-ratting-mrg-none">
@@ -47,7 +46,8 @@
             </div>
         </div>
     </div>
-    <div class="section-padding-7">
+    
+    <div class="section-padding-7" style="position: relative; top:-70px;">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-7 col-md-6">
@@ -56,6 +56,9 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-6">
+                    <div class="product-details-content ml-50 mb-50"> 
+                        <p class="pro-dec-paragraph-2 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque repellat libero </p>
+                    </div>
                     <div class="product-details-content product-details-content-6">
                         <div class="pro-details-price pro-details-price-4">
                             <span>$ {{ item.sale_price }}</span>
@@ -107,17 +110,7 @@
                                     <input type="hidden" name="slug" id="slug" value="{{ item.slug }}">
                                 </div>
                                 </form>
-                            </div>
-                            <div class="pro-details-action">
-                                <a title="Agregar al Carrito" href="#"><i class="icon-basket"></i></a>
-                                <a class="Redes" title="Social" href="#"><i class="icon-share"></i></a>
-                                <div class="product-dec-social">
-                                    <a class="facebook" title="Facebook" href="#"><i class="icon-social-facebook-square"></i></a>
-                                    <a class="twitter" title="Twitter" href="#"><i class="icon-social-twitter"></i></a>
-                                    <a class="instagram" title="Instagram" href="#"><i class="icon-social-instagram"></i></a>
-                                    <a class="pinterest" title="Pinterest" href="#"><i class="icon-social-pinterest"></i></a>
-                                </div>
-                            </div>
+                            </div> 
                         </div>
                     </div>
                 </div>
