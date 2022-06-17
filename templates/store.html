@@ -233,16 +233,16 @@
                                       <a class="{% if category == 'alls' %}active{% endif %}" href="{% url 'core:store' %}">Todo</a> 
                                     </li>
                                     <li>
-                                      <a class="{% if category == 'A' %}active{% endif %}" href="/store/A">1 - 3 años</a> 
+                                      <a class="{% if category == 'A' %}active{% endif %}" href="{% url 'core:store_filter' category='A' %}">1 - 3 años</a> 
                                     </li>
                                     <li>
-                                      <a class="{% if category == 'B' %}active{% endif %}" href="/store/B">Bebés </a> 
+                                      <a class="{% if category == 'B' %}active{% endif %}" href="{% url 'core:store_filter' category='B' %}">Bebés </a> 
                                     </li>
                                     <li>
-                                      <a class="{% if category == 'C' %}active{% endif %}" href="/store/C">3 años en adelante </a> 
+                                      <a class="{% if category == 'C' %}active{% endif %}" href="{% url 'core:store_filter' category='C' %}">3 años en adelante </a> 
                                     </li>
                                     <li>
-                                      <a class="{% if category == 'D' %}active{% endif %}" href="/store/D">Otros</a> 
+                                      <a class="{% if category == 'D' %}active{% endif %}" href="{% url 'core:store_filter' category='D' %}">Otros</a> 
                                     </li>
                                 </ul>
                             </div>
