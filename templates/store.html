@@ -181,6 +181,7 @@
                                                 <form action="/addto/" method="post">
                                                   {% csrf_token %}
                                                   <input type="hidden" name="slug" id="slug" value="{{ item.slug }}">
+                                                  <input type="hidden" name="quantity" id="quantity" value="1">
                                                 <div class="product-list-action">
                                                     <div class="product-action-cart">
                                                         <button title="Añadir al Carrito" type="submit">Añadir al Carrito</button>
@@ -317,15 +318,12 @@
                         </ul>
                       </div>
                     </div> -->
+
+                    <form action="/addto/" method="post" id="form-modal">
                     <div class="pro-details-quality">
                       <span>Cantidad:</span>
                       <div class="cart-plus-minus">
-                        <input
-                          class="cart-plus-minus-box"
-                          type="text"
-                          name="qtybutton"
-                          value="1"
-                        />
+                        <input class="cart-plus-minus-box"  type="number" name="quantity" value="1"/>
                       </div>
                     </div>
                     <div class="product-details-meta">
@@ -336,10 +334,8 @@
                     <div class="pro-details-action-wrap">
                       <div class="pro-details-buy-now">
                         <a href="#" id="buynow">Comprar Ahora</a>
-                        <form action="/addto/" method="post" id="form-modal">
                           {% csrf_token %}
                           <input type="hidden" name="slug" id="slug-modal" value="">
-                        </form>
                       </div>
                       <div class="pro-details-action">
                         <a title="Agregar al carrito" href="#"
@@ -364,6 +360,8 @@
                         </div>
                       </div>
                     </div>
+
+                  </form>
                   </div>
                 </div>
               </div>
