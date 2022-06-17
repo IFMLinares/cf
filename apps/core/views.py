@@ -1,3 +1,5 @@
+import re
+from urllib import response
 import uuid
 import zeep
 from datetime import datetime
@@ -29,21 +31,21 @@ from .forms.forms import CheckoutForm
 # Create your views here.
 
 class CartMixin(ContextMixin):
-  def get_order(self):
-    if (self.request.user.is_authenticated):
-        try:
-            order = (Order.objects.get(user=self.request.user, ordered=False))
-            if (order):
-                return order
-        except ObjectDoesNotExist:
+    def get_order(self):
+        if (self.request.user.is_authenticated):
+            try:
+                order = (Order.objects.get(user=self.request.user, ordered=False))
+                if (order):
+                    return order
+            except ObjectDoesNotExist:
+                pass
+        else:
             pass
-    else:
-        pass
 
-  def get_context_data(self, **kwargs):
-    ctx = super(CartMixin, self).get_context_data(**kwargs)
-    ctx['carro'] = self.get_order()
-    return ctx
+    def get_context_data(self, **kwargs):
+        ctx = super(CartMixin, self).get_context_data(**kwargs)
+        ctx['carro'] = self.get_order()
+        return ctx
 
 # Inicio de la pagima
 class Index(View):
@@ -52,23 +54,19 @@ class Index(View):
     
     def get(self, request, *args, **kwargs):
         try:
-            ip = request.META.get('REMOTE_ADDR')
-            print(ip)
             items = list(Item.objects.filter(outstanding=True))
             context = {
             }
-            context['ip'] = ip
             if len(items) > 0 and len(items) >= 5 :
                 items = random.sample(items,5)
                 context['items'] = items
             elif len(items) > 0 and len(items)<5:
                 items = random.sample(items,len(items))
                 context['items'] = items
-            if (self.request.user.is_authenticated):
+            if self.request.user.is_authenticated:
                 order = (Order.objects.get(user=self.request.user, ordered=False))
-                if (order):
-                    context['carro'] = order
-                
+                context['carro'] = order
+
             return render(self.request, self.template_name, context)
         except ObjectDoesNotExist:
             return render(self.request, self.template_name)
@@ -323,27 +321,28 @@ def addto(request):
     if request.method=='POST':
         slug = request.POST['slug']
         item = get_object_or_404(Item, slug=slug)
-        order_item, created = OrderItem.objects.get_or_create(item=item, user=request.user, ordered=False)
-        order_qs = Order.objects.filter(user=request.user, ordered=False)
-        if order_qs.exists():
-            order = order_qs[0]
-            # verificando si el item odernado ya está en la orden
-            if order.items.filter(item__slug=item.slug).exists():
-                order_item.quantity += 1
-                order_item.save()
-                messages.info(request, 'La cantidad de este producto fue actualizada satisfactoriamente')
-                return redirect('core:store')
+
+        if request.user.is_authenticated:
+            order_item, created = OrderItem.objects.get_or_create(item=item, user=request.user, ordered=False)
+            order_qs = Order.objects.filter(user=request.user, ordered=False)
+            if order_qs.exists():
+                order = order_qs[0]
+                # verificando si el item odernado ya está en la orden
+                if order.items.filter(item__slug=item.slug).exists():
+                    order_item.quantity += 1
+                    order_item.save()
+                    messages.info(request, 'La cantidad de este producto fue actualizada satisfactoriamente')
+                    return redirect('core:store')
+                else:
+                    order.items.add(order_item)
+                    messages.info(request, 'Este producto fue añadido satisfactoriamente a su carrito')
+                    return redirect('core:store')
             else:
+                ordered_date = timezone.now()
+                order = Order.objects.create(user=request.user, ordered_date=ordered_date)
                 order.items.add(order_item)
                 messages.info(request, 'Este producto fue añadido satisfactoriamente a su carrito')
-                return redirect('core:store')
-        else:
-            ordered_date = timezone.now()
-            order = Order.objects.create(user=request.user, ordered_date=ordered_date)
-            order.items.add(order_item)
-            messages.info(request, 'Este producto fue añadido satisfactoriamente a su carrito')
-        return redirect('core:store')
-
+            return redirect('core:store')
 
 @login_required
 def add_to_cart(request, slug):

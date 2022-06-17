@@ -167,15 +167,13 @@
                         </ul>
                       </nav>
                     </div>
-                    {% if user.is_authenticated %}
                     <div
-                      class="same-style same-style-white header-cart pet-food-cart  ml-xl-3"
+                      class="same-style same-style-white header-cart pet-food-cart"
                     >
                       <a class="cart-active" href="#"
                         >{{ request.user|cart_item_count }}<i class="icofont-shopping-cart"></i
                       ></a>
                     </div>
-                    {% endif %}
                       {% if user.is_authenticated %}
                     <div class="same-style same-style-white header-cart pet-food-cart  ml-xl-3">
                       <a class="pr-3" href="{% url 'account_logout' %}" >Salir<i class="icofont-logout"></i></a>
@@ -209,7 +207,7 @@
                   {% if user.is_authenticated %}
                   <div class="same-style header-cart">
                     <a class="" href="{% url 'core:account' %}"
-                      ><i class="icofont-user-alt-3 pr-2"></i> </a>
+                      ><i class="icofont-user-alt-3 pr-2"></i>{{ user.username }} </a>
                   </div>
                   {% else %}
                   <div class="same-style header-cart">
@@ -302,6 +300,10 @@
                   <hr>
 
                   <li><a href="{% url 'core:faq' %}">FAQ</a></li>
+                  {% if user.is_authenticated %}
+                  <hr>
+                  <li><a href="{% url 'account_logout' %}">Cerrar sesión</a></li>  
+                  {% endif %}
                 </ul>
               </nav>
             </div>
