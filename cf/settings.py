@@ -31,10 +31,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['localhost', 'ifmlinares.pythonanywhere.com', '*']
 
 # Application definition
-
 INSTALLED_APPS = [
-    # 'jet.dashboard',
-    # 'jet',
+    'jet.dashboard',
+    'jet',
     'django.contrib.admin',
 
     'django.contrib.auth',
@@ -146,8 +145,12 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+AUTH_USER_MODEL = 'core.User'
+
 SITE_ID = 1
 
+ACCOUNT_SIGNUP_FORM_CLASS = 'apps.core.forms.SignupForm.SignupForm'
 # USER LOGIN
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

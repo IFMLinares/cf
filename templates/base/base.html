@@ -108,9 +108,11 @@
                               <li>
                                 <a href="{% url 'core:store' %}">Tienda</a>
                                 <ul class="sub-menu-width">
-                                  <li><a href="{% url 'core:store' %}">° Bebes</a></li> 
-                                  <li><a href="{% url 'core:store' %}">° Niños de 1 a 3 años</a></li> 
-                                  <li><a href="{% url 'core:store' %}">° Niños 3 años en adelante</a></li>  
+                                  <li><a href="{% url 'core:store' %}">° Todos</a></li> 
+                                  <li><a href="{% url 'core:store-filter' category='B' %}">° Bebes</a></li> 
+                                  <li><a href="{% url 'core:store-filter' category='A' %}">° Niños de 1 a 3 años</a></li> 
+                                  <li><a href="{% url 'core:store-filter' category='C' %}">° Niños 3 años en adelante</a></li>
+                                  <li><a href="{% url 'core:store-filter' category='D' %}">° Otros</a></li>    
                                 </ul>
                               </li>
                               <li><a href="{% url 'core:faq' %}">FAQ</a></li>
@@ -289,11 +291,13 @@
                     <ul class="sub-menu-2">
                       <li><a href="{% url 'core:store' %}">Bebes</a></li> 
                       <hr>
-                      <li><a href="{% url 'core:store' %}">Niños de 1 a 3 años</a></li> 
+                      <li><a href="{% url 'core:store-filter' category='B' %}">Bebes</a></li> 
                       <hr>
-                      <li><a href="{% url 'core:store' %}">Niños 3 años en adelante</a></li>  
+                      <li><a href="{% url 'core:store-filter' category='A' %}">Niños de 1 a 3 años</a></li> 
+                      <hr>
+                      <li><a href="{% url 'core:store-filter' category='C' %}">Niños 3 años en adelante</a></li>  
                      <hr>
-                      <li><a href="{% url 'core:store' %}">Otros</a></li>   
+                      <li><a href="{% url 'core:store-filter' category='D' %}">Otros</a></li>   
 
                     </ul>
                   </li>
@@ -458,10 +462,14 @@
                                     <div class="login-register-form">
                                         <form method="post" action="{% url 'account_signup' %}">
                                           {% csrf_token %}
-                                          <input type="text" name="username" placeholder="Nombre y Apellido" id="id_username">
-                                          <input name="email" placeholder="Email" id="email" type="Email">
-                                          <input type="password"  name="password1" id="id_password1" placeholder="Contraseña">
-                                          <input type="password" name="password2" id="id_password2" placeholder="Confirmar Contraseña">
+                                          <input class="col-md-5" type="text" name="first_name" placeholder="nombre" id="id_first_name" required>
+                                          <input class="col-md-5" type="text" name="last_name" placeholder="apellido" id="id_last_name" required>
+                                          <input type="text" name="username" placeholder="nombre de usuario" id="id_username" required>
+                                          <input class="col-md-5" type="tel" name="phone" placeholder="telefono" id="id_phone" required>
+                                          <input class="col-md-5" type="text" name="doc" placeholder="numero de documento" id="id_doc" required>
+                                          <input name="email" placeholder="Email" id="email" type="Email" required>
+                                          <input type="password"  name="password1" id="id_password1" placeholder="Contraseña" required>
+                                          <input type="password" name="password2" id="id_password2" placeholder="Confirmar Contraseña" required>
                                             <div class="button-box">
                                                 <button type="submit" style="width:100%;">Regístrate</button>
                                             </div>

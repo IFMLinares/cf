@@ -79,6 +79,30 @@ class Store(CartMixin,ListView):
     template_name = 'store.html'
     context_object_name = 'items'
 
+    
+    def get_queryset(self):
+        return self.model.objects.filter(category='A')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = 'alls'
+        return context
+
+
+class StoreFilter(CartMixin,ListView):
+    model = Item
+    paginate_by = 9
+    template_name = 'store.html'
+    context_object_name = 'items'
+    
+    def get_queryset(self, **kwars):
+        return self.model.objects.filter(category=self.kwargs.get('category','alls'))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = self.kwargs.get('category','alls')
+        return context
+
 # Vista detalla del producto
 class DetailView(CartMixin, DetailView):
     model = Item
