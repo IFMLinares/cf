@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Item, OrderItem, Order, Address
+from .models import Item, OrderItem, Order, Address, User
 
 # Register your models here.
 
@@ -30,10 +30,19 @@ class AddressAdmin(admin.ModelAdmin):
         'user',
     )
 
-
-
+class UserAdmin(admin.ModelAdmin):
+    search_fields = ['email']
+    list_display = (
+        'email',
+        'first_name',
+        'last_name',
+        'phone',
+    )
+    list_per_page = 10
 
 admin.site.register(Item, ItemAdmin)
 admin.site.register(Order, OrdenAdmin)
 admin.site.register(OrderItem, OrderItemAdmin)
 admin.site.register(Address, AddressAdmin)
+admin.site.register(User, UserAdmin)
+

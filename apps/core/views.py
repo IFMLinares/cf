@@ -65,11 +65,20 @@ class Index(View):
                 context['items'] = items
             if self.request.user.is_authenticated:
                 order = (Order.objects.get(user=self.request.user, ordered=False))
+                context['items'] = items
                 context['carro'] = order
 
             return render(self.request, self.template_name, context)
         except ObjectDoesNotExist:
-            return render(self.request, self.template_name)
+            context = {
+            }
+            if len(items) > 0 and len(items) >= 5 :
+                items = random.sample(items,5)
+                context['items'] = items
+            elif len(items) > 0 and len(items)<5:
+                items = random.sample(items,len(items))
+                context['items'] = items
+            return render(self.request, self.template_name,context)
 
 
 # Lista de Productos
@@ -78,6 +87,30 @@ class Store(CartMixin,ListView):
     paginate_by = 9
     template_name = 'store.html'
     context_object_name = 'items'
+
+    
+    def get_queryset(self):
+        return self.model.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = 'alls'
+        return context
+
+
+class StoreFilter(CartMixin,ListView):
+    model = Item
+    paginate_by = 9
+    template_name = 'store.html'
+    context_object_name = 'items'
+    
+    def get_queryset(self, **kwars):
+        return self.model.objects.filter(category=self.kwargs.get('category','alls'))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = self.kwargs.get('category','alls')
+        return context
 
 # Vista detalla del producto
 class DetailView(CartMixin, DetailView):
@@ -321,7 +354,7 @@ def addto(request):
     if request.method=='POST':
         slug = request.POST['slug']
         item = get_object_or_404(Item, slug=slug)
-
+        quantity = int(request.POST.get('quantity', 1))
         if request.user.is_authenticated:
             order_item, created = OrderItem.objects.get_or_create(item=item, user=request.user, ordered=False)
             order_qs = Order.objects.filter(user=request.user, ordered=False)
@@ -329,11 +362,13 @@ def addto(request):
                 order = order_qs[0]
                 # verificando si el item odernado ya está en la orden
                 if order.items.filter(item__slug=item.slug).exists():
-                    order_item.quantity += 1
+                    order_item.quantity += quantity
                     order_item.save()
                     messages.info(request, 'La cantidad de este producto fue actualizada satisfactoriamente')
                     return redirect('core:store')
                 else:
+                    order_item.quantity = quantity
+                    order_item.save()
                     order.items.add(order_item)
                     messages.info(request, 'Este producto fue añadido satisfactoriamente a su carrito')
                     return redirect('core:store')

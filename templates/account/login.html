@@ -92,10 +92,15 @@
                                       <div class="login-register-form">
                                           <form method="post" action="{% url 'account_signup' %}" id="singup">
                                             {% csrf_token %}
-                                            <input type="text" name="username" placeholder="Usuario" id="id_username" required>
+                                            
+                                            <input class="col-md-5" type="text" name="first_name" placeholder="nombre" id="id_first_name" required>
+                                            <input class="col-md-5" type="text" name="last_name" placeholder="apellido" id="id_last_name" required>
+                                            <input type="text" name="username" placeholder="nombre de usuario" id="id_username" required>
+                                            <input class="col-md-5" type="tel" name="phone" placeholder="telefono" id="id_phone" required>
+                                            <input class="col-md-5" type="text" name="doc" placeholder="numero de documento" id="id_doc" required>
+                                            <input name="email" placeholder="Email" id="email" type="Email" required>
                                             <input type="password"  name="password1" id="id_password1" placeholder="Contraseña" required>
                                             <input type="password" name="password2" id="id_password2" placeholder="Confirmar Contraseña" required>
-                                            <input name="email" placeholder="Email" id="email" type="Email" required>
                                               <div class="button-box">
                                                   <button type="submit" style="width:100%;" form="singup">Regístrate</button>
                                               </div>

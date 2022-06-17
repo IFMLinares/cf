@@ -6,7 +6,9 @@ app_name = 'core'
 urlpatterns = [
     path('', Index.as_view(), name='index'),
     path('product/<slug>', DetailView.as_view(), name='detailView'),
-    path('store', Store.as_view(), name='store'),
+    path('store/', Store.as_view(), name='store'),
+    path('store/<category>', StoreFilter.as_view(), name='store_filter'),
+    #camvios
     path('faq', FAQView.as_view(), name='faq'),
     path('cart', cartView.as_view(), name='cart'),
     path('check-out', checkOutView.as_view(), name='check-out'),

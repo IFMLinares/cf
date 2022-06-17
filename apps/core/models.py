@@ -4,6 +4,7 @@ from django.db import models
 from django.conf import settings
 from django.forms import NullBooleanField
 from django.template.defaultfilters import slugify
+from django.contrib.auth.models import AbstractUser
 from django.shortcuts import reverse
 
 import random
@@ -16,6 +17,14 @@ CATEGORY_CHOICES = (
         ('D', 'Otros'), 
     )
 
+class User(AbstractUser):
+    phone = models.CharField(max_length=12)
+    doc = models.CharField(max_length=13, blank=True, null=True)
+    
+    class Meta:
+        db_table = 'auth_user'
+        verbose_name = "Usuario"
+        verbose_name_plural = "Usuarios"
 
 # PRODUCTOS
 class Item(models.Model):

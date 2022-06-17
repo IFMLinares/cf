@@ -182,6 +182,7 @@
                                                 <form action="/addto/" method="post">
                                                   {% csrf_token %}
                                                   <input type="hidden" name="slug" id="slug" value="{{ item.slug }}">
+                                                  <input type="hidden" name="quantity" id="quantity" value="1">
                                                 <div class="product-list-action">
                                                     <div class="product-action-cart">
                                                         <button title="Añadir al Carrito" type="submit">Añadir al Carrito</button>
@@ -228,10 +229,21 @@
                             <h4 class="pro-sidebar-title">Categorías</h4>
                             <div class="sidebar-widget-categori mt-45">
                                 <ul>
-                                    <li><a class="active" href="#">Todo</a> </li>
-                                    <li><a class="" href="#">1 - 3 años</a> </li>
-                                    <li><a href="#">3 años en adelante</a> </li>
-                                    <li><a href="#">Otros</a> </li>
+                                    <li>
+                                      <a class="{% if category == 'alls' %}active{% endif %}" href="{% url 'core:store' %}">Todo</a> 
+                                    </li>
+                                    <li>
+                                      <a class="{% if category == 'A' %}active{% endif %}" href="{% url 'core:store_filter' category='A' %}">1 - 3 años</a> 
+                                    </li>
+                                    <li>
+                                      <a class="{% if category == 'B' %}active{% endif %}" href="{% url 'core:store_filter' category='B' %}">Bebés </a> 
+                                    </li>
+                                    <li>
+                                      <a class="{% if category == 'C' %}active{% endif %}" href="{% url 'core:store_filter' category='C' %}">3 años en adelante </a> 
+                                    </li>
+                                    <li>
+                                      <a class="{% if category == 'D' %}active{% endif %}" href="{% url 'core:store_filter' category='D' %}">Otros</a> 
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -318,15 +330,12 @@
                         </ul>
                       </div>
                     </div> -->
+
+                    <form action="/addto/" method="post" id="form-modal">
                     <div class="pro-details-quality">
                       <span>Cantidad:</span>
                       <div class="cart-plus-minus">
-                        <input
-                          class="cart-plus-minus-box"
-                          type="text"
-                          name="qtybutton"
-                          value="1"
-                        />
+                        <input class="cart-plus-minus-box"  type="number" name="quantity" value="1"/>
                       </div>
                     </div>
                     <div class="product-details-meta">
@@ -337,10 +346,8 @@
                     <div class="pro-details-action-wrap">
                       <div class="pro-details-buy-now">
                         <a href="#" id="buynow">Comprar Ahora</a>
-                        <form action="/addto/" method="post" id="form-modal">
                           {% csrf_token %}
                           <input type="hidden" name="slug" id="slug-modal" value="">
-                        </form>
                       </div>
                       <div class="pro-details-action">
                         <a title="Agregar al carrito" href="#"
@@ -365,6 +372,8 @@
                         </div>
                       </div>
                     </div>
+
+                  </form>
                   </div>
                 </div>
               </div>

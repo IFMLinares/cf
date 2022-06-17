@@ -90,10 +90,12 @@
                                 </ul>
                             </div>
                         </div> -->
+                        
+                        <form action="/addto/" method="post" id="detailform">
                         <div class="pro-details-quality">
                             <span>Cantidad</span>
                             <div class="cart-plus-minus">
-                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
+                                <input class="cart-plus-minus-box" type="text" name="quantity" value="1">
                             </div>
                         </div>
                         <div class="product-details-meta">
@@ -105,12 +107,12 @@
                         <div class="pro-details-action-wrap">
                             <div class="pro-details-buy-now">
                                 <a href="#" id="submitdetailform">Comprar Ahora</a>
-                                <form action="/addto/" method="post" id="detailform" class="d-none">
                                     {% csrf_token %}
                                     <input type="hidden" name="slug" id="slug" value="{{ item.slug }}">
                                 </div>
-                                </form>
                             </div> 
+
+                        </form>
                         </div>
                     </div>
                 </div>
