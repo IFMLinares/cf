@@ -237,7 +237,7 @@ h2.linea span {
   color: #ffff;
   width: 50px;
   height: 50px;
-  background-color: #ed4aca;
+  background-color: #ed4acaf5;
   border-radius: 30px;
   text-align: center;
   line-height: 50px;
@@ -403,8 +403,25 @@ hr.hr-1 {
     left: 0;
   }
 }
-
+.responsive-categori{
+  display: none;
+}
+.no-responsive{
+  display: block;
+}
 @media only screen and (max-width: 900px) {
+  .responsive-categori{
+    display: block;
+  }
+  .no-responsive{
+    display: none;
+  }
+  .breadcrumb-img-1{
+    display: none;
+  }
+  .breadcrumb-img-2{
+    display: none;
+  }
   .no-responsive{
     display: none;
   }

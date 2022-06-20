@@ -100,10 +100,15 @@
               <img src="{% static 'assets/img/b.jpg' %}" alt="" />
             </a>
           </div>
-          <div class="bottom-product" style="position: absolute; left:35%;"> 
+          <div class="bottom-product" > 
             <div class="product-action-wrap">
               <div class="product-action-cart">
-                <button title="Agregar al carrito" onclick="window.location='{% url 'core:store_filter' category='B' %}'">Bebés</button>
+                <div class="product-icon">
+
+                  <i class="icofont-cart"></i>
+                  <br>
+                  <button title="Agregar al carrito" onclick="window.location='{% url 'core:store_filter' category='B' %}'">Bebés</button>
+                </div>
               </div>
             </div>
           </div>
@@ -124,11 +129,16 @@
               <img src="{% static 'assets/img/aa.jpeg' %}" alt="" />
             </a>
           </div>
-          <div class="bottom-product"> 
+          <div class="bottom-product "> 
             <div class="product-action-wrap">
               <div class="product-action-cart">
+                <div class="product-icon" >
+
+                  <i class="icofont-cart" style="position: relative; left: 30px;"></i>
+                  <br>
                 <button title="Agregar al carrito"  onclick="window.location='{% url 'core:store_filter' category='A' %}'">Niños 1 a 3 Años </button>
               </div>
+            </div>
             </div>
           </div>
           <!-- <div class="product-action-position-1 text-center">
@@ -146,8 +156,13 @@
           <div class="bottom-product"> 
             <div class="product-action-wrap">
               <div class="product-action-cart">
+                <div class="product-icon" >
+
+                  <i class="icofont-cart" style="position: relative; left: 40px;"></i>
+                  <br>
                 <button title="Agregar al carrito"  onclick="window.location='{% url 'core:store_filter' category='C' %}'">3 Años en Adelante </button> 
               </div>
+            </div>
             </div>
           </div> 
         </div>

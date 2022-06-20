@@ -15130,15 +15130,18 @@ textarea:focus {
 }
 .bottom-product{
   position: absolute;
-  background-color: transparent;
+  background-color: #ed4acadc;
+  height: 50px ;
   border: none;
-  padding: 1px 1px 1px;
-  left: 28%;
+  padding: 0;
+  left: 0%;
   right: 0;
-  bottom: 6px;
+  bottom: 5px;
   -webkit-transition: all .3s ease 0s;
   -o-transition: all .3s ease 0s;
   transition: all .3s ease 0s; 
+  display: flex;
+  justify-content: center;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -15262,7 +15265,59 @@ textarea:focus {
   font-weight: bolder;
   font-size: 12px;
   position: relative;
+  top: -35px;
 }
+.product-wrap .product-action-wrap > .product-action-cart > .product-icon{
+  border: none; 
+  padding: 10px 32px 7px;
+  background-color: transparent;
+  color: white;
+  font-weight: bolder;
+  font-size: 12px;
+  position: relative;
+  top: -70px; 
+}
+.product-wrap .product-action-wrap > .product-action-cart > .product-icon > i{
+  border: none;
+  padding: 6px 15px ;
+  background-color: #ed4acadc;
+  color: white; 
+  border-top-left-radius: 60px;
+  border-top-right-radius: 60px; 
+  font-size: 12px;
+  position: relative;
+  top: -0px;
+  left: -1px;
+  font-size: 35px; 
+}
+@media only screen and (max-width: 900px) {
+  .product-wrap .product-action-wrap > .product-action-cart > .product-icon > i{
+    position: relative;
+    top: 8px;
+    left: -1px;
+  }
+}
+.product-wrap .product-action-wrap > .product-action-cart > .product-icon > button{
+  border: none; 
+  margin-top: 6px;
+  padding: 10px 12px;
+  background-color: transparent;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px; 
+  color: white;
+  font-weight: bolder;
+  font-size: 15px; 
+  font-weight: 800;
+}
+ 
+.product-wrap .product-action-wrap > .product-action-cart > .product-icon button:hover {
+  color: #ED4ACA;
+  background-color: white; 
+  border: none;
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  transition: 1s;
+} 
 
 .product-wrap .product-action-wrap > .product-action-cart > button.padding-dec {
   padding: 6px 20px 7px;
@@ -15292,12 +15347,15 @@ textarea:focus {
 }
 
 .product-wrap .product-action-wrap > button {
-  border: none;
+  border: #ED4ACA;
+  border-radius: 5px;
   padding: 0 0;
   margin-bottom: 20px;
   background-color: transparent;
   color: #ED4ACA;
   font-size: 20px;
+  position: relative;
+  top: -20px;
 }
 
 .product-wrap .product-action-wrap > button:hover {
@@ -17709,7 +17767,7 @@ textarea:focus {
 .shop-list-content .product-list-action .product-action-cart > button {
   border: none;
   padding: 7px 32px 7px;
-  background-color: #333333;
+  background-color: #ED4ACA;
   color: #fff;
   font-weight: 500;
   font-size: 12px;
@@ -17717,7 +17775,8 @@ textarea:focus {
 }
 
 .shop-list-content .product-list-action .product-action-cart > button:hover {
-  background-color: #0A1039;
+  background-color: #ED4ACA;
+  color: white;
 }
 
 @media only screen and (max-width: 767px) {

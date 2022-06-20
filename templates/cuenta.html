@@ -21,13 +21,14 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-4">
                                     <div class="myaccount-tab-menu nav" role="tablist">
-                                        <a href="#dashboad" class="active" data-toggle="tab">Dashboard</a>
-                                        <a href="#orders" data-toggle="tab"> Ordenes</a>
-                                        <a href="#download" data-toggle="tab">Descargar</a>
+                                        <a href="#dashboad" class="active" data-toggle="tab">Escritorio</a>
+                                        <a href="#orders" data-toggle="tab"> Ordenes</a> 
                                         <a href="#payment-method" data-toggle="tab"> Métodos de Pago</a>
                                         <a href="#address-edit" data-toggle="tab">Dirección</a>
                                         <a href="#account-info" data-toggle="tab">Detalles de la Cuenta</a>
-                                        <a href="#">Salir</a>
+                                        {% if user.is_authenticated %} 
+                                        <a class="" href="{% url 'account_logout' %}" >Salir </a> 
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <!-- My Account Tab Menu End -->
@@ -88,40 +89,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Single Tab Content End -->
-                                        <!-- Single Tab Content Start -->
-                                        <div class="tab-pane fade" id="download" role="tabpanel">
-                                            <div class="myaccount-content">
-                                                <h3>Descargas</h3>
-                                                <div class="myaccount-table table-responsive text-center">
-                                                    <table class="table table-bordered">
-                                                        <thead class="thead-light">
-                                                            <tr>
-                                                                <th>Producto</th>
-                                                                <th>Fecja</th>
-                                                                <th>Expira</th>
-                                                                <th>Descargar</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>XXXXXXX</td>
-                                                                <td>XXXXXX</td>
-                                                                <td>XXXXXX</td>
-                                                                <td><a href="#" class="check-btn sqr-btn "><i class="fa fa-cloud-download"></i> Descargar</a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>XXXXXXX</td>
-                                                                <td>XXXXXX</td>
-                                                                <td>XXXXXX</td>
-                                                                <td><a href="#" class="check-btn sqr-btn "><i class="fa fa-cloud-download"></i> Descargar</a></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Tab Content End -->
+                                        <!-- Single Tab Content End --> 
                                         <!-- Single Tab Content Start -->
                                         <div class="tab-pane fade" id="payment-method" role="tabpanel">
                                             <div class="myaccount-content">
@@ -131,9 +99,20 @@
                                         </div>
                                         <!-- Single Tab Content End -->
                                         <!-- Single Tab Content Start -->
-                                        <div class="tab-pane fade" id="address-edit" role="tabpanel">
-                                            <div class="myaccount-content">
-                                                <h3>Dirección de Envio</h3>
+                                        <div class="tab-pane fade" id="address-edit" role="tabpanel"style=" width: 100%;">
+                                            <div class="asd" style="display: flex; width: 100%;">
+                                            <div class="myaccount-content" style=" width: 100%;">
+                                                <h3>Dirección de Envío</h3>
+                                                <address>
+                                                    <p><strong>XXXXXXXXXXXX</strong></p>
+                                                    <p>XXXXXXXXXXX <br>
+                                                        XXXXXXXXXX</p>
+                                                    <p>Mobile: XXXXXXXX</p>
+                                                </address>
+                                                <!-- <a href="#" class="check-btn sqr-btn "><i class="fa fa-edit"></i> Edit Address</a> -->
+                                            </div>
+                                            <div class="myaccount-content" style=" width: 100%;">
+                                                <h3>Dirección de Facturación</h3>
                                                 <address>
                                                     <p><strong>XXXXXXXXXXXX</strong></p>
                                                     <p>XXXXXXXXXXX <br>
@@ -143,11 +122,13 @@
                                                 <!-- <a href="#" class="check-btn sqr-btn "><i class="fa fa-edit"></i> Edit Address</a> -->
                                             </div>
                                         </div>
+                                        </div>
+                                        
                                         <!-- Single Tab Content End -->
                                         <!-- Single Tab Content Start -->
                                         <div class="tab-pane fade" id="account-info" role="tabpanel">
                                             <div class="myaccount-content">
-                                                <h3>Account Details</h3>
+                                                <h3>Detalles de la Cuenta</h3>
                                                 <div class="account-details-form">
                                                     <form action="#">
                                                         <div class="row">

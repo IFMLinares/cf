@@ -150,7 +150,24 @@
                           <li>
                             <div
                               class="same-style same-style-white header-cart pet-food-cart  ml-xl-3">
-                              <a class="pr-3" href="{% url 'core:account' %}" ><i class="icofont-user-alt-3 "></i>{{ user.username }}</a>
+                              
+                              <div class="main-menu main-menu-white menu-lh-1 main-menu-padding-1 menu-mrg-0" >
+                          <nav>
+                            <ul> 
+                              <li>
+                                <a class="pr-3" href="{% url 'core:account' %}" ><i class="icofont-user-alt-3 "></i>{{ user.username }}</a>
+                                <ul class="sub-menu-width"> 
+                                  <li><a href="{% url 'core:account' %}">Mis Cuenta</a></li> 
+                                  <li><a href="{% url 'core:account' %}">Mis Ordenes</a></li> 
+                                  {% if user.is_authenticated %} 
+                                  <li><a href="{% url 'account_logout' %}">Cerrar Sesión</a></li> 
+                                  {% endif %}
+
+                                </ul>
+                              </li> 
+                            </ul>
+                          </nav>
+                        </div>
                             </div>
                           </li>
                           {% else %}
@@ -207,9 +224,22 @@
                   class="header-action-wrap header-action-flex header-action-mrg-1"
                 >
                   {% if user.is_authenticated %}
-                  <div class="same-style header-cart">
-                    <a class="" href="{% url 'core:account' %}"
-                      ><i class="icofont-user-alt-3 pr-2"></i>{{ user.username }} </a>
+                  <div class="main-menu main-menu-white menu-lh-1 main-menu-padding-1 menu-mrg-0" >
+                    <nav>
+                      <ul> 
+                        <li>
+                          <a class="pr-3" href="{% url 'core:account' %}" ><i class="icofont-user-alt-3 "></i>{{ user.username }}</a>
+                          <ul class="sub-menu-width"> 
+                            <li><a href="{% url 'core:account' %}">Mis Cuenta</a></li> 
+                            <li><a href="{% url 'core:account' %}">Mis Ordenes</a></li> 
+                            {% if user.is_authenticated %} 
+                            <li><a href="{% url 'account_logout' %}">Cerrar Sesión</a></li> 
+                            {% endif %}
+
+                          </ul>
+                        </li> 
+                      </ul>
+                    </nav>
                   </div>
                   {% else %}
                   <div class="same-style header-cart">
@@ -219,8 +249,8 @@
                   {% endif %}
                   <div class="same-style header-cart">
                     <a class="cart-active" href="#"
-                      ><i class="icofont-shopping-cart"></i
-                    ></a>
+                        >{{ request.user|cart_item_count }}<i class="icofont-shopping-cart"></i
+                      ></a> 
                   </div>
                   <div class="same-style header-info">
                     <button class="mobile-menu-button-active">

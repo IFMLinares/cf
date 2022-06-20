@@ -31,6 +31,32 @@
       {% endfor %}
       {% endif %}
     </div>
+    <div class="col-xl-2 col-lg-3 responsive-categori" >
+      <div class="shop-sidebar-style">
+          <div class="sidebar-widget">
+              <h4 class="pro-sidebar-title">Categorías</h4>
+              <div class="sidebar-widget-categori mt-45">
+                  <ul>
+                      <li>
+                        <a class="{% if category == 'alls' %}active{% endif %}" href="{% url 'core:store' %}">Todo</a> 
+                      </li>
+                      <li>
+                        <a class="{% if category == 'A' %}active{% endif %}" href="{% url 'core:store_filter' category='A' %}">1 - 3 años</a> 
+                      </li>
+                      <li>
+                        <a class="{% if category == 'B' %}active{% endif %}" href="{% url 'core:store_filter' category='B' %}">Bebés </a> 
+                      </li>
+                      <li>
+                        <a class="{% if category == 'C' %}active{% endif %}" href="{% url 'core:store_filter' category='C' %}">3 años en adelante </a> 
+                      </li>
+                      <li>
+                        <a class="{% if category == 'D' %}active{% endif %}" href="{% url 'core:store_filter' category='D' %}">Otros</a> 
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
     <div class="shop-area breadcrumb-mt section-padding-12 pt-25 pb-160">
         <div class="container-fluid">
             <div class="row flex-row-reverse">
@@ -223,7 +249,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-2 col-lg-3">
+                <div class="col-xl-2 col-lg-3 no-responsive">
                     <div class="shop-sidebar-style">
                         <div class="sidebar-widget">
                             <h4 class="pro-sidebar-title">Categorías</h4>
@@ -251,7 +277,7 @@
                 </div>
             </div>
         </div>
-    </div>
+ 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
