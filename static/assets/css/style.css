@@ -15296,6 +15296,10 @@ textarea:focus {
     top: 10px;
     left: -1px;
   }
+  .product-wrap .product-action-wrap > .product-action-cart > .product-icon > button {
+    position: relative;
+    top: 10px; 
+  }
 }
 .product-wrap .product-action-wrap > .product-action-cart > .product-icon > button{
   border: none; 
