@@ -15259,7 +15259,7 @@ textarea:focus {
 
 .product-wrap .product-action-wrap > .product-action-cart > button {
   border: none;
-  padding: 7px 32px 7px;
+  padding: 7px 25px 7px;
   background-color: #ED4ACA;
   color: white;
   font-weight: bolder;
@@ -15293,7 +15293,7 @@ textarea:focus {
 @media only screen and (max-width: 900px) {
   .product-wrap .product-action-wrap > .product-action-cart > .product-icon > i{
     position: relative;
-    top: 8px;
+    top: 10px;
     left: -1px;
   }
 }
@@ -24506,7 +24506,13 @@ textarea:focus {
   font-weight: bold;
   margin: 0;
 }
-
+@media only screen and (max-width: 900px){
+  .product-details-content h2 {
+position: relative;
+top: -50px;
+    
+  }
+}
 @media only screen and (max-width: 767px) {
   .product-details-content h2 {
     font-size: 25px;

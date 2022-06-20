@@ -108,67 +108,84 @@
 
 </div>
 <div class="product-area pb-10" style="margin-top: 50px">
-  <div class="container">
-    <!-- <div class="row middle-end"> 
-                    <div class="col-lg-4 col-md-4">
-                        <div class="banner-btn-4 banner-btn-4-modify banner-btn-4-right modify2-mt-65">
-                            <a href="">Ver todos los productos <img class="inject-me" src="assets/images/icon-img/right-arrow-banner.svg" alt=""></a>
-                        </div>
-                    </div>
-                </div> -->
+  <div class="container"> 
     <div class="row">
-      <div class="col-lg-4 col-md-4">
-        <div class="product-wrap mb-30">
+      <div class="col-lg-4 col-md-4" >
+        <div class="product-wrap mb-30" >
           <div class="product-img product-img-zoom mb-25" style="border : solid #ed4aca;
-          border-width : .5rem 1rem .5rem 1em;">
-            <a href="">
-              <img src="{% static 'assets/img/b.jpeg' %}" alt="" />
+          border-width : .5rem .5rem .5rem .5em;">
+            <a href="{% url 'core:store_filter' category='B' %}">
+              <img src="{% static 'assets/img/b.jpg' %}" alt="" />
             </a>
           </div>
-          <div class="product-action-position-1 text-center">
+          <div class="bottom-product" > 
             <div class="product-action-wrap">
               <div class="product-action-cart">
-                <button title="Agregar al carrito">Bebés</button>
+                <div class="product-icon">
+
+                  <i class="icofont-cart"></i>
+                  <br>
+                  <button title="Agregar al carrito" onclick="window.location='{% url 'core:store_filter' category='B' %}'">Bebés</button>
+                </div>
               </div>
             </div>
           </div>
+          <!-- <div class="product-action-position-1 text-center">
+            <div class="product-action-wrap">
+              <div class="product-action-cart">
+                <button title="Agregar al carrito" onclick="window.location='{% url 'core:store_filter' category='B' %}'">Bebés</button>
+              </div>
+            </div>
+          </div> -->
         </div>
       </div>
-      <div class="col-lg-4 col-md-4">
+      <div class="col-lg-4 col-md-4"  >
         <div class="product-wrap mb-30">
           <div class="product-img product-img-zoom mb-25" style="border : solid #ed4aca;
-          border-width : .5rem 1rem .5rem 1em;">
-            <a href="">
+          border-width : .5rem .5rem .5rem .5em;">
+            <a href="{% url 'core:store_filter' category='A' %}">
               <img src="{% static 'assets/img/aa.jpeg' %}" alt="" />
             </a>
           </div>
-          <div class="product-action-position-1 text-center">
+          <div class="bottom-product "> 
             <div class="product-action-wrap">
               <div class="product-action-cart">
-                <button title="Agregar al carrito">Niños 1 a 3 Años </button>
+                <div class="product-icon" >
+
+                  <i class="icofont-cart" style="position: relative; left: 30px;"></i>
+                  <br>
+                <button title="Agregar al carrito"  onclick="window.location='{% url 'core:store_filter' category='A' %}'">Niños 1 a 3 Años </button>
               </div>
             </div>
+            </div>
           </div>
+          <!-- <div class="product-action-position-1 text-center">
+          </div> -->
         </div>
       </div>
-      <div class="col-lg-4 col-md-4">
+      <div class="col-lg-4 col-md-4" >
         <div class="product-wrap mb-30">
           <div class="product-img product-img-zoom mb-25" style="border : solid #ed4aca;
-          border-width : .5rem 1rem .5rem 1em;">
-            <a href="">
+          border-width : .5rem .5rem .5rem .5em;">
+            <a href="{% url 'core:store_filter' category='C' %}">
               <img src="{% static 'assets/img/a.jpeg' %}" alt="" />
             </a>
           </div>
-          <div class="product-action-position-1 text-center">
+          <div class="bottom-product"> 
             <div class="product-action-wrap">
               <div class="product-action-cart">
-                <button title="Agregar al carrito">3 Años en Adelante </button>
+                <div class="product-icon" >
+
+                  <i class="icofont-cart" style="position: relative; left: 40px;"></i>
+                  <br>
+                <button title="Agregar al carrito"  onclick="window.location='{% url 'core:store_filter' category='C' %}'">3 Años en Adelante </button> 
               </div>
             </div>
-          </div>
+            </div>
+          </div> 
         </div>
       </div>
     </div>
   </div>
-</div> 
+</div>
 {% endblock %}
