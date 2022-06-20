@@ -26,7 +26,7 @@ from django.views.generic import TemplateView, ListView, DeleteView, DetailView,
 from pytz import country_names
 from requests import request
 from paypal.standard.forms import PayPalPaymentsForm
-from .models import Item, OrderItem, Order, Address
+from .models import Item, OrderItem, Order, Address, User
 from .forms.forms import CheckoutForm
 # Create your views here.
 
@@ -230,8 +230,24 @@ class CheckoutFinish(LoginRequiredMixin, CartMixin,TemplateView):
     template_name = 'ordenCompleta.html' 
 
 # Cuenta de usuario
-class miCuentaView(LoginRequiredMixin, CartMixin,TemplateView):
+class miCuentaView(LoginRequiredMixin, CartMixin, View):
+    model = Order
+    context_object_name = 'user'
     template_name = 'cuenta.html' 
+
+    def get(self, request, *args, **kwargs):
+        user = User.objects.get(username=self.request.user.username)
+        try:
+            orders_ordered = Order.objects.filter(user=self.request.user, ordered=True)
+            orders_ordered = list(orders_ordered)
+        except ObjectDoesNotExist:
+            orders_ordered = ''
+        context = {
+            'user': user,
+            'orders': orders_ordered,
+        }
+        print(list((orders_ordered)))
+        return render(self.request, self.template_name, context)
 
 @login_required
 @csrf_exempt

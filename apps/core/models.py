@@ -34,7 +34,7 @@ class Item(models.Model):
     image = models.ImageField(upload_to = 'media', blank=False, null=False)
     stock = models.IntegerField(default=1, blank=False, null=False)
     category = models.CharField(max_length=2, choices=CATEGORY_CHOICES)
-    discount_price = models.IntegerField(blank=True, null=True)
+    discount_price = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2)
     outstanding = models.BooleanField(default=False,blank=True, null=True)
 
     
@@ -96,7 +96,7 @@ class OrderItem(models.Model):
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
-    totalItem = models.IntegerField(null=True, blank=True)
+    totalItem = models.DecimalField(null=True, blank=True,max_digits=100, decimal_places=2)
 
     def __str__(self):
         return f"{self.item.description} x{self.quantity} \n"
@@ -132,7 +132,7 @@ class Order(models.Model):
     ordered = models.BooleanField(default=False)
     message = models.TextField(null=True, blank=True)
     billing_address = models.ForeignKey('Address', on_delete=models.SET_NULL, blank=True, null=True)
-    totalOrden = models.IntegerField(blank=True, null=True)
+    totalOrden = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2)
 
     def __str__ (self):
         return self.user.username
