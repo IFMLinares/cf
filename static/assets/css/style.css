@@ -1889,8 +1889,8 @@ textarea:-ms-input-placeholder {
 }
 
 input {
-  background: #eceff8;
-  border: 2px solid #eceff8;
+  background: hsl(0, 0%, 100%);
+  border: 1px solid #ED4ACA;
   height: 45px;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -3741,7 +3741,8 @@ textarea:focus {
 }
 
 .header-action-wrap .same-style.same-style-white a {
-  color: #FF66C4;
+  color: #ED4ACA;
+  font-weight: bold;
 }
 
 .header-action-wrap .same-style.same-style-white a:hover {
@@ -4995,7 +4996,9 @@ textarea:focus {
 }
 
 .sidebar-cart-active .sidebar-cart-all .cart-content .cart-checkout-btn a:hover {
-  background-color: black;
+  background-color: white;
+  color: #ED4ACA;
+  border: 1px solid #ED4ACA;
 }
 
 .sidebar-cart-active .sidebar-cart-all .cart-content .cart-checkout-btn a:first-child {
@@ -17664,7 +17667,7 @@ textarea:focus {
   width: 50px;
   height: 50px;
   border-radius: 100%;
-  background-color: #333;
+  background-color: #ED4ACA;
   color: #fff;
   display: inline-block;
   opacity: 0;
@@ -17678,7 +17681,8 @@ textarea:focus {
 }
 
 .shop-list-wrap .product-list-img .shop-list-quickview > button:hover {
-  background-color: #0A1039;
+  background-color: white;
+  color: #ED4ACA;
 }
 
 .shop-list-wrap:hover .product-list-img a img {
@@ -17773,14 +17777,15 @@ textarea:focus {
   padding: 7px 32px 7px;
   background-color: #ED4ACA;
   color: #fff;
-  font-weight: 500;
+  font-weight: 800px;
   font-size: 12px;
   margin: 0 15px;
 }
 
 .shop-list-content .product-list-action .product-action-cart > button:hover {
-  background-color: #ED4ACA;
-  color: white;
+  background-color: white;
+  color: #ED4ACA;
+  border: #ED4ACA solid 1px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -24854,9 +24859,10 @@ top: -50px;
   display: inline-block;
   font-size: 16px;
   font-weight: 500;
-  color: #fff;
+  color: #ED4ACA;
   line-height: 1;
-  background-color: #ED4ACA;
+  background-color: white;
+  border: 1px solid #ED4ACA;
   padding: 16px 50px 21px;
 }
 
@@ -24879,7 +24885,9 @@ top: -50px;
 }
 
 .product-details-content .pro-details-action-wrap .pro-details-buy-now a:hover {
-  background-color: black;
+  background-color: #ED4ACA;
+  color: white;
+  border: #ED4ACA solid 1px;
 }
 
 .product-details-content .pro-details-action-wrap .pro-details-action {
@@ -25430,14 +25438,14 @@ top: -50px;
   bottom: 0;
   width: 100%;
   height: 2px;
-  background-color: #333333;
+  background-color: #ED4ACA;
   z-index: 2;
   opacity: 0;
   visibility: hidden;
 }
 
 .dec-review-topbar a.active {
-  color: #333;
+  color: black;
   font-weight: bold;
 }
 
@@ -29946,8 +29954,9 @@ top: -50px;
   font-size: 12px;
   font-weight: bold;
   line-height: 1;
-  color: black;
-  border: 1px solid black;
+  color: #ED4ACA; 
+  border: 1px solid #ED4ACA;
+  background-color: white;
   margin-left: 14px;
   padding: 18px 30px 20px;
 }
@@ -29965,7 +29974,8 @@ top: -50px;
 
 .cart-shiping-update-wrapper a:hover {
   border: 1px solid #ED4ACA; 
-  color: black;
+  color: white;
+  background-color:  #ED4ACA;
 }
 
 .proceed-btn {
@@ -29996,12 +30006,14 @@ top: -50px;
   font-weight: bold;
   line-height: 1;
   padding: 17px 30px 19px;
-  color: #ffffff;
-  background-color: #ED4ACA;
+  color: #ED4ACA;
+  background-color: white;
+  border: 1px solid #ED4ACA;
 }
 
 .proceed-btn a:hover {
-  background-color: #000;
+  background-color: #ED4ACA;
+  color: white;
 }
 
 .discount-tax-wrap {
@@ -30067,14 +30079,14 @@ top: -50px;
 }
 
 .discount-tax-wrap .discount-code button {
-  background-color: transparent;
+  background-color: white;
   font-size: 12px;
   font-weight: bold;
-  color: #333333;
+  color: #ED4ACA;
+  border: solid 1px #ED4ACA;
   line-height: 1;
-  padding: 18px 30px 20px;
-  border: 1px solid black; 
-  margin: 35px 0 0;
+  padding: 18px 30px 20px; 
+  margin: 35px 0 0; 
   -webkit-transition: all .3s ease 0s;
   -o-transition: all .3s ease 0s;
   transition: all .3s ease 0s;
@@ -30082,7 +30094,7 @@ top: -50px;
 
 .discount-tax-wrap .discount-code button:hover {
   background-color: #ED4ACA;
-  color: #fff; 
+  color: White; 
   border: 1px solid #ED4ACA; 
 
 }
@@ -30697,7 +30709,7 @@ h4.checkout-title::before {
   content: "";
   height: 3px;
   width: 50px;
-  background-color: #EEEEEE;
+  background-color: #ED4ACA;
   left: 0;
   bottom: 0;
 }
@@ -30732,9 +30744,11 @@ h4.checkout-title::before {
 
 .payment-details > ul li {
   font-size: 16px;
-  color: #333333;
+  color: black;
   display: block;
   margin-bottom: 22px;
+  font-weight: bold;
+
 }
 
 .payment-details > ul li:last-child {
@@ -30746,7 +30760,7 @@ h4.checkout-title::before {
 }
 
 .payment-details .total-order {
-  margin: 58px 0 0;
+  margin: 18px 0 0;
 }
 
 .payment-details .total-order > ul li {
@@ -30758,6 +30772,8 @@ h4.checkout-title::before {
 
 .payment-details .total-order > ul li span {
   float: right;
+  color: black;
+  font-weight: bold;
 }
 
 .payment-method {
@@ -30780,6 +30796,8 @@ h4.checkout-title::before {
   float: left;
   height: auto;
   margin-top: 7px;
+  font-weight: bold;
+
 }
 
 .payment-method .sin-payment label {
@@ -30793,7 +30811,9 @@ h4.checkout-title::before {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  color: #333333;
+  color: black;
+  font-weight: bold;
+
 }
 
 @media only screen and (max-width: 767px) {
@@ -30865,12 +30885,14 @@ h4.checkout-title::before {
 
 .back-continue-wrap a {
   display: inline-block;
-  color: #fff;
+  color: #ED4ACA;
   font-size: 12px;
   font-weight: bold; 
   line-height: 1;
   padding: 18px 45px 19px;
-  background-color: #ED4ACA;
+  background-color: white;
+  border:  1px solid #ED4ACA;
+
 }
 
 @media only screen and (max-width: 767px) {
@@ -30880,8 +30902,9 @@ h4.checkout-title::before {
 }
 
 .back-continue-wrap a:hover {
-  background-color: black;
-  color: #fff;
+  background-color: #ED4ACA;
+  color: white;
+  border:  1px solid #ED4ACA;
 }
 
 /*---------- 28. Order complete style ------------*/

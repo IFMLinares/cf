@@ -22,7 +22,7 @@
                                 <div class="col-lg-3 col-md-4">
                                     <div class="myaccount-tab-menu nav" role="tablist">
                                         <a href="#dashboad" class="active" data-toggle="tab">Escritorio</a>
-                                        <a href="#orders" data-toggle="tab"> Ordenes</a> 
+                                        <a href="#orders" data-toggle="tab"> Órdenes</a> 
                                         <a href="#payment-method" data-toggle="tab"> Métodos de Pago</a>
                                         <a href="#address-edit" data-toggle="tab">Dirección</a>
                                         <a href="#account-info" data-toggle="tab">Detalles de la Cuenta</a>
@@ -54,22 +54,22 @@
                                                 <div class="myaccount-table table-responsive text-center">
                                                     <table class="table table-bordered">
                                                         <thead class="thead-light">
-                                                            <tr>
-                                                                <th>Orden</th>
-                                                                <th>Fecha</th>
-                                                                <th>Estado</th>
-                                                                <th>Total</th>
-                                                                <th>Carrito</th>
+                                                            <tr style="font-weight: bold;">
+                                                                <th style="font-weight: bold;">Orden</th>
+                                                                <th style="font-weight: bold;">Fecha</th>
+                                                                <th style="font-weight: bold;">Estado</th>
+                                                                <th style="font-weight: bold;">Total</th>
+                                                                <th style="font-weight: bold;">Carrito</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             {% for order in orders %}
                                                             <tr>
-                                                                <td>{{ order.pk }}</td>
-                                                                <td>{{ order.ordered_date|date:"d/m/Y"  }}</td>
-                                                                <td>{% if order.ordered %}Pagado{% endif %}</td>
-                                                                <td>{{ order.totalOrden }}</td>
-                                                                <td><a href="" class="check-btn sqr-btn ">{{ order. }}</a></td>
+                                                                <td style="font-weight: bold;">{{ order.pk }}</td>
+                                                                <td style="font-weight: bold;">{{ order.ordered_date|date:"d/m/Y"  }}</td>
+                                                                <td style="font-weight: bold;">{% if order.ordered %}Pagado{% endif %}</td>
+                                                                <td style="font-weight: bold;">{{ order.totalOrden }}</td>
+                                                                <td style="font-weight: bold;"><a href="" class="check-btn sqr-btn ">{{ order. }}</a></td>
                                                             </tr>
                                                             {% endfor %}
                                                         </tbody>
@@ -138,7 +138,7 @@
                                                             <input type="text" id="display-name" />
                                                         </div>
                                                         <div class="single-input-item">
-                                                            <label for="email" class="required">Email</label>
+                                                            <label for="email" class="required">E-mail</label>
                                                             <input type="email" id="email" />
                                                         </div>
                                                         <fieldset>
