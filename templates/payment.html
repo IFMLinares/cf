@@ -5,10 +5,10 @@
 {% block content %}
 <form action="{% url 'core:check-out' %}" method="post" id="checkout">
     {% csrf_token %}
-        <div class="breadcrumb-area breadcrumb-mt breadcrumb-ptb-2">
+        <div class="breadcrumb-area mt-150">
             <div class="container">
                 <div class="breadcrumb-content">
-                    <h2>Verificar</h2>
+                    <h2>Métodos de pago</h2>
                     <ul>
                         <li>
                             <a href="{% url 'core:index' %}">Inicio </a>
@@ -18,7 +18,7 @@
                             <a href="{% url 'core:store' %}">Productos </a>
                         </li>
                         <li><span> > </span></li>
-                        <li class="active"> Verificar </li>
+                        <li class="active">Métodos de pago</li>
                     </ul>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                 <div class="row ">
                     <div class="col-lg-6 text-center">
                         <div class="payment-details">
-                            <h4 class="checkout-title">Forma de Pago</h4>
+                            <h4 class="checkout-title" style="text-align: left;">Forma de Pago</h4>
                             <div class="payment-method">
                                 <div class="pay-top sin-payment">
                                     <input id="payment_method_1" class="input-radio" type="radio" value="paypal" checked="checked" name="payment_method">
@@ -53,7 +53,7 @@
                                     <label for="payment-method-2">Tarjeta </label>
                                     <div class="payment-box payment_method_bacs">
                                         <form action="#">
-                                            <input type="text" required="" placeholder="Ingrese el correo electrónico de su tarjeta" name="name">
+                                            <input type="text" required="" placeholder="Ingrese el correo electrónico de su tarjeta" name="name" style="width: 100%;">
                                         </form>
                                     </div>
                                 </div>
@@ -67,6 +67,27 @@
                                 <div class="d-none">
                                     {{ paypal.render }}
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="payment-details  ">
+                            <h4 class="checkout-title">  Detalles de pago</h4>
+                            <ul>
+                                {% for item in order.items.all %}
+                                 <li>{{ item.item.description }} x{{ item.quantity }} <span>${{ item.get_total_item_price }}</span></li>
+                            <hr class="hr-2">
+                                {% endfor %}
+                                <li>Subtotal del carrito <span>${{ order.get_total }}</span></li>
+                                <hr class="hr-2">
+                                <!-- <li>Envío y Entrega <span>$15.00</span></li> -->
+                                <li>  IVA <span>${{ order.get_iva_order }}</span></li>
+                            </ul>
+                            <hr class="hr-2">
+                            <div class="total-order">
+                                <ul>
+                                    <li>Total del pedido <span>${{ order.get_total_order }}</span></li>
+                                </ul>
                             </div>
                         </div>
                     </div>

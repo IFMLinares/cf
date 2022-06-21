@@ -54,10 +54,7 @@
         <div class="cart-area bg-gray pt-50 pb-160">
             <div class="container">
                 <form action="#">
-                    <div class="proceed-btn">
-                        <a href="{% url 'core:check-out' %}">
-                            Continuar</a>
-                    </div>
+                    
                     <div class="cart-table-content">
                         <div class="table-content table-responsive">
                             <table>
@@ -125,30 +122,33 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-lg-6 col-md-6">
-                        <div class="tax-wrapper discount-tax-wrap">
-                            <h4>Get shipping estimatesss</h4>
-                            <div class="discount-code">
-                                <p>Enter your coupon code if you have one!</p>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <select class="nice-select nice-select-style-3 cart-tax-select">
-                                            <option>Select Country </option>
-                                            <option>Bangladesh</option>
-                                            <option>Bahamas</option>
-                                            <option>Bahrain</option>
-                                            <option>Bangladesh</option>
-                                            <option>Barbados</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <input type="text" required="" placeholder="Zip Code" name="name">
-                                    </div>
-                                </div>
-                                <button type="submit">Apply Coupon </button>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="payment-details  ">
+                            <h4 class="checkout-title">  Detalles de pago</h4>
+                            <ul>
+                                {% for item in order.items.all %}
+                                 <li>{{ item.item.description }} x{{ item.quantity }} <span>${{ item.get_total_item_price }}</span></li>
+                            <hr class="hr-2">
+
+                                {% endfor %}
+                                <li>Subtotal del carrito <span>${{ order.get_total }}</span></li>
+                                <hr class="hr-2">
+                                <!-- <li>Envío y Entrega <span>$15.00</span></li> -->
+                                <li>  IVA <span>${{ order.get_iva_order }}</span></li>
+                            </ul>
+                            <hr class="hr-2">
+                            <div class="total-order">
+                                <ul>
+                                    <li>Total del pedido <span>${{ order.get_total_order }}</span></li>
+                                </ul>
                             </div>
                         </div>
-                    </div> -->
+                        <div class="back-continue-wrap">
+                            <a href="{% url 'core:cart' %}" style="visibility: hidden;"> Regresar</a>
+                            <a href="{% url 'core:check-out' %}">Continuar</a>
+        
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

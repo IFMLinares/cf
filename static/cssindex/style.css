@@ -124,17 +124,17 @@
 .contain_button button {
   width: 100%;
   height: 30px;
-  background-color: #ed4aca;
-  border: none;
+  background-color: white;
+  border: 1px solid #ed4aca;
+  color: #ed4aca;
   font-weight: bold;
-  color: white;
   border-radius: 5px;
 
 }
 .contain_button button:hover {
   width: 100%;
-  background-color: black;
-  border: none;
+  background-color: #ed4aca;
+  border: 1px solid #ed4aca;
   color: white;
 }
 
@@ -253,6 +253,12 @@ hr.hr-1 {
   height: 4px;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #ed4aca, rgba(0, 0, 0, 0));
 }
+hr.hr-2 {
+  border: 0;
+  width: 100%;
+  height: 4px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #ed4aca, rgba(0, 0, 0, 0));
+}
 .responsive-tab{
   display: none;
 }
@@ -283,6 +289,7 @@ hr.hr-1 {
     left: 0;
   }
 }
+ 
 /* Cuando la pantalla es menor a 900px  (tablets y teléfonos inteligentes)*/
 /* moto g4 */
 @media only screen and (min-device-width: 412px) and (max-device-width: 915px) {
@@ -547,13 +554,13 @@ hr.hr-1 {
   }
   .contain_button button {
     width: 100%;
-    background-color: #ed4aca;
-    border: none;
-    color: white;
+    background-color: white;
+    border: 1px solid #ed4aca;
+    color: #ed4aca;
   }
   .contain_button button:hover {
     width: 100%;
-    background-color: black;
+    background-color: #ed4aca;
     border: none;
     color: white;
   }

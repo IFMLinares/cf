@@ -158,8 +158,8 @@
                                                                 {% if user.is_anonymous %}
                                                                 <input type="hidden" name="visitor" value="{{ visitantId }}">
                                                                 {% endif %}
+                                                                <button type="button" onclick="modalproduct('{{ item.sku_code }}','{{ item.description }}','{{ item.stock }}','{{ item.sale_price }}', '{{item.image.url}}', '{{item.slug}}')"><i class="icon-zoom"></i></button>
                                                             </div>
-                                                            <button type="button" onclick="modalproduct('{{ item.sku_code }}','{{ item.description }}','{{ item.stock }}','{{ item.sale_price }}', '{{item.image.url}}', '{{item.slug}}')"><i class="icon-zoom"></i></button>
                                                             <!-- <button data-toggle="modal" data-target="#exampleModal"><i class="icon-zoom"></i></button> -->
                                                         </div>
                                                       </form>

@@ -54,22 +54,22 @@
                                                 <div class="myaccount-table table-responsive text-center">
                                                     <table class="table table-bordered">
                                                         <thead class="thead-light">
-                                                            <tr>
-                                                                <th>Orden</th>
-                                                                <th>Fecha</th>
-                                                                <th>Estado</th>
-                                                                <th>Total</th>
-                                                                <th>Carrito</th>
+                                                            <tr style="font-weight: bold;">
+                                                                <th style="font-weight: bold;">Orden</th>
+                                                                <th style="font-weight: bold;">Fecha</th>
+                                                                <th style="font-weight: bold;">Estado</th>
+                                                                <th style="font-weight: bold;">Total</th>
+                                                                <th style="font-weight: bold;">Carrito</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             {% for order in orders %}
                                                             <tr>
-                                                                <td>{{ order.pk }}</td>
-                                                                <td>{{ order.ordered_date|date:"d/m/Y"  }}</td>
-                                                                <td>{% if order.ordered %}Pagado{% endif %}</td>
-                                                                <td>{{ order.totalOrden }}</td>
-                                                                <td><a href="" class="check-btn sqr-btn ">{{ order. }}</a></td>
+                                                                <td style="font-weight: bold;">{{ order.pk }}</td>
+                                                                <td style="font-weight: bold;">{{ order.ordered_date|date:"d/m/Y"  }}</td>
+                                                                <td style="font-weight: bold;">{% if order.ordered %}Pagado{% endif %}</td>
+                                                                <td style="font-weight: bold;">{{ order.totalOrden }}</td>
+                                                                <td style="font-weight: bold;"><a href="" class="check-btn sqr-btn ">{{ order. }}</a></td>
                                                             </tr>
                                                             {% endfor %}
                                                         </tbody>

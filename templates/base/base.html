@@ -190,12 +190,12 @@
                       class="same-style same-style-white header-cart pet-food-cart"
                     >
                       <a class="cart-active" href="#"
-                        >{{ request.user|cart_item_count }}<i class="icofont-shopping-cart"></i
+                        ><i class="icofont-shopping-cart">({{ request.user|cart_item_count }})</i
                       ></a>
                     </div>
                       {% if user.is_authenticated %}
                     <div class="same-style same-style-white header-cart pet-food-cart  ml-xl-3">
-                      <a class="pr-3" href="{% url 'account_logout' %}" >Salir<i class="icofont-logout"></i></a>
+                      <a class="pr-3" href="{% url 'account_logout' %}" >Salir<i class="icofont-logout ml-2"></i></a>
                     </div>
                       {% endif %}
                   </div>
@@ -249,7 +249,7 @@
                   {% endif %}
                   <div class="same-style header-cart">
                     <a class="cart-active" href="#"
-                        >{{ request.user|cart_item_count }}<i class="icofont-shopping-cart"></i
+                        ><i class="icofont-shopping-cart">({{ request.user|cart_item_count }})</i
                       ></a> 
                   </div>
                   <div class="same-style header-info">
@@ -293,8 +293,9 @@
               {% endfor %}
             </ul>
             <div class="cart-total">
-              <!-- <h4>Subtotal: <span>${{ carro.get_total|floatformat:"0" }}</span></h4> -->
+              <h4>Subtotal: <span>${{ carro.get_total|floatformat:"0" }}</span></h4>
             </div>
+            <hr class="hr-2">
             <div class="cart-checkout-btn">
               <a class="btn-hover cart-btn-style" href="{% url 'core:cart' %}">Ver Carrito</a>
               <!-- <a class="no-mrg btn-hover cart-btn-style" href="">checkout</a> -->
@@ -324,6 +325,7 @@
                   <li class="has-sub-menu">
                     <a href="#">Tienda</a>
                     <ul class="sub-menu-2"> 
+                      <li><a href="{% url 'core:store' %}">° Todos</a></li> 
                       <hr>
                       <li><a href="{% url 'core:store_filter' category='B' %}">Bebes</a></li> 
                       <hr>
@@ -443,7 +445,7 @@
                                     <div class="login-register-form">
                                         <form action="{% url 'account_login' %}" method="post">
                                           {% csrf_token %}
-                                            <input type="text" name="login" id="id_login" placeholder="Email">
+                                            <input type="text" name="login" id="id_login" placeholder="E-mail">
                                             <input type="password" name="password" id="id_password" placeholder="Contraseña">
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
@@ -498,30 +500,30 @@
                                           {% csrf_token %} 
                                             <div class="row">
                                               <div class="col">
-                                                <input class=" " type="text" name="first_name" placeholder="nombre" id="id_first_name" required>
+                                                <input class=" " type="text" name="first_name" placeholNder="Nombre" id="id_first_name" required>
 
                                               </div>
                                               <div class="col">
-                                                <input class=" " type="text" name="last_name" placeholder="apellido" id="id_last_name" required>
+                                                <input class=" " type="text" name="last_name" placeholder="Apellido" id="id_last_name" required>
 
                                               </div>
                                             </div> 
                                             <div class="row">
                                               <div class="col">
-                                                <input type="text" name="username" placeholder="nombre de usuario" id="id_username" required> 
+                                                <input type="text" name="username" placeholder="Nombre de usuario" id="id_username" required> 
                                               </div> 
                                             </div> 
                                             <div class="row">
                                               <div class="col">
-                                                <input class="" type="tel" name="phone" placeholder="telefono" id="id_phone" required> 
+                                                <input class="" type="tel" name="phone" placeholder="Teléfono" id="id_phone" required> 
                                               </div>
                                               <div class="col">
-                                                <input class="" type="text" name="doc" placeholder="numero de documento" id="id_doc" required> 
+                                                <input class="" type="text" name="doc" placeholder="Número de documento" id="id_doc" required> 
                                               </div>
                                             </div> 
                                             <div class="row">
                                               <div class="col">
-                                                <input name="email" placeholder="Email" id="email" type="Email" required> 
+                                                <input name="email" placeholder="E-mail" id="email" type="Email" required> 
                                               </div> 
                                             </div> 
                                             <div class="row">
