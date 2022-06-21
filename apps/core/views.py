@@ -13,7 +13,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.shortcuts import redirect
@@ -28,6 +28,7 @@ from requests import request
 from paypal.standard.forms import PayPalPaymentsForm
 from .models import Item, OrderItem, Order, Address, User
 from .forms.forms import CheckoutForm
+from .decoratorsp.decorators import login_required_message
 # Create your views here.
 
 class CartMixin(ContextMixin):
@@ -365,9 +366,11 @@ def paypal_cancel(request):
     return redirect('core:index')
 
 # función de añadir al carro
+@login_required_message(message='Debes iniciar sesión para completar está acción')
 @login_required
 def addto(request):
     if request.method=='POST':
+        next = request.POST.get('next', '/store/')
         slug = request.POST['slug']
         item = get_object_or_404(Item, slug=slug)
         quantity = int(request.POST.get('quantity', 1))
@@ -381,19 +384,24 @@ def addto(request):
                     order_item.quantity += quantity
                     order_item.save()
                     messages.info(request, 'La cantidad de este producto fue actualizada satisfactoriamente')
-                    return redirect('core:store')
+                    # return redirect('core:store')
+                    return HttpResponseRedirect(next)
                 else:
                     order_item.quantity = quantity
                     order_item.save()
                     order.items.add(order_item)
                     messages.info(request, 'Este producto fue añadido satisfactoriamente a su carrito')
-                    return redirect('core:store')
+                    # return redirect('core:store')
+                    return HttpResponseRedirect(next)
             else:
                 ordered_date = timezone.now()
                 order = Order.objects.create(user=request.user, ordered_date=ordered_date)
                 order.items.add(order_item)
                 messages.info(request, 'Este producto fue añadido satisfactoriamente a su carrito')
-            return redirect('core:store')
+            # return redirect('core:store')
+            return HttpResponseRedirect(next)
+    else:
+        return HttpResponseRedirect('/')
 
 @login_required
 def add_to_cart(request, slug):

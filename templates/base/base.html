@@ -160,7 +160,7 @@
                                   <li><a href="{% url 'core:account' %}">Mis Cuenta</a></li> 
                                   <li><a href="{% url 'core:account' %}">Mis Ordenes</a></li> 
                                   {% if user.is_authenticated %} 
-                                  <li><a href="{% url 'account_logout' %}">Cerrar Sesión</a></li> 
+                                  <li><a href="{% url 'account_logout' %}">Salir</a></li> 
                                   {% endif %}
 
                                 </ul>
@@ -233,7 +233,7 @@
                             <li><a href="{% url 'core:account' %}">Mis Cuenta</a></li> 
                             <li><a href="{% url 'core:account' %}">Mis Ordenes</a></li> 
                             {% if user.is_authenticated %} 
-                            <li><a href="{% url 'account_logout' %}">Cerrar Sesión</a></li> 
+                            <li><a href="{% url 'account_logout' %}">Salir</a></li> 
                             {% endif %}
 
                           </ul>
@@ -299,6 +299,11 @@
               <a class="btn-hover cart-btn-style" href="{% url 'core:cart' %}">Ver Carrito</a>
               <!-- <a class="no-mrg btn-hover cart-btn-style" href="">checkout</a> -->
             </div>
+            <br>
+            <div class="cart-checkout-btn">
+              <a class="btn-hover cart-btn-style" href="{% url 'core:check-out' %}">Finalizar Compra</a>
+              <!-- <a class="no-mrg btn-hover cart-btn-style" href="">checkout</a> -->
+            </div>
           </div>
         </div>
       </div>
@@ -335,7 +340,7 @@
                   <li><a href="{% url 'core:faq' %}">FAQ</a></li>
                   {% if user.is_authenticated %}
                   <hr>
-                  <li><a href="{% url 'account_logout' %}">Cerrar sesión</a></li>  
+                  <li><a href="{% url 'account_logout' %}">Salir</a></li>  
                   {% endif %}
                 </ul>
               </nav>

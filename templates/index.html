@@ -53,7 +53,7 @@
                 <a
                   class="btn3-ptb-3 btn3-bg-brown animated"
                   href="{% url 'core:store' %}"
-                  >Comprar Ahora <i class="icofont-long-arrow-right"></i
+                  >Comprar Ahora<i class="icofont-long-arrow-right"></i
                 ></a>
               </div>
             </div>
@@ -268,6 +268,7 @@
               <div class="product-action-wrap">
                   <div class="product-action-cart">
                       <input type="hidden" name="slug" id="slug" value="{{ item.slug }}">
+                      <input type="hidden" name="next" value="{{ request.path }}">
                       <button title="Añadir al Carrito" type="submit">Añadir al Carrito</button>
                   </div>
                   <button type="button" onclick="modalproduct('{{ item.sku_code }}','{{ item.description }}','{{ item.stock }}','{{ item.sale_price }}', '{{item.image.url}}', '{{item.slug}}')"><i class="icon-zoom"></i></button>
