@@ -241,7 +241,7 @@ class checkOutView(LoginRequiredMixin, CartMixin, View):
             return redirect('core:index')
 
 # Checkout
-@method_decorator(csrf_exempt, name=dispatch)
+# @method_decorator(csrf_exempt, name=dispatch)
 class PaymentView(LoginRequiredMixin, CartMixin, View):
     model = Address
     template_name = 'payment.html'
