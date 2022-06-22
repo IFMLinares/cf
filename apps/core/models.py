@@ -17,6 +17,13 @@ CATEGORY_CHOICES = (
         ('D', 'Otros'), 
     )
 
+
+STATUS_CHOICES = (
+        ('P', 'PAYPAL'),
+        ('TB', 'TRANSFERENCIA BANCARIA'),
+        ('CA', 'EFECTIVO'),
+    )
+
 class User(AbstractUser):
     phone = models.CharField(max_length=12)
     doc = models.CharField(max_length=13, blank=True, null=True)
@@ -124,14 +131,22 @@ class OrderItem(models.Model):
         verbose_name = "Producto Ordenado"
         verbose_name_plural = "Productos Ordenados"
 
+class PromoCode(models.Model):
+    promo_code = models.CharField(max_length=100, blank=True, null=True)
+    discount_total = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2)
+
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    promoCode = models.ForeignKey(PromoCode, on_delete=models.SET_NULL, blank=True, null=True, default=None)
     items = models.ManyToManyField(OrderItem)
     start_date = models.DateTimeField(auto_now_add= True)
     ordered_date = models.DateTimeField()
     ordered = models.BooleanField(default=False)
+    payment_method = models.CharField(max_length=100, blank=True, null=True, choices=STATUS_CHOICES) 
+    status = models.CharField(max_length=100, blank=True, null=True)
     message = models.TextField(null=True, blank=True)
-    billing_address = models.ForeignKey('Address', on_delete=models.SET_NULL, blank=True, null=True)
+    billing_address = models.ForeignKey('BillingAddress', on_delete=models.SET_NULL, blank=True, null=True)
+    shipping_address = models.ForeignKey('Address', on_delete=models.SET_NULL, blank=True, null=True)
     totalOrden = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2)
 
     def __str__ (self):
@@ -159,91 +174,30 @@ class Order(models.Model):
         verbose_name = "Tienda: Orden"
         verbose_name_plural = "Tienda: Ordenes"
 
-# class VisitorUser(models.Model):
-#     user = models.CharField(max_length=100, blank=True, null=True, unique=True)
-
-# class OrderItemVisitor(models.Model):
-#     user = models.ForeignKey(VisitorUser, on_delete=models.CASCADE)
-#     ordered = models.BooleanField(default=False)
-#     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-#     quantity = models.IntegerField(default=1)
-#     totalItem = models.IntegerField(null=True, blank=True)
-
-#     def __str__(self):
-#         return f"{self.item.description} x{self.quantity} \n"
-
-#     def get_total_item_price(self):
-#         return self.quantity * self.totalItem
-#     def get_total_item_discount_price(self):
-#         return self.quantity * self.item.discount_price
-#     def get_amount_saved(self):
-#         return self.get_total_item_price() - self.get_total_item_discount_price()
-
-#     def get_final_price(self):
-#         if self.item.discount_price:
-#             return self.get_total_item_discount_price()
-#         return self.get_total_item_price()
-
-#     def espaciado(self):
-#         return 149 - (len(self.item.description) + 1)
-    
-#     def save(self, *args, **kwargs):
-#         self.totalItem = self.item.sale_price
-#         super(OrderItemVisitor, self).save(*args,**kwargs)
-
-#     class Meta:
-#         verbose_name = "Producto Ordenado visitante"
-#         verbose_name_plural = "Productos Ordenados visitantes"
-
-# class OrderVisitor(models.Model):
-#     user = models.ForeignKey(VisitorUser, on_delete=models.CASCADE)
-#     items = models.ManyToManyField(OrderItemVisitor)
-#     start_date = models.DateTimeField(auto_now_add= True)
-#     ordered_date = models.DateTimeField()
-#     ordered = models.BooleanField(default=False)
-#     message = models.TextField(null=True, blank=True)
-#     billing_address = models.ForeignKey('Address', on_delete=models.SET_NULL, blank=True, null=True)
-#     totalOrden = models.IntegerField(blank=True, null=True)
-
-#     def __str__ (self):
-#         return self.user.user
-
-#     def get_total(self):
-#         total = 0
-#         for order_item in self.items.all():
-#             total +=round(float(order_item.get_final_price()), 2)
-#         total = round(float(total), 2)
-#         return total
-
-#     def get_iva_order(self):
-#         total = 0
-#         for order_item in self.items.all():
-#             total += round(float(order_item.get_final_price()), 2)
-#         total = round(float(total * 0.07), 2)
-#         return total
-    
-#     def get_total_order(self):
-#         total = self.get_total() + self.get_iva_order()
-#         return total
-
-#     class Meta:
-#         verbose_name = "Tienda: Orden visitante"
-#         verbose_name_plural = "Tienda: Ordenes visitantes"
-
 
 class Address(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
-    country = models.CharField(max_length=100)
-    street_address = models.CharField(max_length=100)
-    apartment_address = models.CharField(max_length=100)
-    postal_code = models.CharField(max_length=100)
-    show = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"Dirección Exacta: {self.street_address} \n Departamento {self.apartment_address}"
+    direction = models.CharField(max_length=100)
+    CodeLocation = models.CharField(max_length=100)
+    Province = models.CharField(max_length=100)
+    district = models.CharField(max_length=100)
+    show = models.BooleanField(default=False, null=True)
 
     class Meta:
-        verbose_name = "Usuario: Dirección"
-        verbose_name_plural = 'Usuario: Direcciones'
+        verbose_name = "Usuario: Dirección de envío"
+        verbose_name_plural = 'Usuario: Direcciones de envío'
+
+class BillingAddress(models.Model):    
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    direction = models.CharField(max_length=100)
+    CodeLocation = models.CharField(max_length=100)
+    Province = models.CharField(max_length=100)
+    district = models.CharField(max_length=100)
+    show = models.BooleanField(default=False, null=True)
+    
+    class Meta:
+        verbose_name = "Usuario: Dirección de facturación"
+        verbose_name_plural = 'Usuario: Direcciones de facturación'
 

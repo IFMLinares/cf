@@ -64,12 +64,13 @@
                                             ${{ order.get_total_order }}
                                         </td>
                                         <td>
-                                            Paypal
+                                            {{ order.payment_method }}
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                        {{ res.as_p }}
                     </form>
                 </div>
                 <div class="back-continue-wrap">

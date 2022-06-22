@@ -92,20 +92,20 @@
                                             <div class="myaccount-content" style=" width: 100%;">
                                                 <h3>Dirección de Envío</h3>
                                                 <address>
-                                                    <p><strong>XXXXXXXXXXXX</strong></p>
-                                                    <p>XXXXXXXXXXX <br>
-                                                        XXXXXXXXXX</p>
-                                                    <p>Mobile: XXXXXXXX</p>
+                                                    <p><strong>Dirección: {{ shipping_address.direction }}</strong></p>
+                                                    <p>Código Postal:  {{ shipping_address.CodeLocation }}<br>
+                                                        Provincia: {{ shipping_address.Province }}</p>
+                                                    <p>Distrito:  {{ shipping_address.district }}</p>
                                                 </address>
                                                 <!-- <a href="#" class="check-btn sqr-btn "><i class="fa fa-edit"></i> Edit Address</a> -->
                                             </div>
                                             <div class="myaccount-content" style=" width: 100%;">
                                                 <h3>Dirección de Facturación</h3>
                                                 <address>
-                                                    <p><strong>XXXXXXXXXXXX</strong></p>
-                                                    <p>XXXXXXXXXXX <br>
-                                                        XXXXXXXXXX</p>
-                                                    <p>Mobile: XXXXXXXX</p>
+                                                    <p><strong>Dirección: {{ billing_address.direction }}</strong></p>
+                                                    <p>Código Postal:  {{ billing_address.CodeLocation }}<br>
+                                                        Provincia: {{ billing_address.Province }}</p>
+                                                    <p>Distrito:  {{ billing_address.district }}</p>
                                                 </address>
                                                 <!-- <a href="#" class="check-btn sqr-btn "><i class="fa fa-edit"></i> Edit Address</a> -->
                                             </div>
@@ -123,25 +123,25 @@
                                                             <div class="col-lg-6">
                                                                 <div class="single-input-item">
                                                                     <label for="first-name" class="required">Nombre</label>
-                                                                    <input type="text" id="first-name" />
+                                                                    <input type="text" id="first-name"  value="{{ user.first_name }}"/>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="single-input-item">
                                                                     <label for="last-name" class="required">Apellido</label>
-                                                                    <input type="text" id="last-name" />
+                                                                    <input type="text" id="last-name"  value="{{ user.last_name }}"/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="single-input-item">
                                                             <label for="display-name" class="required">Usuario</label>
-                                                            <input type="text" id="display-name" />
+                                                            <input type="text" id="display-name" readonly value="{{ user.username }}" readonly/>
                                                         </div>
                                                         <fieldset
                                                             <legend>Correo Electrónico</legend>
                                                             <div class="single-input-item">
-                                                                <label for="email" class="required">Email</label>
-                                                                <input type="email" id="email" />
+                                                                <label for="email" class="required">E-mail</label>
+                                                                <input type="email" id="email" value="{{ request.user.email }}" readonly/>
                                                             </div>
                                                         </fieldset>
                                                         <fieldset>
@@ -181,5 +181,28 @@
             </div>
         </div>
 
+        <div class="container">
+            <div id="success" class="alert success" >
+                <ion-icon class="icon" name="checkmark-done-outline"></ion-icon>
+                <p>Success Alert Message</p>
+            </div>
+            <div id="info" class="alert info" >
+                <ion-icon class="icon" name="help-outline"></ion-icon>
+                <p>Information Alert Message</p>
+            </div>
+            <div id="warning" class="alert warning" >
+                <ion-icon class="icon" name="information-outline"></ion-icon>
+                <p>Warning Alert Message</p>
+            </div>
+            <div id="error" class="alert error" >
+                <ion-icon class="icon" name="bug-outline"></ion-icon>
+                <p>Error Alert Message</p>
+            </div>
+        </div>
+    
 
+        {% endblock %}
+
+        {% block extra_qs %}
+        
         {% endblock %}

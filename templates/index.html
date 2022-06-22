@@ -459,18 +459,20 @@
 </div>
 
 <div class="product-area pb-155">
+  
+{% if items and items|length >= 3  %}
+<div class="product-area pb-100">
   <div class="container">
-    <div class="section-title-8 mt-65 middle-center">
-      <h2>Lo más vendidos</h2>
+    <div class="section-title-8 mt-0 middle-center">
+      <h2>Productos destacados</h2>
     </div>
-    <hr class="hr-1">
-    <div class="row middle-end mb-5">
+    <hr class="hr-1"> 
+    <div class="row middle-end">
       <div class="col-md-4">
         <div
           class="banner-btn-4 banner-btn-4-modify banner-btn-4-right modify2-mt-65"
         >
-          <a href="{% url 'core:store' %}"
-            >Ver todos los productos
+          <a href="{% url 'core:store' %}">Ver todos los productos
             <img
               class="inject-me"
               src="{% static 'assets/images/icon-img/right-arrow-banner.svg' %}"
@@ -479,174 +481,99 @@
         </div>
       </div>
     </div>
+    
     <div class="product-slider-active-4">
+      {% for item in items %}
       <div class="product-wrap-plr-1">
         <div class="product-wrap">
           <div class="product-img product-img-zoom mb-25">
-            <a href="">
-              <img src="{% static 'assets/img/juguete.jpg' %}" alt="" />
+            <a href="{{ item.get_absolute_url }}">
+              <img src="{{ item.image.url }}" alt="" />
             </a>
           </div>
-          <div class="product-content" >
-            <h4><a href="" style="color: black; font-weight:bold;">Nombre del Producto</a></h4>
-            <div class="product-price" style="color: black; font-weight:bold;">
-              <span style="color: black; ">$ XXXX</span>
-              <span class="old-price" style="color: black; ">$ XXXX</span>
+          <div class="product-content">
+            <h4><a href="">{{ item.description }}</a></h4>
+            <div class="product-price">
+              <span>$ {{ item.sale_price }}</span>
+              <!-- <span class="old-price">$ XXXX</span> -->
             </div>
           </div>
           <div class="product-action-position-1 text-center">
-            <!-- <div class="product-content" style="display:none;">
-              <h4><a href="">Nombre del Producto</a></h4>
+            <!-- <div class="product-content">
+              <h4><a href="">{{ item.description }}</a></h4>
               <div class="product-price">
-                <span>$ XXXX</span>
-                <span class="old-price">$ XXXX</span>
+                <span>$ {{ item.sale_price }}</span>
               </div>
             </div> -->
+            <form action="/addto/" method="post">
+              {% csrf_token %}
             <div class="product-action-wrap">
-              <div class="product-action-cart">
-                <button title="Agregar al Carrito">Agregar al Carrito</button>
-                <button data-toggle="modal" data-target="#exampleModal">
-                  <i class="icon-zoom"></i>
-                </button>
-              </div>
+                <div class="product-action-cart">
+                    <input type="hidden" name="slug" id="slug" value="{{ item.slug }}">
+                    <button title="Añadir al Carrito" type="submit">Añadir al Carrito</button>
+                    <button type="button" onclick="modalproduct('{{ item.sku_code }}','{{ item.description }}','{{ item.stock }}','{{ item.sale_price }}', '{{item.image.url}}', '{{item.slug}}')"><i class="icon-zoom"></i></button>
+                </div>
+                <!-- <button data-toggle="modal" data-target="#exampleModal"><i class="icon-zoom"></i></button> -->
             </div>
+          </form>
           </div>
         </div>
-      </div>
-      <div class="product-wrap-plr-1">
-        <div class="product-wrap">
-          <div class="product-img product-img-zoom mb-25">
-            <a href="">
-              <img src="{% static 'assets/img/juguetes.jpeg' %}" alt="" />
-            </a>
-          </div>
-          <div class="product-content">
-            <h4><a href="" style="color: black; font-weight:bold;">Nombre del Producto</a></h4>
-            <div class="product-price" style="color: black; font-weight:bold;">
-              <span style="color: black; ">$ XXXX</span>
-              <span class="old-price" style="color: black; ">$ XXXX</span>
+      </div> 
+      
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="responsive-table">
+  <div class="product-area pb-100">
+    <div class="container"> 
+      <div class="product-slider-active-4">
+        {% for item in items %}
+        <div class="product-wrap-plr-1">
+          <div class="product-wrap">
+            <div class="product-img product-img-zoom mb-25">
+              <a href="{{ item.get_absolute_url }}">
+                <img src="{{ item.image.url }}" alt="" />
+              </a>
             </div>
-          </div>
-          <div class="product-action-position-1 text-center">
-            <div class="product-content" style="display:none;">
-              <h4><a href="">Nombre del Producto</a></h4>
+            <div class="product-content">
+              <h4><a href="">{{ item.description }}</a></h4>
               <div class="product-price">
-                <span>$ XXXX</span>
-                <span class="old-price">$ XXXX</span>
+                <span>$ {{ item.sale_price }}</span>
+                <!-- <span class="old-price">$ XXXX</span> -->
               </div>
             </div>
-            <div class="product-action-wrap">
-              <div class="product-action-cart">
-                <button title="Agregar al Carrito">Agregar al Carrito</button>
-                <button data-toggle="modal" data-target="#exampleModal">
-                  <i class="icon-zoom"></i>
-                </button>
+            <div class="product-action-position-1 text-center">
+              <!-- <div class="product-content">
+                <h4><a href="">{{ item.description }}</a></h4>
+                <div class="product-price">
+                  <span>$ {{ item.sale_price }}</span>
+                  <span class="old-price">$ XXXX</span>
+                </div>
+              </div> -->
+              <form action="/addto/" method="post">
+                {% csrf_token %}
+              <div class="product-action-wrap">
+                  <div class="product-action-cart">
+                      <input type="hidden" name="slug" id="slug" value="{{ item.slug }}">
+                      <input type="hidden" name="next" value="{{ request.path }}">
+                      <button title="Añadir al Carrito" type="submit">Añadir al Carrito</button>
+                  </div>
+                  <button type="button" onclick="modalproduct('{{ item.sku_code }}','{{ item.description }}','{{ item.stock }}','{{ item.sale_price }}', '{{item.image.url}}', '{{item.slug}}')"><i class="icon-zoom"></i></button>
+                  <!-- <button data-toggle="modal" data-target="#exampleModal"><i class="icon-zoom"></i></button> -->
               </div>
+            </form>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="product-wrap-plr-1">
-        <div class="product-wrap">
-          <div class="product-img product-img-zoom mb-25">
-            <a href="">
-              <img src="{% static 'assets/img/nins.jpg' %}" alt="" />
-            </a>
-          </div>
-          <div class="product-content">
-            <h4><a href="" style="color: black; font-weight:bold;">Nombre del Producto</a></h4>
-            <div class="product-price" style="color: black; font-weight:bold;">
-              <span style="color: black; ">$ XXXX</span>
-              <span class="old-price" style="color: black; ">$ XXXX</span>
-            </div>
-          </div>
-          <div class="product-action-position-1 text-center">
-            <div class="product-content" style="display:none;">
-              <h4><a href="">Nombre del Producto</a></h4>
-              <div class="product-price">
-                <span>$ XXXX</span>
-                <span class="old-price">$ XXXX</span>
-              </div>
-            </div>
-            <div class="product-action-wrap">
-              <div class="product-action-cart">
-                <button title="Agregar al Carrito">Agregar al Carrito</button>
-                <button data-toggle="modal" data-target="#exampleModal">
-                  <i class="icon-zoom"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="product-wrap-plr-1">
-        <div class="product-wrap">
-          <div class="product-img product-img-zoom mb-25">
-            <a href="">
-              <img src="{% static 'assets/img/juguete.jpg' %}" alt="" />
-            </a>
-          </div>
-          <div class="product-content">
-            <h4><a href="" style="color: black; font-weight:bold;">Nombre del Producto</a></h4>
-            <div class="product-price" style="color: black; font-weight:bold;">
-              <span style="color: black; ">$ XXXX</span>
-              <span class="old-price" style="color: black; ">$ XXXX</span>
-            </div>
-          </div>
-          <div class="product-action-position-1 text-center">
-            <div class="product-content" style="display:none;">
-              <h4><a href="">Nombre del Producto</a></h4>
-              <div class="product-price">
-                <span>$ XXXX</span>
-                <span class="old-price">$ XXXX</span>
-              </div>
-            </div>
-            <div class="product-action-wrap">
-              <div class="product-action-cart">
-                <button title="Agregar al Carrito">Agregar al Carrito</button>
-                <button data-toggle="modal" data-target="#exampleModal">
-                  <i class="icon-zoom"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="product-wrap-plr-1">
-        <div class="product-wrap">
-          <div class="product-img product-img-zoom mb-25">
-            <a href="">
-              <img src="{% static 'assets/img/juguetes.jpeg' %}" alt="" />
-            </a>
-          </div>
-          <div class="product-content">
-            <h4><a href="" style="color: black; font-weight:bold;">Nombre del Producto</a></h4>
-            <div class="product-price" style="color: black; font-weight:bold;">
-              <span style="color: black; ">$ XXXX</span>
-              <span class="old-price" style="color: black; ">$ XXXX</span>
-            </div>
-          </div>
-          <div class="product-action-position-1 text-center">
-            <div class="product-content" style="display:none;">
-              <h4><a href="">Nombre del Producto</a></h4>
-              <div class="product-price">
-                <span>$ XXXX</span>
-                <span class="old-price">$ XXXX</span>
-              </div>
-            </div>
-            <div class="product-action-wrap">
-              <div class="product-action-cart">
-                <button title="Agregar al Carrito">Agregar al Carrito</button>
-                <button data-toggle="modal" data-target="#exampleModal">
-                  <i class="icon-zoom"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        </div> 
+        
+        {% endfor %}
       </div>
     </div>
   </div>
+</div>
+{% endif %}
 </div>
 
 <div class="responsive-table">

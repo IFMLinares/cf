@@ -124,7 +124,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="payment-details  ">
-                            <h4 class="checkout-title">  Detalles de pago</h4>
+                            <h4 class="checkout-title">Sumatoria de la Orden</h4>
                             <ul>
                                 {% for item in order.items.all %}
                                  <li>{{ item.item.description }} x{{ item.quantity }} <span>${{ item.get_total_item_price }}</span></li>
