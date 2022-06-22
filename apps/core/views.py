@@ -13,7 +13,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.shortcuts import redirect
@@ -26,8 +26,9 @@ from django.views.generic import TemplateView, ListView, DeleteView, DetailView,
 from pytz import country_names
 from requests import request
 from paypal.standard.forms import PayPalPaymentsForm
-from .models import Item, OrderItem, Order, Address, User
-from .forms.forms import CheckoutForm
+from .models import Item, OrderItem, Order, Address, BillingAddress,User
+from .forms.forms import CheckoutForm, CheckoutForm1
+from .decoratorsp.decorators import login_required_message
 # Create your views here.
 
 class CartMixin(ContextMixin):
@@ -132,6 +133,7 @@ class cartView(LoginRequiredMixin, View):
             items = Item.objects.all().only('slug')
             context = {
                 'carro': order,
+                'order': order,
                 'items': items
             }
             return render(self.request, self.template_name, context)
@@ -149,10 +151,12 @@ class checkOutView(LoginRequiredMixin, CartMixin, View):
             order = Order.objects.get(user=self.request.user, ordered=False)
             address = list(Address.objects.filter(user=self.request.user))
             form = CheckoutForm()
+            form1 = CheckoutForm1()
             context = {
                 'carro': order,
                 'order': order,
                 'form': form,
+                'form1': form1,
             }
             if(len(address)>= 1):
                 context['addres'] = address
@@ -163,25 +167,68 @@ class checkOutView(LoginRequiredMixin, CartMixin, View):
 
     def post(self, *args, **kwargs):
         form = CheckoutForm(self.request.POST or None)
+        form1 = CheckoutForm1(self.request.POST or None)
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             if form.is_valid():
-                country = form.cleaned_data.get('country')
-                street_address = form.cleaned_data.get('street_address')
-                apartment_address =form.cleaned_data.get('apartment_address')
-                postal_code = form.cleaned_data.get('postal_code')
+                try:
+                    direc = BillingAddress.objects.get(user=self.request.user)
+                    direc.delete()
+                except ObjectDoesNotExist:
+                    pass
+
+                try:
+                    direc = Address.objects.get(user=self.request.user)
+                    direc.delete()
+                except ObjectDoesNotExist:
+                    pass
+
+                user = self.request.user
+                direction = form.cleaned_data.get('directionforms')
+                CodeLocation = form.cleaned_data.get('CodeLocation')
+                Province = form.cleaned_data.get('Province')
+                district = form.cleaned_data.get('district')
                 show = form.cleaned_data.get('save')
 
-                address = Address(
-                    user = self.request.user,
-                    street_address = street_address,
-                    apartment_address = apartment_address,
-                    country = country,
-                    postal_code = postal_code,
+                address = BillingAddress(
+                    user = user,
+                    direction = direction,
+                    CodeLocation = CodeLocation,
+                    Province = Province,
+                    district = district,
                     show = show,
                 )
                 address.save()
+
+                if(form.cleaned_data.get('same_shipping_address')):
+                    shipping_Address = Address(
+                        user = user,
+                        direction = direction,
+                        CodeLocation = CodeLocation,
+                        Province = Province,
+                        district = district,
+                        show = show,
+                    )
+                else:
+                    direction1 = self.request.POST.get('directionforms1')
+                    CodeLocation1 = self.request.POST.get('CodeLocation1')
+                    Province1 = self.request.POST.get('Province1')
+                    district1 = self.request.POST.get('district1')
+                    show1 = self.request.POST.get('save1')
+                    if(show1 != True):
+                        show1 = False
+                    shipping_Address = Address(
+                        user = user,
+                        direction = direction1,
+                        CodeLocation = CodeLocation1,
+                        Province = Province1,
+                        district = district1,
+                        show = show1,
+                    )
+                
+                shipping_Address.save()
                 order.billing_address = address
+                order.shipping_Address = shipping_Address
 
                 mount = order.get_total_order()
                 order.totalOrden = mount
@@ -196,6 +243,125 @@ class checkOutView(LoginRequiredMixin, CartMixin, View):
 class PaymentView(LoginRequiredMixin, CartMixin, View):
     model = Address
     template_name = 'payment.html'
+
+    def post(self, *args, **kwargs):
+        address = BillingAddress.objects.get(user=self.request.user)
+        order = Order.objects.get(user=self.request.user, ordered=False)
+        order.ordered = True
+        print(self.request.POST.get('payment_method'))
+        payment_method = self.request.POST.get('payment_method')
+        order.payment_method = payment_method
+        order.status = 'En espera'
+        numeroRuc =  ((20 - len(str(self.request.user.doc))) * '0') + str(self.request.user.doc)
+
+        total = str(order.get_total())
+
+        if total[-2] == '.':
+            total = total + '0'
+        totalIva = order.get_total_order()
+        iva = order.get_iva_order()
+        itemlist = []
+        for item in order.items.all():
+            item.ordered = True
+            item.save()
+            quantity = str(round(float(item.quantity),2) ) + '0'
+            precioItem = item.item.sale_price
+            precioItem2 = str(round(float(precioItem * item.quantity),2))
+            if precioItem2[-2] == '.':
+                precioItem2 = precioItem2 + '0'
+            precioItemIVa = item.item.get_price_iva()
+            precioIba = item.item.get_iva_item()
+            itemsList ={
+                "descripcion": 'Prueba',
+                "cantidad": quantity,
+                "precioUnitario": str(precioItem),
+                "precioUnitarioDescuento": " ",
+                "precioItem": str(precioItem2),
+                "valorTotal": str(precioItemIVa),
+                "tasaITBMS": "01",
+                "valorITBMS": str(precioIba),
+            }
+            itemlist.append(itemsList)
+        
+        cliente = {
+            "tipoClienteFE": "02",
+            "tipoContribuyente": 1,
+            "numeroRUC": numeroRuc,
+            "pais": "PA",
+            "correoElectronico1": self.request.user.email,
+            "razonSocial": self.request.user.first_name + ' ' +self.request.user.last_name,
+            # "direccion" : address.direction,
+            # "CodigoUbicacion" : address.CodeLocation,
+            "provincia" : address.Province,
+            "distrito" : address.district,
+            }
+        
+
+        # FACTURACIÓN THE FACTORYHKA
+        numeroDocumentoFiscal =  int(((7 - len(str(order.pk))) * '0') + str(order.pk))
+        wsdl = 'http://demoemision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
+        client = zeep.Client(wsdl=wsdl)
+        datos = dict(
+            tokenEmpresa="blzjnlwebrgp_tfhka",
+            tokenPassword="d-$k;$4a$p++",
+            documento=dict(
+                codigoSucursalEmisor="0000",
+                tipoSucursal="1",
+                datosTransaccion=dict({
+                    "tipoEmision": "01",
+                    "tipoDocumento": "01",
+                    "numeroDocumentoFiscal": str(numeroDocumentoFiscal),
+                    "puntoFacturacionFiscal": "001",
+                    "naturalezaOperacion": "01",
+                    "tipoOperacion": 1,
+                    "destinoOperacion": 1,
+                    "formatoCAFE": 1,
+                    "entregaCAFE": 1,
+                    "envioContenedor": 1,
+                    "procesoGeneracion": 1,
+                    "tipoVenta": 1,
+                    "fechaEmision": "2021-10-14T09:00:00-05:00",
+                    "cliente": cliente
+                }),
+                listaItems=dict(
+                    item=itemlist
+                ),
+                totalesSubTotales=dict({
+                    "totalPrecioNeto": str(total),
+                    "totalITBMS": str(iva),
+                    "totalMontoGravado": str(iva),
+                    "totalDescuento": "",
+                    "totalAcarreoCobrado": "",
+                    "valorSeguroCobrado": "",
+                    "totalFactura": str(totalIva),
+                    "totalValorRecibido": str(totalIva),
+                    "vuelto": "0.00",
+                    "tiempoPago": "1",
+                    "nroItems": '1',
+                    "totalTodosItems": str(totalIva),
+                },
+                listaFormaPago=dict(
+                    formaPago=[
+                        {"formaPagoFact": "02",
+                        "descFormaPago": "",
+                        "valorCuotaPagada": str(totalIva)},
+                        ]
+                    )
+                )
+            )
+        )
+        res = (client.service.Enviar(**datos))
+        print(res)
+        print(datos)
+        order.save()
+        context ={
+            'res': res,
+            'order': order
+        }
+        messages.success(self.request, 'Pago procesado exitosamente')
+        return render(self.request, 'ordenCompleta.html', context)
+
+
     def get(self, request, *args, **kwargs):
         # form
         try:
@@ -242,9 +408,16 @@ class miCuentaView(LoginRequiredMixin, CartMixin, View):
             orders_ordered = list(orders_ordered)
         except ObjectDoesNotExist:
             orders_ordered = ''
+        try:
+            user_billing_address = BillingAddress.objects.get(user=self.request.user)
+            user_shipping_address = Address.objects.get(user=self.request.user)
+        except ObjectDoesNotExist:
+            pass
         context = {
             'user': user,
             'orders': orders_ordered,
+            'billing_address': user_billing_address,
+            'shipping_address': user_shipping_address,
         }
         print(list((orders_ordered)))
         return render(self.request, self.template_name, context)
@@ -253,8 +426,12 @@ class miCuentaView(LoginRequiredMixin, CartMixin, View):
 @csrf_exempt
 def paypal_return(request):
     try:
+        address = BillingAddress.objects.get(user=request.user)
         order = Order.objects.get(user=request.user, ordered=False)
         order.ordered = True
+        order.paymetn_metohd = 'P'
+        order.status = 'PAGADO'
+
         total = str(order.get_total())
         print(total[-1])
         print(total[-2])
@@ -266,91 +443,98 @@ def paypal_return(request):
         for item in order.items.all():
             item.ordered = True
             item.save()
-        #     quantity = str(round(float(item.quantity),2) ) + '0'
-        #     precioItem = item.item.sale_price
-        #     precioItem2 = str(round(float(precioItem * item.quantity),2))
-        #     if precioItem2[-2] == '.':
-        #         precioItem2 = precioItem2 + '0'
-        #     precioItemIVa = item.item.get_price_iva()
-        #     precioIba = item.item.get_iva_item()
-        #     itemsList ={
-        #         "descripcion": 'Prueba',
-        #         "cantidad": quantity,
-        #         "precioUnitario": str(precioItem),
-        #         "precioUnitarioDescuento": " ",
-        #         "precioItem": str(precioItem2),
-        #         "valorTotal": str(precioItemIVa),
-        #         "tasaITBMS": "01",
-        #         "valorITBMS": str(precioIba),
-        #     }
-        #     itemlist.append(itemsList)
+            quantity = str(round(float(item.quantity),2) ) + '0'
+            precioItem = item.item.sale_price
+            precioItem2 = str(round(float(precioItem * item.quantity),2))
+            if precioItem2[-2] == '.':
+                precioItem2 = precioItem2 + '0'
+            precioItemIVa = item.item.get_price_iva()
+            precioIba = item.item.get_iva_item()
+            itemsList ={
+                "descripcion": 'Prueba',
+                "cantidad": quantity,
+                "precioUnitario": str(precioItem),
+                "precioUnitarioDescuento": " ",
+                "precioItem": str(precioItem2),
+                "valorTotal": str(precioItemIVa),
+                "tasaITBMS": "01",
+                "valorITBMS": str(precioIba),
+            }
+            itemlist.append(itemsList)
+        
+        cliente = {
+            "tipoClienteFE": "02",
+            "tipoContribuyente": 1,
+            "numeroRUC": request.user.phone,
+            "pais": "PA",
+            "correoElectronico1": request.user.email,
+            "razonSocial": request.user.first_name + ' ' +request.user.last_name,
+            # "direccion" : address.direction,
+            # "CodigoUbicacion" : address.CodeLocation,
+            "provincia" : address.Province,
+            "distrito" : address.district,
+            }
+        
 
-        # # FACTURACIÓN THE FACTORYHKA
-        # numeroDocumentoFiscal =  ((7 - len(str(order.pk))) * '0') + str(order.pk)
-        # wsdl = 'http://demoemision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
-        # client = zeep.Client(wsdl=wsdl)
-        # datos = dict(
-        #     tokenEmpresa="blzjnlwebrgp_tfhka",
-        #     tokenPassword="d-$k;$4a$p++",
-        #     documento=dict(
-        #         codigoSucursalEmisor="0000",
-        #         tipoSucursal="1",
-        #         datosTransaccion=dict({
-        #             "tipoEmision": "01",
-        #             "tipoDocumento": "01",
-        #             "numeroDocumentoFiscal": str(numeroDocumentoFiscal),
-        #             "puntoFacturacionFiscal": "001",
-        #             "naturalezaOperacion": "01",
-        #             "tipoOperacion": 1,
-        #             "destinoOperacion": 1,
-        #             "formatoCAFE": 1,
-        #             "entregaCAFE": 1,
-        #             "envioContenedor": 1,
-        #             "procesoGeneracion": 1,
-        #             "tipoVenta": 1,
-        #             "fechaEmision": "2021-10-14T09:00:00-05:00",
-        #             "cliente": {
-        #                 "tipoClienteFE": "02",
-        #                 "tipoContribuyente": 1,
-        #                 "numeroRUC": 89337412,
-        #                 "pais": "PA",
-        #                 "correoElectronico1": request.user.email,
-        #                 "razonSocial": request.user.first_name + ' ' +request.user.last_name
-        #             }
-        #         }),
-        #         listaItems=dict(
-        #             item=itemlist
-        #         ),
-        #         totalesSubTotales=dict({
-        #             "totalPrecioNeto": str(total),
-        #             "totalITBMS": str(iva),
-        #             "totalMontoGravado": str(iva),
-        #             "totalDescuento": "",
-        #             "totalAcarreoCobrado": "",
-        #             "valorSeguroCobrado": "",
-        #             "totalFactura": str(totalIva),
-        #             "totalValorRecibido": str(totalIva),
-        #             "vuelto": "0.00",
-        #             "tiempoPago": "1",
-        #             "nroItems": '1',
-        #             "totalTodosItems": str(totalIva),
-        #         },
-        #         listaFormaPago=dict(
-        #             formaPago=[
-        #                 {"formaPagoFact": "02",
-        #                 "descFormaPago": "",
-        #                 "valorCuotaPagada": str(totalIva)},
-        #                 ]
-        #             )
-        #         )
-        #     )
-        # )
-        # res = (client.service.Enviar(**datos))
-        # print(res)
-        # print(datos)
+        # FACTURACIÓN THE FACTORYHKA
+        numeroDocumentoFiscal =  ((7 - len(str(order.pk))) * '0') + str(order.pk)
+        wsdl = 'http://demoemision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
+        client = zeep.Client(wsdl=wsdl)
+        datos = dict(
+            tokenEmpresa="blzjnlwebrgp_tfhka",
+            tokenPassword="d-$k;$4a$p++",
+            documento=dict(
+                codigoSucursalEmisor="0000",
+                tipoSucursal="1",
+                datosTransaccion=dict({
+                    "tipoEmision": "01",
+                    "tipoDocumento": "01",
+                    "numeroDocumentoFiscal": str(numeroDocumentoFiscal),
+                    "puntoFacturacionFiscal": "001",
+                    "naturalezaOperacion": "01",
+                    "tipoOperacion": 1,
+                    "destinoOperacion": 1,
+                    "formatoCAFE": 1,
+                    "entregaCAFE": 1,
+                    "envioContenedor": 1,
+                    "procesoGeneracion": 1,
+                    "tipoVenta": 1,
+                    "fechaEmision": "2021-10-14T09:00:00-05:00",
+                    "cliente": cliente
+                }),
+                listaItems=dict(
+                    item=itemlist
+                ),
+                totalesSubTotales=dict({
+                    "totalPrecioNeto": str(total),
+                    "totalITBMS": str(iva),
+                    "totalMontoGravado": str(iva),
+                    "totalDescuento": "",
+                    "totalAcarreoCobrado": "",
+                    "valorSeguroCobrado": "",
+                    "totalFactura": str(totalIva),
+                    "totalValorRecibido": str(totalIva),
+                    "vuelto": "0.00",
+                    "tiempoPago": "1",
+                    "nroItems": '1',
+                    "totalTodosItems": str(totalIva),
+                },
+                listaFormaPago=dict(
+                    formaPago=[
+                        {"formaPagoFact": "02",
+                        "descFormaPago": "",
+                        "valorCuotaPagada": str(totalIva)},
+                        ]
+                    )
+                )
+            )
+        )
+        res = (client.service.Enviar(**datos))
+        print(res)
+        print(datos)
         order.save()
         context ={
-            # 'res': res,
+            'res': res,
             'order': order
         }
         messages.success(request, 'Pago procesado exitosamente')
@@ -365,9 +549,11 @@ def paypal_cancel(request):
     return redirect('core:index')
 
 # función de añadir al carro
+@login_required_message(message='Debes iniciar sesión para completar está acción')
 @login_required
 def addto(request):
     if request.method=='POST':
+        next = request.POST.get('next', '/store/')
         slug = request.POST['slug']
         item = get_object_or_404(Item, slug=slug)
         quantity = int(request.POST.get('quantity', 1))
@@ -381,19 +567,24 @@ def addto(request):
                     order_item.quantity += quantity
                     order_item.save()
                     messages.info(request, 'La cantidad de este producto fue actualizada satisfactoriamente')
-                    return redirect('core:store')
+                    # return redirect('core:store')
+                    return HttpResponseRedirect(next)
                 else:
                     order_item.quantity = quantity
                     order_item.save()
                     order.items.add(order_item)
                     messages.info(request, 'Este producto fue añadido satisfactoriamente a su carrito')
-                    return redirect('core:store')
+                    # return redirect('core:store')
+                    return HttpResponseRedirect(next)
             else:
                 ordered_date = timezone.now()
                 order = Order.objects.create(user=request.user, ordered_date=ordered_date)
                 order.items.add(order_item)
                 messages.info(request, 'Este producto fue añadido satisfactoriamente a su carrito')
-            return redirect('core:store')
+            # return redirect('core:store')
+            return HttpResponseRedirect(next)
+    else:
+        return HttpResponseRedirect('/')
 
 @login_required
 def add_to_cart(request, slug):
