@@ -355,7 +355,7 @@ class PaymentView(LoginRequiredMixin, CartMixin, View):
         # )
         # res = (client.service.Enviar(**datos))
         # print(res)
-        print(datos)
+        # print(datos)
         order.save()
         context ={
             # 'res': res,
