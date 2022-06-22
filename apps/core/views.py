@@ -412,7 +412,8 @@ class miCuentaView(LoginRequiredMixin, CartMixin, View):
             user_billing_address = BillingAddress.objects.get(user=self.request.user)
             user_shipping_address = Address.objects.get(user=self.request.user)
         except ObjectDoesNotExist:
-            pass
+            user_billing_address = ''
+            user_shipping_address = ''
         context = {
             'user': user,
             'orders': orders_ordered,
