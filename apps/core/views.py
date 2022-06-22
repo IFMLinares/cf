@@ -263,96 +263,96 @@ class PaymentView(LoginRequiredMixin, CartMixin, View):
             total = total + '0'
         totalIva = order.get_total_order()
         iva = order.get_iva_order()
-        itemlist = []
-        for item in order.items.all():
-            item.ordered = True
-            item.save()
-            quantity = str(round(float(item.quantity),2) ) + '0'
-            precioItem = item.item.sale_price
-            precioItem2 = str(round(float(precioItem * item.quantity),2))
-            if precioItem2[-2] == '.':
-                precioItem2 = precioItem2 + '0'
-            precioItemIVa = item.item.get_price_iva()
-            precioIba = item.item.get_iva_item()
-            itemsList ={
-                "descripcion": 'Prueba',
-                "cantidad": quantity,
-                "precioUnitario": str(precioItem),
-                "precioUnitarioDescuento": " ",
-                "precioItem": str(precioItem2),
-                "valorTotal": str(precioItemIVa),
-                "tasaITBMS": "01",
-                "valorITBMS": str(precioIba),
-            }
-            itemlist.append(itemsList)
+        # itemlist = []
+        # for item in order.items.all():
+        #     item.ordered = True
+        #     item.save()
+        #     quantity = str(round(float(item.quantity),2) ) + '0'
+        #     precioItem = item.item.sale_price
+        #     precioItem2 = str(round(float(precioItem * item.quantity),2))
+        #     if precioItem2[-2] == '.':
+        #         precioItem2 = precioItem2 + '0'
+        #     precioItemIVa = item.item.get_price_iva()
+        #     precioIba = item.item.get_iva_item()
+        #     itemsList ={
+        #         "descripcion": 'Prueba',
+        #         "cantidad": quantity,
+        #         "precioUnitario": str(precioItem),
+        #         "precioUnitarioDescuento": " ",
+        #         "precioItem": str(precioItem2),
+        #         "valorTotal": str(precioItemIVa),
+        #         "tasaITBMS": "01",
+        #         "valorITBMS": str(precioIba),
+        #     }
+        #     itemlist.append(itemsList)
         
-        cliente = {
-            "tipoClienteFE": "02",
-            "tipoContribuyente": 1,
-            "numeroRUC": numeroRuc,
-            "pais": "PA",
-            "correoElectronico1": self.request.user.email,
-            "razonSocial": self.request.user.first_name + ' ' +self.request.user.last_name,
-            # "direccion" : address.direction,
-            # "CodigoUbicacion" : address.CodeLocation,
-            "provincia" : address.Province,
-            "distrito" : address.district,
-            }
+        # cliente = {
+        #     "tipoClienteFE": "02",
+        #     "tipoContribuyente": 1,
+        #     "numeroRUC": numeroRuc,
+        #     "pais": "PA",
+        #     "correoElectronico1": self.request.user.email,
+        #     "razonSocial": self.request.user.first_name + ' ' +self.request.user.last_name,
+        #     # "direccion" : address.direction,
+        #     # "CodigoUbicacion" : address.CodeLocation,
+        #     "provincia" : address.Province,
+        #     "distrito" : address.district,
+        #     }
         
 
-        # FACTURACIÓN THE FACTORYHKA
-        numeroDocumentoFiscal =  int(((7 - len(str(order.pk))) * '0') + str(order.pk))
-        wsdl = 'http://demoemision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
-        client = zeep.Client(wsdl=wsdl)
-        datos = dict(
-            tokenEmpresa="blzjnlwebrgp_tfhka",
-            tokenPassword="d-$k;$4a$p++",
-            documento=dict(
-                codigoSucursalEmisor="0000",
-                tipoSucursal="1",
-                datosTransaccion=dict({
-                    "tipoEmision": "01",
-                    "tipoDocumento": "01",
-                    "numeroDocumentoFiscal": str(numeroDocumentoFiscal),
-                    "puntoFacturacionFiscal": "001",
-                    "naturalezaOperacion": "01",
-                    "tipoOperacion": 1,
-                    "destinoOperacion": 1,
-                    "formatoCAFE": 1,
-                    "entregaCAFE": 1,
-                    "envioContenedor": 1,
-                    "procesoGeneracion": 1,
-                    "tipoVenta": 1,
-                    "fechaEmision": "2021-10-14T09:00:00-05:00",
-                    "cliente": cliente
-                }),
-                listaItems=dict(
-                    item=itemlist
-                ),
-                totalesSubTotales=dict({
-                    "totalPrecioNeto": str(total),
-                    "totalITBMS": str(iva),
-                    "totalMontoGravado": str(iva),
-                    "totalDescuento": "",
-                    "totalAcarreoCobrado": "",
-                    "valorSeguroCobrado": "",
-                    "totalFactura": str(totalIva),
-                    "totalValorRecibido": str(totalIva),
-                    "vuelto": "0.00",
-                    "tiempoPago": "1",
-                    "nroItems": '1',
-                    "totalTodosItems": str(totalIva),
-                },
-                listaFormaPago=dict(
-                    formaPago=[
-                        {"formaPagoFact": "02",
-                        "descFormaPago": "",
-                        "valorCuotaPagada": str(totalIva)},
-                        ]
-                    )
-                )
-            )
-        )
+        # # FACTURACIÓN THE FACTORYHKA
+        # numeroDocumentoFiscal =  int(((7 - len(str(order.pk))) * '0') + str(order.pk))
+        # wsdl = 'http://demoemision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
+        # client = zeep.Client(wsdl=wsdl)
+        # datos = dict(
+        #     tokenEmpresa="blzjnlwebrgp_tfhka",
+        #     tokenPassword="d-$k;$4a$p++",
+        #     documento=dict(
+        #         codigoSucursalEmisor="0000",
+        #         tipoSucursal="1",
+        #         datosTransaccion=dict({
+        #             "tipoEmision": "01",
+        #             "tipoDocumento": "01",
+        #             "numeroDocumentoFiscal": str(numeroDocumentoFiscal),
+        #             "puntoFacturacionFiscal": "001",
+        #             "naturalezaOperacion": "01",
+        #             "tipoOperacion": 1,
+        #             "destinoOperacion": 1,
+        #             "formatoCAFE": 1,
+        #             "entregaCAFE": 1,
+        #             "envioContenedor": 1,
+        #             "procesoGeneracion": 1,
+        #             "tipoVenta": 1,
+        #             "fechaEmision": "2021-10-14T09:00:00-05:00",
+        #             "cliente": cliente
+        #         }),
+        #         listaItems=dict(
+        #             item=itemlist
+        #         ),
+        #         totalesSubTotales=dict({
+        #             "totalPrecioNeto": str(total),
+        #             "totalITBMS": str(iva),
+        #             "totalMontoGravado": str(iva),
+        #             "totalDescuento": "",
+        #             "totalAcarreoCobrado": "",
+        #             "valorSeguroCobrado": "",
+        #             "totalFactura": str(totalIva),
+        #             "totalValorRecibido": str(totalIva),
+        #             "vuelto": "0.00",
+        #             "tiempoPago": "1",
+        #             "nroItems": '1',
+        #             "totalTodosItems": str(totalIva),
+        #         },
+        #         listaFormaPago=dict(
+        #             formaPago=[
+        #                 {"formaPagoFact": "02",
+        #                 "descFormaPago": "",
+        #                 "valorCuotaPagada": str(totalIva)},
+        #                 ]
+        #             )
+        #         )
+        #     )
+        # )
         # res = (client.service.Enviar(**datos))
         # print(res)
         print(datos)
@@ -443,99 +443,99 @@ def paypal_return(request):
             total = total + '0'
         totalIva = order.get_total_order()
         iva = order.get_iva_order()
-        itemlist = []
-        for item in order.items.all():
-            item.ordered = True
-            item.save()
-            quantity = str(round(float(item.quantity),2) ) + '0'
-            precioItem = item.item.sale_price
-            precioItem2 = str(round(float(precioItem * item.quantity),2))
-            if precioItem2[-2] == '.':
-                precioItem2 = precioItem2 + '0'
-            precioItemIVa = item.item.get_price_iva()
-            precioIba = item.item.get_iva_item()
-            itemsList ={
-                "descripcion": 'Prueba',
-                "cantidad": quantity,
-                "precioUnitario": str(precioItem),
-                "precioUnitarioDescuento": " ",
-                "precioItem": str(precioItem2),
-                "valorTotal": str(precioItemIVa),
-                "tasaITBMS": "01",
-                "valorITBMS": str(precioIba),
-            }
-            itemlist.append(itemsList)
+        # itemlist = []
+        # for item in order.items.all():
+        #     item.ordered = True
+        #     item.save()
+        #     quantity = str(round(float(item.quantity),2) ) + '0'
+        #     precioItem = item.item.sale_price
+        #     precioItem2 = str(round(float(precioItem * item.quantity),2))
+        #     if precioItem2[-2] == '.':
+        #         precioItem2 = precioItem2 + '0'
+        #     precioItemIVa = item.item.get_price_iva()
+        #     precioIba = item.item.get_iva_item()
+        #     itemsList ={
+        #         "descripcion": 'Prueba',
+        #         "cantidad": quantity,
+        #         "precioUnitario": str(precioItem),
+        #         "precioUnitarioDescuento": " ",
+        #         "precioItem": str(precioItem2),
+        #         "valorTotal": str(precioItemIVa),
+        #         "tasaITBMS": "01",
+        #         "valorITBMS": str(precioIba),
+        #     }
+        #     itemlist.append(itemsList)
         
-        cliente = {
-            "tipoClienteFE": "02",
-            "tipoContribuyente": 1,
-            "numeroRUC": request.user.phone,
-            "pais": "PA",
-            "correoElectronico1": request.user.email,
-            "razonSocial": request.user.first_name + ' ' +request.user.last_name,
-            # "direccion" : address.direction,
-            # "CodigoUbicacion" : address.CodeLocation,
-            "provincia" : address.Province,
-            "distrito" : address.district,
-            }
+        # cliente = {
+        #     "tipoClienteFE": "02",
+        #     "tipoContribuyente": 1,
+        #     "numeroRUC": request.user.phone,
+        #     "pais": "PA",
+        #     "correoElectronico1": request.user.email,
+        #     "razonSocial": request.user.first_name + ' ' +request.user.last_name,
+        #     # "direccion" : address.direction,
+        #     # "CodigoUbicacion" : address.CodeLocation,
+        #     "provincia" : address.Province,
+        #     "distrito" : address.district,
+        #     }
         
 
-        # FACTURACIÓN THE FACTORYHKA
-        numeroDocumentoFiscal =  ((7 - len(str(order.pk))) * '0') + str(order.pk)
-        wsdl = 'http://demoemision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
-        client = zeep.Client(wsdl=wsdl)
-        datos = dict(
-            tokenEmpresa="blzjnlwebrgp_tfhka",
-            tokenPassword="d-$k;$4a$p++",
-            documento=dict(
-                codigoSucursalEmisor="0000",
-                tipoSucursal="1",
-                datosTransaccion=dict({
-                    "tipoEmision": "01",
-                    "tipoDocumento": "01",
-                    "numeroDocumentoFiscal": str(numeroDocumentoFiscal),
-                    "puntoFacturacionFiscal": "001",
-                    "naturalezaOperacion": "01",
-                    "tipoOperacion": 1,
-                    "destinoOperacion": 1,
-                    "formatoCAFE": 1,
-                    "entregaCAFE": 1,
-                    "envioContenedor": 1,
-                    "procesoGeneracion": 1,
-                    "tipoVenta": 1,
-                    "fechaEmision": "2021-10-14T09:00:00-05:00",
-                    "cliente": cliente
-                }),
-                listaItems=dict(
-                    item=itemlist
-                ),
-                totalesSubTotales=dict({
-                    "totalPrecioNeto": str(total),
-                    "totalITBMS": str(iva),
-                    "totalMontoGravado": str(iva),
-                    "totalDescuento": "",
-                    "totalAcarreoCobrado": "",
-                    "valorSeguroCobrado": "",
-                    "totalFactura": str(totalIva),
-                    "totalValorRecibido": str(totalIva),
-                    "vuelto": "0.00",
-                    "tiempoPago": "1",
-                    "nroItems": '1',
-                    "totalTodosItems": str(totalIva),
-                },
-                listaFormaPago=dict(
-                    formaPago=[
-                        {"formaPagoFact": "02",
-                        "descFormaPago": "",
-                        "valorCuotaPagada": str(totalIva)},
-                        ]
-                    )
-                )
-            )
-        )
+        # # FACTURACIÓN THE FACTORYHKA
+        # numeroDocumentoFiscal =  ((7 - len(str(order.pk))) * '0') + str(order.pk)
+        # wsdl = 'http://demoemision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
+        # client = zeep.Client(wsdl=wsdl)
+        # datos = dict(
+        #     tokenEmpresa="blzjnlwebrgp_tfhka",
+        #     tokenPassword="d-$k;$4a$p++",
+        #     documento=dict(
+        #         codigoSucursalEmisor="0000",
+        #         tipoSucursal="1",
+        #         datosTransaccion=dict({
+        #             "tipoEmision": "01",
+        #             "tipoDocumento": "01",
+        #             "numeroDocumentoFiscal": str(numeroDocumentoFiscal),
+        #             "puntoFacturacionFiscal": "001",
+        #             "naturalezaOperacion": "01",
+        #             "tipoOperacion": 1,
+        #             "destinoOperacion": 1,
+        #             "formatoCAFE": 1,
+        #             "entregaCAFE": 1,
+        #             "envioContenedor": 1,
+        #             "procesoGeneracion": 1,
+        #             "tipoVenta": 1,
+        #             "fechaEmision": "2021-10-14T09:00:00-05:00",
+        #             "cliente": cliente
+        #         }),
+        #         listaItems=dict(
+        #             item=itemlist
+        #         ),
+        #         totalesSubTotales=dict({
+        #             "totalPrecioNeto": str(total),
+        #             "totalITBMS": str(iva),
+        #             "totalMontoGravado": str(iva),
+        #             "totalDescuento": "",
+        #             "totalAcarreoCobrado": "",
+        #             "valorSeguroCobrado": "",
+        #             "totalFactura": str(totalIva),
+        #             "totalValorRecibido": str(totalIva),
+        #             "vuelto": "0.00",
+        #             "tiempoPago": "1",
+        #             "nroItems": '1',
+        #             "totalTodosItems": str(totalIva),
+        #         },
+        #         listaFormaPago=dict(
+        #             formaPago=[
+        #                 {"formaPagoFact": "02",
+        #                 "descFormaPago": "",
+        #                 "valorCuotaPagada": str(totalIva)},
+        #                 ]
+        #             )
+        #         )
+        #     )
+        # )
         # res = (client.service.Enviar(**datos))
         # print(res)
-        print(datos)
+        # print(datos)
         order.save()
         context ={
             # 'res': res,
