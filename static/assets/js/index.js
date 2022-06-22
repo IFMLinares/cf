@@ -17,7 +17,7 @@ function modalproduct(sku,des,inv,precio,imagen,slug){
     $('#image-product-modal').attr('src', imagen)
     $('#exampleModal').modal('show');
     $('#slug-modal').val(slug)
-    $('#sku_code').val(sku)
+    $('#sku_code').text(sku)
     console.log(slug)
 
 }
