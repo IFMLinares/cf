@@ -592,6 +592,13 @@
     <!-- Main JS -->
     <script src="{% static 'assets/js/main.js' %}"></script>
     <script src="{% static 'assets/js/index.js' %}"></script>
+    <script>
+        function toastFunction() {
+  var x = document.getElementById("toast");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+    </script>
     {% block extra_js %}
     {% endblock %}
   </body>
