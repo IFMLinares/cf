@@ -30883,6 +30883,17 @@ h4.checkout-title::before {
   }
 }
 
+.back-continue-wrap button {
+  display: inline-block;
+  color: #ED4ACA;
+  font-size: 12px;
+  font-weight: bold; 
+  line-height: 1;
+  padding: 18px 45px 19px;
+  background-color: white;
+  border:  1px solid #ED4ACA;
+
+}
 .back-continue-wrap a {
   display: inline-block;
   color: #ED4ACA;
@@ -30899,14 +30910,21 @@ h4.checkout-title::before {
   .back-continue-wrap a {
     padding: 16px 25px 17px;
   }
+  .back-continue-wrap button {
+    padding: 16px 25px 17px;
+  }
 }
 
+.back-continue-wrap button:hover {
+  background-color: #ED4ACA;
+  color: white;
+  border:  1px solid #ED4ACA;
+}
 .back-continue-wrap a:hover {
   background-color: #ED4ACA;
   color: white;
   border:  1px solid #ED4ACA;
 }
-
 /*---------- 28. Order complete style ------------*/
 .order-complete-title {
   padding: 52px 85px 60px;
