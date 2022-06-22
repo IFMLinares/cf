@@ -6,7 +6,7 @@ from datetime import datetime
 import random
 from ast import Add
 from asyncio import constants
-from django import views
+from django import dispatch, views
 from django.shortcuts import render
 from django.conf import settings
 # django libraries
@@ -19,6 +19,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic.base import ContextMixin
@@ -240,9 +241,11 @@ class checkOutView(LoginRequiredMixin, CartMixin, View):
             return redirect('core:index')
 
 # Checkout
+@method_decorator(csrf_exempt, name=dispatch)
 class PaymentView(LoginRequiredMixin, CartMixin, View):
     model = Address
     template_name = 'payment.html'
+
 
     def post(self, *args, **kwargs):
         address = BillingAddress.objects.get(user=self.request.user)
