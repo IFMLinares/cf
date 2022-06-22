@@ -353,12 +353,12 @@ class PaymentView(LoginRequiredMixin, CartMixin, View):
                 )
             )
         )
-        res = (client.service.Enviar(**datos))
-        print(res)
+        # res = (client.service.Enviar(**datos))
+        # print(res)
         print(datos)
         order.save()
         context ={
-            'res': res,
+            # 'res': res,
             'order': order
         }
         messages.success(self.request, 'Pago procesado exitosamente')
@@ -533,12 +533,12 @@ def paypal_return(request):
                 )
             )
         )
-        res = (client.service.Enviar(**datos))
-        print(res)
+        # res = (client.service.Enviar(**datos))
+        # print(res)
         print(datos)
         order.save()
         context ={
-            'res': res,
+            # 'res': res,
             'order': order
         }
         messages.success(request, 'Pago procesado exitosamente')
