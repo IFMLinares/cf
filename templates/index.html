@@ -525,6 +525,7 @@
               {% csrf_token %}
             <div class="product-action-wrap">
                 <div class="product-action-cart">
+                  <input type="hidden" name="next" value="{{ request.path }}">
                     <input type="hidden" name="slug" id="slug" value="{{ item.slug }}">
                     <button title="Añadir al Carrito" type="submit">Añadir al Carrito</button>
                     <button type="button" onclick="modalproduct('{{ item.sku_code }}','{{ item.description }}','{{ item.stock }}','{{ item.sale_price }}', '{{item.image.url}}', '{{item.slug}}')"><i class="icon-zoom"></i></button>
