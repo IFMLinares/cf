@@ -278,8 +278,7 @@ hr.hr-2 {
   #toast {
     visibility: hidden;
     min-width: 250px;
-    margin-left: -200px;
-    background-color: white;
+    margin-left: -200px; 
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     color: black;
     text-align: center;

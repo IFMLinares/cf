@@ -15097,14 +15097,19 @@ textarea:focus {
 .product-wrap .product-content h4 {
   font-size: 15px;
   margin: 10px 0 9px;
+  font-weight: bold;
 }
 
 .product-wrap .product-content h4 a {
   color: black;
+  font-weight: bold;
+
 }
 
 .product-wrap .product-content h4 a:hover {
   color: #0A1039;
+  font-weight: bold;
+
 }
 
 .product-wrap .product-content.product-content-border {
@@ -15634,9 +15639,10 @@ textarea:focus {
 }
 
 .product-price span {
-  font-size: 15px;
-  font-weight: 500;
-  color: black;
+  font-size: 15px; 
+  color: #ED4ACA;
+  font-weight: bold;
+
 }
 
 .product-price span.old-price {
@@ -15644,6 +15650,8 @@ textarea:focus {
   font-weight: bold;
   text-decoration: line-through;
   margin-left: 12px;
+  font-weight: bold;
+
 }
 
 .product-price-2 span {
@@ -17724,13 +17732,12 @@ textarea:focus {
 
 .shop-list-content .pro-list-price span {
   font-size: 16px;
-  font-weight: 500;
-  color: #333333;
-}
-
+  font-weight: bold;
+  color: #ED4ACA;
+} 
 .shop-list-content .pro-list-price span.old-price {
-  color: #777777;
-  font-weight: 300;
+  color: black;
+  font-weight: 800;
   text-decoration: line-through;
   margin-left: 12px;
 }
@@ -24515,13 +24522,7 @@ textarea:focus {
   font-weight: bold;
   margin: 0;
 }
-@media only screen and (max-width: 900px){
-  .product-details-content h2 {
-position: relative;
-top: -50px;
-    
-  }
-}
+ 
 @media only screen and (max-width: 767px) {
   .product-details-content h2 {
     font-size: 25px;
@@ -24859,9 +24860,9 @@ top: -50px;
   display: inline-block;
   font-size: 16px;
   font-weight: 500;
-  color: #ED4ACA;
+  color: white;
   line-height: 1;
-  background-color: white;
+  background-color: #ED4ACA;
   border: 1px solid #ED4ACA;
   padding: 16px 50px 21px;
 }
@@ -24885,9 +24886,9 @@ top: -50px;
 }
 
 .product-details-content .pro-details-action-wrap .pro-details-buy-now a:hover {
-  background-color: #ED4ACA;
-  color: white;
-  border: #ED4ACA solid 1px;
+  background-color: white;
+  border: 1px solid #ED4ACA;
+  color: #ED4ACA; 
 }
 
 .product-details-content .pro-details-action-wrap .pro-details-action {
@@ -25758,11 +25759,13 @@ top: -50px;
   letter-spacing: 2px;
   font-size: 12px;
   text-transform: uppercase;
-  background: black;
+  background: #ED4ACA;
 }
 
 .dec-review-bottom .ratting-form-wrapper .ratting-form .form-submit input:hover {
-  background: #ED4ACA;
+  background: white;
+  border: #ED4ACA 1px solid;
+  color: #ED4ACA;
 }
 
 .product-details-content-3 {
@@ -26148,7 +26151,7 @@ top: -50px;
   }
 } 
 .pro-details-6-img img {
-  width: 80%;
+  width: 100%;
  
 }
 
@@ -26454,7 +26457,7 @@ top: -50px;
   }
   .product-details-content{
     position: relative;
-    left: 100px;
+    left: 0px;
   }
   .product-details-area{
     position: relative;
@@ -26463,6 +26466,10 @@ top: -50px;
   .description-review-wrapper{
     position: relative;
     top: -80px;
+  }
+  .product-ratting-digit-wrap{
+    position: relative;
+    left: 75%;
   }
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -29288,6 +29295,7 @@ top: -50px;
   font-size: 29px;
   font-weight: bold;
   margin: 0 0 16px;
+  color:black;
 }
 
 @media only screen and (max-width: 767px) {
@@ -29346,12 +29354,13 @@ top: -50px;
   display: inline-block;
   margin: 0 1px;
   text-transform: capitalize;
-  color: #777777;
+  color: black;
   font-size: 18px;
 }
 
 .breadcrumb-content ul li.active {
-  color: #333333;
+  color: black;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 767px) {
@@ -29371,7 +29380,8 @@ top: -50px;
 
 .breadcrumb-content ul li a {
   text-transform: capitalize;
-  color: #777777;
+  color: black;
+  font-weight:bold ;
 }
 
 .breadcrumb-content ul li a:hover {
@@ -30716,7 +30726,11 @@ h4.checkout-title::before {
 
 .payment-details {
   padding: 70px 70px 65px;
-  background-color: #fff;
+  background-color: #fff; 
+}
+.border-carrito{
+  border: 1px solid black;
+  padding: 8px 12px;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -30860,6 +30874,8 @@ h4.checkout-title::before {
 .payment-method .sin-payment .payment-box p {
   font-size: 14px;
   margin: 0;
+  color: black;
+  font-weight: bold;
 }
 
 .back-continue-wrap {
@@ -30894,6 +30910,22 @@ h4.checkout-title::before {
   border:  1px solid #ED4ACA;
 
 }
+ .button button { 
+  color: white; 
+  font-weight: bold; 
+  line-height: 1;
+  padding: 18px 45px 19px;
+  background-color: #ED4ACA;
+  border:  1px solid #ED4ACA;
+
+}
+.button button:hover { 
+  color: #ED4ACA !important; 
+  font-weight: bold;  
+  background-color: white !important;
+  border:  1px solid #ED4ACA;
+
+}
 .back-continue-wrap a {
   display: inline-block;
   color: #ED4ACA;
@@ -30903,8 +30935,24 @@ h4.checkout-title::before {
   padding: 18px 45px 19px;
   background-color: white;
   border:  1px solid #ED4ACA;
+}
+.button a { 
+  color: white; 
+  font-weight: bold; 
+  line-height: 1;
+  padding: 18px 45px 19px;
+  background-color: #ED4ACA;
+  border:  1px solid #ED4ACA;
 
 }
+.button a:hover { 
+  color: #ED4ACA !important; 
+  font-weight: bold;  
+  background-color: white !important;
+  border:  1px solid #ED4ACA;
+
+}
+
 
 @media only screen and (max-width: 767px) {
   .back-continue-wrap a {
@@ -30930,6 +30978,8 @@ h4.checkout-title::before {
   padding: 52px 85px 60px;
   background-color: #ffffff;
   margin-bottom: 30px;
+  color: black;
+  font-weight: bold;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {

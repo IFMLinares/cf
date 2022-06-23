@@ -129,8 +129,8 @@
                                                         <h4><a href="">{{ item.description }}</a></h4>
                                                         <div class="product-price">
                                                             {% if item.discount %}
-                                                            <span>${{ item.sale_price }}</span>
-                                                            <span class="old-price">$ {{ item.sale_price }}</span>
+                                                            <span class="" style="color: black !important">$</span><span> {{ item.sale_price }}</span>
+                                                            <span class="old-price"> {{ item.sale_price }}</span>
                                                             {% else %}
                                                                 <span>${{ item.sale_price }}</span>
                                                             {% endif %}
@@ -196,9 +196,10 @@
                                             <div class="shop-list-content ml-20">
                                                 <h3><a href="#">{{ item.description}}</a></h3>
                                                 <div class="pro-list-price">
-                                                    {% if item.discount %}
-                                                    <span>$ {{ item.sale_price }}</span>
-                                                    <span class="old-price">$ {{ item.sale_price }}</span>
+                                                  <p style="color:black !important; font-weight:bold;">$</p>
+                                                  {% if item.discount %}
+                                                  <span> {{ item.sale_price }}</span>
+                                                    <span class="old-price">  {{ item.sale_price }}</span>
                                                     {% else %}
                                                         <span>${{ item.sale_price }}</span>
                                                     {% endif %}
@@ -234,7 +235,7 @@
                                       <li><a class="active" href="?page={{ page_obj.previous_page_number }}"><i class="icofont-long-arrow-left"></i></a></li>
                                     {% endif %}
                                   {% for i in paginator.page_range %}
-                                  <li><a <a {% if page_obj.number == i %} class="active page-link" {% endif %} class="page-link" href="?page={{ i }}">{{ i }}</a>>1</a></li>
+                                  <li><a <a> {% if page_obj.number == i %} class="active page-link" {% endif %} class="page-link" href="?page={{ i }}">{{ i }}</a>>1</a></li>
                                   <li class="page-item">
                                       <a {% if page_obj.number == i %} class="active page-link" {% endif %} class="page-link" href="?page={{ i }}">{{ i }}</a>
                                   </li>

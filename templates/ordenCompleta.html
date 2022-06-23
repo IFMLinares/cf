@@ -46,24 +46,24 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Orden NO°</th>
-                                        <th>Fecha</th>
-                                        <th>Total</th>
-                                        <th>Método de Pago</th>
+                                        <th style="color: black; font-weight:bold;">Orden NO°</th>
+                                        <th style="color: black; font-weight:bold;">Fecha</th>
+                                        <th style="color: black; font-weight:bold;">Total</th>
+                                        <th style="color: black; font-weight:bold;">Método de Pago</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
+                                        <td style="color: black; font-weight:bold;">
                                             {{ order.pk }}
                                         </td>
-                                        <td>
+                                        <td style="color: black; font-weight:bold;">
                                             {{ order.ordered_date }}
                                         </td>
-                                        <td>
+                                        <td style="color: black; font-weight:bold;">
                                             ${{ order.get_total_order }}
                                         </td>
-                                        <td>
+                                        <td style="color: black; font-weight:bold;">
                                             {{ order.payment_method }}
                                         </td>
                                     </tr>

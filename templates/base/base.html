@@ -228,7 +228,7 @@
                     <nav>
                       <ul> 
                         <li>
-                          <a class="pr-3" href="{% url 'core:account' %}" ><i class="icofont-user-alt-3 "></i>{{ user.username }}</a>
+                          <a class="pr-3" href="#" ><i class="icofont-user-alt-3 "></i>{{ user.username }}</a>
                           <ul class="sub-menu-width"> 
                             <li><a href="{% url 'core:account' %}">Mis Cuenta</a></li> 
                             <li><a href="{% url 'core:account' %}">Mis Ordenes</a></li> 
@@ -325,8 +325,7 @@
                   <li class="has-sub-menu">
                     <a href="#">Tienda</a>
                     <ul class="sub-menu-2"> 
-                      <li><a href="{% url 'core:store' %}">° Todos</a></li> 
-                      <hr>
+                      <!-- <li><a href="{% url 'core:store' %}">° Todos</a></li>  --> 
                       <li><a href="{% url 'core:store_filter' category='B' %}">Bebes</a></li> 
                       <hr>
                       <li><a href="{% url 'core:store_filter' category='A' %}">Niños de 1 a 3 años</a></li> 

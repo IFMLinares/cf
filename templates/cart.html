@@ -129,21 +129,22 @@
                                 {% for item in order.items.all %}
                                  <li>{{ item.item.description }} x{{ item.quantity }} <span>${{ item.get_total_item_price }}</span></li>
                             <hr class="hr-2">
+                            
+                            {% endfor %}
+                            <div class="border-carrito"> 
+                                <li>Subtotal del carrito <span>${{ order.get_total }}</span></li> 
 
-                                {% endfor %}
-                                <li>Subtotal del carrito <span>${{ order.get_total }}</span></li>
-                                <hr class="hr-2">
-                                <!-- <li>Envío y Entrega <span>$15.00</span></li> -->
-                                <li>  IVA <span>${{ order.get_iva_order }}</span></li>
-                            </ul>
-                            <hr class="hr-2">
-                            <div class="total-order">
-                                <ul>
-                                    <li>Total del pedido <span>${{ order.get_total_order }}</span></li>
-                                </ul>
-                            </div>
+                                <!-- <li>Envío y Entrega <span>$15.00</span></li> --> 
+                                    <li>  Impuesto <span>${{ order.get_iva_order }}</span></li> 
+                                    <div class="total-order">
+                                        <ul>
+                                            <li>Total del pedido <span>${{ order.get_total_order }}</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </ul> 
                         </div>
-                        <div class="back-continue-wrap">
+                        <div class="back-continue-wrap button">
                             <a href="{% url 'core:cart' %}" style="visibility: hidden;"> Regresar</a>
                             <a href="{% url 'core:check-out' %}">Continuar</a>
         

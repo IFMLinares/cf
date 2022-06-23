@@ -8,7 +8,7 @@
         <div class="breadcrumb-area mt-150">
             <div class="container">
                 <div class="breadcrumb-content">
-                    <h2>Verificar</h2>
+                    <h2>Área de pago</h2>
                     <ul>
                         <li>
                             <a href="{% url 'core:index' %}">Inicio </a>
@@ -18,7 +18,7 @@
                             <a href="{% url 'core:store' %}">Productos </a>
                         </li>
                         <li><span> > </span></li>
-                        <li class="active"> Área depago </li>
+                        <li class="active"> Área de pago </li>
                     </ul>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     <div class="col-lg-10 ml-auto mr-auto">
                         <div class="cart-check-order-link">
                             <a href="{% url 'core:cart' %}">Carrito de compras</a>
-                            <a class="active" href="{% url 'core:check-out' %}">Verificar</a>
+                            <a class="active" href="{% url 'core:check-out' %}">Área de pago</a>
                             <!-- <a href="{% url 'core:CheckoutFinish' %}">Orden completada</a> -->
                         </div>
                     </div>
@@ -132,30 +132,29 @@
                             <h4 class="checkout-title">  Detalles de pago</h4>
                             <ul>
                                 {% for item in order.items.all %}
-                                 <li>{{ item.item.description }} x{{ item.quantity }} <span>${{ item.get_total_item_price }}</span></li>
-                            <hr class="hr-2">
-
+                                <li>{{ item.item.description }} x{{ item.quantity }} <span>${{ item.get_total_item_price }}</span></li> 
+                                <hr class="hr-2">
+                                
+                                <div class="border-carrito">
                                 {% endfor %}
-                                <li>Subtotal del carrito <span>${{ order.get_total }}</span></li>
-                            <hr class="hr-2">
+                                <li>Subtotal del carrito : <span>${{ order.get_total }}</span></li> 
 
                                 <!-- <li>Envío y Entrega <span>$15.00</span></li> -->
-                                <li>  IVA <span>${{ order.get_iva_order }}</span></li>
-                            </ul>
-                            <hr class="hr-2">
-
-                            <div class="total-order">
-                                <ul>
-                                    <li>Total a pagar <span>${{ order.get_total_order }}</span></li>
-                                </ul>
+                                <li>  IVA :<span>${{ order.get_iva_order }}</span></li>
+                                <div class="total-order">
+                                    <ul>
+                                        <li>Total a pagar : <span>${{ order.get_total_order }}</span></li>
+                                    </ul>
+                                </div>
                             </div>
+                            </ul> 
                         </div>
                     </div>
                 </div>
-                <div class="back-continue-wrap">
+                <div class="back-continue-wrap button">
                     <a href="{% url 'core:cart' %}"> Regresar</a>
                     <!-- <a href="#" onclick="sendForm()">Continuar</a> -->
-                    <button type="submit" class="btn btn-primary">Continuar</button>
+                    <button type="submit" class=" ">Continuar</button>
 
                 </div>
             </div>

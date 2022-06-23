@@ -47,22 +47,13 @@
                                 <div class="pay-top sin-payment">
                                     <input id="payment_method_1" class="input-radio" type="radio" value="paypal" checked="checked" name="payment_method">
                                     <label for="payment_method_1"> <img src="{% static 'assets/img/m-p.png' %}" alt=""> </label>
-                                </div>
-                                <div class="pay-top sin-payment">
-                                    <input id="payment-method-2" class="input-radio" type="radio" value="TB" name="payment_method">
-                                    <label for="payment-method-2">Transferencia Bancaria</label>
-                                    <!-- <div class="payment-box payment_method_bacs">
-
-
-                                        <form action="#">
-                                            <input type="text" required="" placeholder="Ingrese el correo electrónico de su tarjeta" name="name" style="width: 100%;">
-                                        </form>
-                                    </div> -->
-                                </div>
+                                </div> 
+                                <hr>
                                 <div class="pay-top sin-payment">
                                     <input id="payment-method-3" class="input-radio" type="radio" value="CA" name="payment_method">
-                                    <label for="payment-method-3"> Efectivo </label>
+                                    <label for="payment-method-3"> Transferencia Bancaria </label> 
                                     <div class="payment-box payment_method_bacs">
+                                        <p>Efectivo</p> <br>
                                         <p> Realiza tu pago directamente en nuestra cuenta bancaria. Utilice su ID de pedido como referencia de pago.</p>
                                     </div>
                                 </div>
@@ -81,17 +72,19 @@
                                  <li>{{ item.item.description }} x{{ item.quantity }} <span>${{ item.get_total_item_price }}</span></li>
                             <hr class="hr-2">
                                 {% endfor %}
-                                <li>Subtotal del carrito <span>${{ order.get_total }}</span></li>
-                                <hr class="hr-2">
-                                <!-- <li>Envío y Entrega <span>$15.00</span></li> -->
-                                <li>  IVA <span>${{ order.get_iva_order }}</span></li>
-                            </ul>
-                            <hr class="hr-2">
-                            <div class="total-order">
-                                <ul>
-                                    <li>Total del pedido <span>${{ order.get_total_order }}</span></li>
-                                </ul>
-                            </div>
+                                <div class="border-carrito">
+
+                                    <li>Subtotal del carrito <span>${{ order.get_total }}</span></li> 
+                                    <!-- <li>Envío y Entrega <span>$15.00</span></li> -->
+                                    <li>  IVA <span>${{ order.get_iva_order }}</span></li>
+                                    <div class="total-order">
+                                        <ul>
+                                            <li>Total del pedido <span>${{ order.get_total_order }}</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </ul> 
+                            
                         </div>
                     </div>
                 </div>
