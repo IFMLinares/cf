@@ -8,6 +8,7 @@ function modalproduct(sku,des,inv,precio,imagen,slug){
     $('#inv').text('')
     $('#precio').text('')
     $('#slug-modal').val('')
+    $('#sku_code').val('')
 
     $('#des').text(des)
     $('#desp').text(des)
@@ -16,6 +17,7 @@ function modalproduct(sku,des,inv,precio,imagen,slug){
     $('#image-product-modal').attr('src', imagen)
     $('#exampleModal').modal('show');
     $('#slug-modal').val(slug)
+    $('#sku_code').text(sku)
     console.log(slug)
 
 }

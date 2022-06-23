@@ -77,20 +77,15 @@
   </div>
 </div>
 
-<div class="center">
-  <button style="text-align:center;" onclick="toastFunction()">Show Toast</button>
+<!-- 
+  <div class="center">
+    <button style="text-align:center;" onclick="toastFunction()">Show Toast</button>
   </div>
   
   <div id="toast">
     <div class="checkicon "> <i class="fas fa-check-square"></i> </div>
   <p class="alert alert-primary"> SUCCESS: We have received your registration. Thanks!</p></div>
-
-
-
-
-
-
-
+ -->
 
 
 <div class="container mt-xl-3">
@@ -236,6 +231,7 @@
               {% csrf_token %}
             <div class="product-action-wrap">
                 <div class="product-action-cart">
+                  <input type="hidden" name="next" value="{{ request.path }}">
                     <input type="hidden" name="slug" id="slug" value="{{ item.slug }}">
                     <button title="Añadir al Carrito" type="submit">Añadir al Carrito</button>
                     <button type="button" onclick="modalproduct('{{ item.sku_code }}','{{ item.description }}','{{ item.stock }}','{{ item.sale_price }}', '{{item.image.url}}', '{{item.slug}}')"><i class="icon-zoom"></i></button>
@@ -393,7 +389,7 @@
               </div>
               <div class="product-details-meta">
                 <ul>
-                  <li><span>Modelo:</span> <a href="#">XXXXX</a></li>
+                  <li><span>SKU:</span> <a href="#"><span id="sku_code"></span></a></li>
                 </ul>
               </div>
               <div class="pro-details-action-wrap">
@@ -525,6 +521,7 @@
               {% csrf_token %}
             <div class="product-action-wrap">
                 <div class="product-action-cart">
+                  <input type="hidden" name="next" value="{{ request.path }}">
                     <input type="hidden" name="slug" id="slug" value="{{ item.slug }}">
                     <button title="Añadir al Carrito" type="submit">Añadir al Carrito</button>
                     <button type="button" onclick="modalproduct('{{ item.sku_code }}','{{ item.description }}','{{ item.stock }}','{{ item.sale_price }}', '{{item.image.url}}', '{{item.slug}}')"><i class="icon-zoom"></i></button>
