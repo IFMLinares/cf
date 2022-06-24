@@ -23,8 +23,8 @@ from django.contrib import admin
 
 from django.conf import settings
 urlpatterns = [
-    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
-    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
+    # path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    # path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('admin/', admin.site.urls),
     path('paypal/', include('paypal.standard.ipn.urls')),
     path('accounts/', include('allauth.urls')),
