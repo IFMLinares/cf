@@ -21,7 +21,7 @@
 <div class="product-details-area slider-mt-7 ">
     <div class="container">
         <div class="product-details-top-content">
-            <div class="product-details-content" >
+            <div class="product-details-content" style="visibility: hidden;">
                 <h2>{{ item.description }}</h2> 
             </div>
             <div class="product-details-content">
@@ -57,6 +57,9 @@
                 </div>
                 <div class="col-lg-5 col-md-6">
                     <div class="product-details-content ml-50 mb-50"> 
+                        <div class="product-details-content" >
+                            <h2>{{ item.description }}</h2> 
+                        </div>
                         <p class="pro-dec-paragraph-2 " style="font-weight: bold; color: black;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque repellat libero </p>
                     </div>
                     <div class="product-details-content product-details-content-6">
@@ -100,11 +103,8 @@
                         </div>
                         <div class="product-details-meta">
                             <ul>
-<<<<<<< HEAD
                                 <li><span style="font-weight: bold; color: black;">Modelo:</span> <a href="#" style="font-weight: bold; color: black;">XXXX</a></li>
-=======
                                 <li><span style="font-weight: bold; color: black;">SKU:</span> <a href="#">{{ item.sku_code }}</a></li>
->>>>>>> a0a3818a7440d74aa66bbbebb84e17c9b657fc6f
                                 <!-- <li><span>Ship To</span> <a href="#">2834 Laurel Lane</a>, <a href="#">Mentone</a> , <a href="#">Texas</a></li> -->
                             </ul>
                         </div>

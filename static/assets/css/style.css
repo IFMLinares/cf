@@ -24520,7 +24520,7 @@ textarea:focus {
 .product-details-content h2 {
   font-size: 29px;
   font-weight: bold;
-  margin: 0;
+  margin: 0 50px;
 }
  
 @media only screen and (max-width: 767px) {
@@ -24796,7 +24796,7 @@ textarea:focus {
 }
 
 .product-details-content .product-details-meta ul li:last-child {
-  argin: 0 0 0px;
+  margin: 0 0 0px;
 }
 
 .product-details-content .product-details-meta ul li span {
@@ -29621,10 +29621,13 @@ textarea:focus {
 .cart-check-order-link a {
   display: inline-block;
   font-size: 16px;
-  color: #777777;
+  color: #ED4ACA;
+  font-weight: bold;
   padding: 20px 70px;
   margin: 0 25px;
   line-height: 1;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -29659,8 +29662,8 @@ textarea:focus {
 .cart-check-order-link a.active {
   font-size: 15px;
   font-weight: bold;
-  color: #333333;
-  background-color: #FAFAFA;
+  color: white;
+  background-color: #ED4ACA;
   border-radius: 15px 15px 0 0;
 }
 
@@ -29671,7 +29674,9 @@ textarea:focus {
 }
 
 .cart-check-order-link a:hover {
-  color: #333333;
+  background-color: white;
+  color: #ED4ACA;
+  border: solid 1px #ED4ACA;
   font-weight: bold;
 }
 
