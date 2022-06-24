@@ -66,9 +66,8 @@
                                                             <tr>
                                                                 <td style="font-weight: bold;">{{ order.pk }}</td>
                                                                 <td style="font-weight: bold;">{{ order.ordered_date|date:"d/m/Y"  }}</td>
-                                                                <td style="font-weight: bold;">{% if order.ordered %}Pagado{% endif %}</td>
+                                                                <td style="font-weight: bold;">{{ order.status }}</td>
                                                                 <td style="font-weight: bold;">{{ order.totalOrden }}</td>
-                                                                <td style="font-weight: bold;"><a href="" class="check-btn sqr-btn ">{{ order. }}</a></td>
                                                             </tr>
                                                             {% endfor %}
                                                         </tbody>

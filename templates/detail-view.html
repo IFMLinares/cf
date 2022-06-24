@@ -98,8 +98,9 @@
                         <div class="pro-details-quality">
                             <span style="font-weight: bold; color: black;">Cantidad</span>
                             <div class="cart-plus-minus">
-                                <input class="cart-plus-minus-box" type="number" name="quantity" value="1" style="font-weight: bold; color: black;">
+                                <input class="cart-plus-minus-box" type="number" name="quantity" value="1" style="font-weight: bold; color: black;" id="quantity">
                             </div>
+                            <span style="font-weight: bold; color: black;">Disponible: {{ item.stock }}</span>
                         </div>
                         <div class="product-details-meta">
                             <ul>
@@ -114,7 +115,6 @@
                                     <input type="hidden" name="slug" id="slug" value="{{ item.slug }}">
                                 </div>
                             </div> 
-
                         </form>
                         </div>
                     </div>
@@ -340,4 +340,25 @@
     </div>
 </div> 
 
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    var quantity = '{{ item.stock }}'
+    $('#quantity').on('keyup', function(){
+        if($(this).val() > quantity){
+            $(this).val(quantity)
+        }
+    })
+    $('.dec').on('click', function(){
+        if($('#quantity').val() - 1 < 1){
+            $('#quantity').val(1)
+        }
+    })
+    $('.inc').on('click', function(){
+        if($('#quantity').val() > quantity){
+            $('#quantity').val(1)
+        }
+    })
+</script>
 {% endblock %}
