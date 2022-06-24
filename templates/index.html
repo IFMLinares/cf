@@ -77,28 +77,19 @@
   </div>
 </div>
 
-<!-- 
-  <div class="center">
-    <button style="text-align:center;" onclick="toastFunction()">Show Toast</button>
-  </div>
+
+  <!-- <div class="center">
+    <button style="text-align:center;" onclick="toastFunction()" id="btn-toast">Show Toast</button>
+  </div> -->
   
-  <div id="toast">
-    <div class="checkicon "> <i class="fas fa-check-square"></i> </div>
-  <p class="alert alert-primary"> SUCCESS: We have received your registration. Thanks!</p></div>
- -->
-
-
-<div class="container mt-xl-3">
   {% if messages %}
-  {% for message in messages %}
-  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-      {{ message }}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-      </button>
-  </div>
-  {% endfor %}
+    {% for message in messages %}
+    <div id="toast">
+      <div class="checkicon "> <i class="fas fa-check-square"></i> </div>
+    <p class="alert alert-{{ message.tags }}"> {{ message }}</p></div>
+    {% endfor %}
   {% endif %}
+
 </div>
 <div class="product-area pb-10" style="margin-top: 50px">
   <div class="container"> 
@@ -864,4 +855,12 @@
   </div>
 </div>
 
+{% endblock %}
+
+{% block extra_js %}
+  {% if messages %}
+  <script>
+    toastFunction();
+  </script>
+  {% endif %}
 {% endblock %}

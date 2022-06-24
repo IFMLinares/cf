@@ -5,18 +5,14 @@
 {% block content %}
 
 
-<div class="container">
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    {% endfor %}
-    {% endif %}
-  </div>
+
+{% if messages %}
+{% for message in messages %}
+<div id="toast">
+  <div class="checkicon "> <i class="fas fa-check-square"></i> </div>
+<p class="alert alert-{{ message.tags }}"> {{ message }}</p></div>
+{% endfor %}
+{% endif %}
 
 
 <div class="breadcrumb-area mt-150">
@@ -156,3 +152,11 @@
 
 
         {% endblock %}
+
+        {% block extra_js %}
+        {% if messages %}
+        <script>
+          toastFunction();
+        </script>
+        {% endif %}
+      {% endblock %}
