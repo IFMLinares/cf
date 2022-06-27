@@ -86,7 +86,7 @@ class Index(View):
 # Lista de Productos
 class Store(CartMixin,ListView):
     model = Item
-    paginate_by = 9
+    paginate_by = 12
     template_name = 'store.html'
     context_object_name = 'items'
 
