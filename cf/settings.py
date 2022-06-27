@@ -171,5 +171,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 LOGIN_REDIRECT_URL = '/'
 
 #  PAYPAL SETTINGS
-PAYPAL_TEST = True
-PAYPAL_RECEIVER_EMAIL = 'sb-ylz7o15247147@business.example.com'
+PAYPAL_TEST = False
+PAYPAL_RECEIVER_EMAIL = 'Luis.huerta.2507@gmail.com'
