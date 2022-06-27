@@ -24692,8 +24692,8 @@ textarea:focus {
 
 .product-details-content .pro-details-price span {
   font-size: 30px;
-  font-weight: 500;
-  color: #3A3A3A;
+  font-weight: bold;
+  color: #ED4ACA;
 }
 
 .product-details-content .pro-details-price span.old-price {
