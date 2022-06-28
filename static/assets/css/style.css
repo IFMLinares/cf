@@ -2295,7 +2295,7 @@ textarea:focus {
   /* background: -webkit-linear-gradient(266deg, #fcf9f2 0%, #fce4d3 100%);
   background: -o-linear-gradient(266deg, #fcf9f2 0%, #fce4d3 100%);
   background: linear-gradient(184deg, #fcf9f2 0%, #fce4d3 100%); */
-  background-image: url(../img/Portada\ Movil.png);
+  background-image: url(../img/Movil.jpg);
   background-size: 100% 90%; 
   /* background-size cambia el tamaño de la imagenj */
   background-repeat: no-repeat; 
@@ -24555,7 +24555,7 @@ textarea:focus {
   position: relative;
 }
 
-.product-details-content .product-ratting-review-wrap .product-ratting-digit-wrap:before {
+/* .product-details-content .product-ratting-review-wrap .product-ratting-digit-wrap:before {
   position: absolute;
   content: "";
   top: 50%;
@@ -24566,7 +24566,7 @@ textarea:focus {
   background-color: #BCBCBC;
   height: 15px;
   width: 1px;
-}
+} */
 
 .product-details-content .product-ratting-review-wrap .product-ratting-digit-wrap .product-ratting {
   display: -webkit-box;
@@ -30945,6 +30945,23 @@ h4.checkout-title::before {
   border:  1px solid #ED4ACA;
 }
 .button a { 
+  color: #ED4ACA; 
+  font-weight: bold; 
+  line-height: 1;
+  padding: 18px 45px 19px;
+  background-color: white;
+  border:  1px solid #ED4ACA;
+
+}
+
+.button a:hover { 
+  color: white !important; 
+  font-weight: bold;  
+  background-color: #ED4ACA !important;
+  border:  1px solid #ED4ACA;
+
+}
+.buttons a { 
   color: white; 
   font-weight: bold; 
   line-height: 1;
@@ -30953,14 +30970,13 @@ h4.checkout-title::before {
   border:  1px solid #ED4ACA;
 
 }
-.button a:hover { 
+.buttons a:hover { 
   color: #ED4ACA !important; 
   font-weight: bold;  
   background-color: white !important;
   border:  1px solid #ED4ACA;
 
-}
-
+} 
 
 @media only screen and (max-width: 767px) {
   .back-continue-wrap a {
