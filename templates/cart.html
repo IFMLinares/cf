@@ -123,18 +123,18 @@
                             <h4 class="checkout-title">Sumatoria de la Orden</h4>
                             <ul>
                                 {% for item in order.items.all %}
-                                 <li>{{ item.item.description }} x{{ item.quantity }} <span>${{ item.get_total_item_price }}</span></li>
+                                 <li>{{ item.item.description }} x{{ item.quantity }} <span>${{ item.get_total_item_price|floatformat:"2" }}</span></li>
                             <hr class="hr-2">
                             
                             {% endfor %}
                             <div class="border-carrito"> 
-                                <li>Subtotal del carrito :<span>${{ order.get_total }}</span></li> 
+                                <li>Subtotal del carrito :<span>${{ order.get_total|floatformat:"2" }}</span></li> 
 
                                 <!-- <li>Envío y Entrega <span>$15.00</span></li> --> 
                                     <!-- <li>  Impuesto <span>${{ order.get_iva_order }}</span></li>  -->
                                     <div class="total-order">
                                         <ul>
-                                            <li>Total del pedido :<span>${{ order.get_total_order }}</span></li>
+                                            <li>Total del pedido :<span>${{ order.get_total_order|floatformat:"2" }}</span></li>
                                         </ul>
                                     </div>
                                 </div>
