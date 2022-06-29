@@ -181,7 +181,7 @@ class UserAdmin(admin.ModelAdmin):
     readonly_fields = [
         'username',
         'last_login',
-        'is_superuser',
+        # 'is_superuser',
         'first_name',
         'last_name',
         'doc',
