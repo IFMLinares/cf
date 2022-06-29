@@ -35,33 +35,37 @@ class User(AbstractUser):
 
 # PRODUCTOS
 class Item(models.Model):
-    sku_code = models.CharField(max_length=100, blank=False, null=False)
-    description = models.CharField(max_length=100, blank=False, null=False)
+    sku_code = models.CharField(max_length=100, blank=False, null=False, verbose_name='Código SKU')
+    description = models.CharField(max_length=100, blank=False, null=False, verbose_name='Nombre')
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
-    image = models.ImageField(upload_to = 'media', blank=False, null=False)
-    stock = models.IntegerField(default=1, blank=False, null=False)
-    category = models.CharField(max_length=2, choices=CATEGORY_CHOICES)
-    discount_price = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2)
-    outstanding = models.BooleanField(default=False,blank=True, null=True)
+    image = models.ImageField(upload_to = 'media', blank=False, null=False, verbose_name='Imagen')
+    stock = models.IntegerField(default=1, blank=False, null=False, verbose_name='Cantidad en stock')
+    category = models.CharField(max_length=2, choices=CATEGORY_CHOICES, verbose_name='Categoría')
+    discount_price = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2, verbose_name='Precio de descuento')
+    outstanding = models.BooleanField(default=False,blank=True, null=True, verbose_name='Destacados')
 
     
     # Dimensiones
     l = models.FloatField(blank=False, null=False)
     h = models.FloatField(blank=False, null=False)
     v = models.FloatField(blank=False, null=False)
-    cubic_meter = models.CharField(max_length=100, blank=True, null=True)
+    cubic_meter = models.CharField(max_length=100, blank=True, null=True, verbose_name='metro Cúbico')
 
-    price_before_taxes = models.DecimalField(blank=False, null=False,max_digits=100, decimal_places=2)
-    freight = models.DecimalField(blank=False, null=False,max_digits=100, decimal_places=2)
-    custom_taxe = models.DecimalField(blank=False, null=False,max_digits=100, decimal_places=2)
+    price_before_taxes = models.DecimalField(blank=False, null=False,max_digits=100, decimal_places=2, verbose_name='Costo del producto')
+    freight = models.DecimalField(blank=False, null=False,max_digits=100, decimal_places=2, verbose_name='Flete')
+    custom_taxe = models.DecimalField(blank=False, null=False,max_digits=100, decimal_places=2, verbose_name='Impuestos aduanales')
     # costo total del producto:
-    price = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2)
+    price = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2, verbose_name='Costo total')
     # precio de venta:
-    sale_price = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2)
+    sale_price = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2, verbose_name='Precio de venta')
 
-    margin = models.CharField(max_length=100, blank=True, null=True)
+    margin = models.CharField(max_length=100, blank=True, null=True, verbose_name='Margen')
 
-    gain = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2)
+    gain = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2, verbose_name='Ganancia')
+
+    
+    def __str__(self):
+        return self.description
 
     def save(self, *args, **kwargs):
         price = round((self.price_before_taxes) + (self.freight) + (self.custom_taxe),2)
@@ -99,11 +103,11 @@ class Item(models.Model):
         verbose_name_plural = "Tienda: Productos"
 
 class OrderItem(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    ordered = models.BooleanField(default=False)
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
-    totalItem = models.DecimalField(null=True, blank=True,max_digits=100, decimal_places=2)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Usuario')
+    ordered = models.BooleanField(default=False, verbose_name='Pagado')
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, verbose_name='Producto')
+    quantity = models.IntegerField(default=1, verbose_name='cantidad')
+    totalItem = models.DecimalField(null=True, blank=True,max_digits=100, decimal_places=2, verbose_name='Subtotal')
 
     def __str__(self):
         return f"{self.item.description} x{self.quantity} \n"
@@ -132,22 +136,26 @@ class OrderItem(models.Model):
         verbose_name_plural = "Productos Ordenados"
 
 class PromoCode(models.Model):
-    promo_code = models.CharField(max_length=100, blank=True, null=True)
-    discount_total = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2)
+    promo_code = models.CharField(max_length=100, blank=True, null=True, verbose_name='Código de descuento')
+    discount_total = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2, verbose_name='Descuento')
+
+    def __str__(self):
+        return self.promo_code
+    
 
 class Order(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    promoCode = models.ForeignKey(PromoCode, on_delete=models.SET_NULL, blank=True, null=True, default=None)
-    items = models.ManyToManyField(OrderItem)
-    start_date = models.DateTimeField(auto_now_add= True)
-    ordered_date = models.DateTimeField()
-    ordered = models.BooleanField(default=False)
-    payment_method = models.CharField(max_length=100, blank=True, null=True, choices=STATUS_CHOICES) 
-    status = models.CharField(max_length=100, blank=True, null=True)
-    message = models.TextField(null=True, blank=True)
-    billing_address = models.ForeignKey('BillingAddress', on_delete=models.SET_NULL, blank=True, null=True)
-    shipping_address = models.ForeignKey('Address', on_delete=models.SET_NULL, blank=True, null=True)
-    totalOrden = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='usuario')
+    promoCode = models.ForeignKey(PromoCode, on_delete=models.SET_NULL, blank=True, null=True, default=None, verbose_name='Código de descuento')
+    items = models.ManyToManyField(OrderItem, verbose_name='Productos')
+    start_date = models.DateTimeField(auto_now_add= True, verbose_name='Fecha de inicio')
+    ordered_date = models.DateTimeField(verbose_name='Fecha de pago')
+    ordered = models.BooleanField(default=False, verbose_name='Pagado')
+    payment_method = models.CharField(max_length=100, blank=True, null=True, choices=STATUS_CHOICES, verbose_name='Método de pago') 
+    status = models.CharField(max_length=100, blank=True, null=True, verbose_name='Estatus')
+    message = models.TextField(null=True, blank=True, verbose_name='Mensaje')
+    billing_address = models.ForeignKey('BillingAddress', on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Dirección de Facturación')
+    shipping_address = models.ForeignKey('Address', on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Dirección de Compra')
+    get_total_order = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2, verbose_name='Total de la orden')
 
     def __str__ (self):
         return self.user.username
@@ -177,12 +185,16 @@ class Order(models.Model):
 
 class Address(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
-    direction = models.CharField(max_length=100)
-    CodeLocation = models.CharField(max_length=100)
-    Province = models.CharField(max_length=100)
-    district = models.CharField(max_length=100)
+                             on_delete=models.CASCADE, verbose_name='Usuario')
+    direction = models.CharField(max_length=100, verbose_name='Dirección')
+    CodeLocation = models.CharField(max_length=100, verbose_name='Código Postal')
+    Province = models.CharField(max_length=100, verbose_name='Provincia')
+    district = models.CharField(max_length=100, verbose_name='Distrito')
     show = models.BooleanField(default=False, null=True)
+
+    
+    def __str__(self):
+        return 'Dirección: ' + self.direction + ', Provincia: ' + self.Province
 
     class Meta:
         verbose_name = "Usuario: Dirección de envío"
@@ -191,11 +203,14 @@ class Address(models.Model):
 class BillingAddress(models.Model):    
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
-    direction = models.CharField(max_length=100)
-    CodeLocation = models.CharField(max_length=100)
-    Province = models.CharField(max_length=100)
-    district = models.CharField(max_length=100)
+    direction = models.CharField(max_length=100, verbose_name='Dirección')
+    CodeLocation = models.CharField(max_length=100, verbose_name='Código Postal')
+    Province = models.CharField(max_length=100, verbose_name='Provincia')
+    district = models.CharField(max_length=100, verbose_name='Distrito')
     show = models.BooleanField(default=False, null=True)
+    
+    def __str__(self):
+        return 'Dirección: ' + self.direction + ', Provincia: ' + self.Province
     
     class Meta:
         verbose_name = "Usuario: Dirección de facturación"

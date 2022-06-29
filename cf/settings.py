@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from pathlib import Path
+from django.contrib import admin
 
 import cf.db as db
 
@@ -32,8 +33,8 @@ ALLOWED_HOSTS = ['localhost', 'ifmlinares.pythonanywhere.com', '*']
 
 # Application definition
 INSTALLED_APPS = [
-    # 'jet.dashboard',
-    # 'jet',
+    'jet.dashboard',
+    'jet',
     'django.contrib.admin',
 
     'django.contrib.auth',
@@ -173,3 +174,6 @@ LOGIN_REDIRECT_URL = '/'
 #  PAYPAL SETTINGS
 PAYPAL_TEST = False
 PAYPAL_RECEIVER_EMAIL = 'Luis.huerta.2507@gmail.com'
+
+# Django Jet settings
+# admin.site.site_header = "Administración Cositas Favoritas"
