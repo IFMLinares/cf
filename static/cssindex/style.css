@@ -63,6 +63,15 @@
   font-weight: lighter;
   text-align: justify;
  }
+ .card-deck .card{
+  transition: width 2s;
+ }
+ .card-deck .card:hover{
+  /* background-color: #ed4aca; */
+  position: relative;
+  top: -20px;
+  transition: 4s;
+ } 
 /* Cuadro contactanos index */
 
 .contain-form {
@@ -622,5 +631,25 @@ hr.hr-2 {
   .card-deck {
     width: 100%;
     padding-left: 0%;
+  }
+  .subheader-img{
+    background-image: url(../assets/img/banner.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 225px;
+    margin-top: 50px;
+  }
+  .subheader-contain{
+    background-color: rgba(255, 255, 255, 0.76); 
+     position: relative;
+     top: 100px;
+  }
+  .subheader-contain p{
+    font-weight: bold;
+    color: black;
+    font-size: 12px;
+  }
+  .contain-card{
+    margin-top: 30px;
   }
 }
