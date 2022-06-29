@@ -3136,7 +3136,14 @@ textarea:focus {
 .btn-style-3 a.btn3-bg-green-3 {
   background-color: #62BC77;
 }
-
+.btn-style-3 a.btn3-bg-brow {
+  border: 1px solid #ED4ACA; 
+  color: white;
+  background-color: #ED4ACA;
+}
+.btn-style-3 a.btn3-bg-brow:hover { 
+  color: #ED4ACA;
+}
 .btn-style-3 a.btn3-bg-brown {
   border: 1px solid white;
   color: white;
