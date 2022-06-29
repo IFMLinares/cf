@@ -224,7 +224,7 @@
                   class="header-action-wrap header-action-flex header-action-mrg-1"
                 >
                   {% if user.is_authenticated %}
-                  <div class="main-menu main-menu-white menu-lh-1 main-menu-padding-1 menu-mrg-0" >
+                  <div class="main-menu main-menu-white   main-menu-padding-1 menu-mrg-0" >
                     <nav>
                       <ul> 
                         <li>
@@ -316,12 +316,10 @@
           <div class="mobile-menu-content-area sidebar-content-100-percent">
             <div class="clickable-mainmenu-wrap clickable-mainmenu-style1">
               <nav>
-                <ul>
-                  <li class="has-sub-menu">
-                    <a href="{% url 'core:index' %}">Inicio</a>
-                  </li>
+                <ul > 
+                    <li><a href="{% url 'core:index' %}">Inicio</a></li> 
                   <hr>
-
+                  
                   <li class="has-sub-menu">
                     <a href="#">Tienda</a>
                     <ul class="sub-menu-2"> 

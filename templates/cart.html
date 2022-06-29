@@ -131,7 +131,7 @@
                                 <li>Subtotal del carrito :<span>${{ order.get_total|floatformat:"2" }}</span></li> 
 
                                 <!-- <li>Envío y Entrega <span>$15.00</span></li> --> 
-                                    <!-- <li>  Impuesto <span>${{ order.get_iva_order }}</span></li>  -->
+                                    <li>  Impuesto : <span>${{ order.get_iva_order }}</span></li> 
                                     <div class="total-order">
                                         <ul>
                                             <li>Total del pedido :<span>${{ order.get_total_order|floatformat:"2" }}</span></li>
@@ -140,7 +140,7 @@
                                 </div>
                             </ul> 
                         </div>
-                        <div class="back-continue-wrap button">
+                        <div class="back-continue-wrap buttons">
                             <a href="{% url 'core:cart' %}" style="visibility: hidden;"> Regresar</a>
                             <a href="{% url 'core:check-out' %}">Continuar</a>
         
