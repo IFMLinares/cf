@@ -1,0 +1,64 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static jet_dashboard_tags static %}
+
+{% block html %}{% get_dashboard 'index' as dashboard %}{{ block.super }}{% endblock %}
+{% block title %}{% endblock %}
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />
+
+    {% for css in dashboard.media.css %}
+        <link href="{% static css %}" rel="stylesheet" />
+    {% endfor %}
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+
+    {% for js in dashboard.media.js %}
+        <script src="{% static js %}"></script>
+    {% endfor %}
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard jet{% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+
+{% block content %}
+    {{ dashboard.render }}
+    <script>
+        // let div = document.querySelector('div[data-module-id="5"]');
+        let div = document.getElementsByClassName('dashboard-item collapsible deletable ajax draggable');
+        console.log(div)
+        div[0].style.display = 'none'
+        
+        // div = document.querySelector('div[data-module-id="6"]');
+        let div1 = document.getElementsByClassName('dashboard-item collapsible deletable draggable');
+        div1[3].style.display = 'none'
+        div1[4].style.display = 'none'
+        console.log(div1)
+
+        a = document.querySelector('a[title="Modelos en la aplicación core"]');
+        a.innerHTML = 'Ver Órdenes'
+        
+        let li = document.getElementsByClassName('contrast');
+        li[1].style.display = 'none'
+        li[2].style.display = 'none'
+        li[3].style.display = 'none'
+
+        
+        li = document.querySelector('a[href="/admin/ipn/paypalipn/"]');
+        li.parentNode.parentNode.style.display = 'None'
+
+        
+        li = document.querySelector('a[href="/admin/account/emailaddress/"]');
+        li.parentNode.parentNode.style.display = 'None'
+
+        li = document.querySelector('a[href="/admin/sites/site/"]');
+        li.parentNode.parentNode.style.display = 'None'
+
+
+
+    </script>
+{% endblock %}
