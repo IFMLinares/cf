@@ -17,7 +17,7 @@
                     <a href="{% url 'core:store' %}">Productos </a>
                 </li>
                 <li><span> > </span></li>
-                <li class="active"> Orden Completa </li>
+                <li class="active"> Pedido Completado </li>
             </ul>
         </div>
     </div>
@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-lg-10 ml-auto mr-auto">
                 <div class="cart-check-order-link">
-                    <a class="active" href="{% url 'core:CheckoutFinish' %}">Orden completada</a>
+                    <a class="active" href="{% url 'core:CheckoutFinish' %}">Pedido completado</a>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
         <div class="order-complete-area bg-gray pt-50 pb-160">
             <div class="container">
                 <div class="order-complete-title">
-                    <h2 style="font-weight: bold; color:black;"> Gracias. Tu orden ha sido recibida.</h2>
+                    <h2 style="font-weight: bold; color:black;"> Gracias por comprar en Cositas Favoritas. Tu pedido ha sido recibido estaremos procesándolo para su entrega.</h2>
                     {{ res.as_p }}
                     <!-- <h3>su orden no ha sido procesada</h3> -->
                 </div>
@@ -46,7 +46,7 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th style="color: black; font-weight:bold;">Orden No°</th>
+                                        <th style="color: black; font-weight:bold;">Pedido No°</th>
                                         <th style="color: black; font-weight:bold;">Fecha</th>
                                         <th style="color: black; font-weight:bold;">Total</th>
                                         <th style="color: black; font-weight:bold;">Método de Pago</th>
@@ -73,9 +73,9 @@
                         {{ res.as_p }}
                     </form>
                 </div>
-                <div class="back-continue-wrap">
-                    <a href="{% url 'core:check-out' %}"> Regresar</a>
-                    <a href="{% url 'core:store' %}">Ir a tienda</a>
+                <div class="back-continue-wrap buttons">
+                    <a href="{% url 'core:check-out' %}" style="visibility: hidden;"> Regresar</a>
+                    <a href="{% url 'core:store' %}">Visitar Tienda</a>
                 </div>
             </div>
         </div>

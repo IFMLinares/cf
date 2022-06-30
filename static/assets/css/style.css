@@ -8786,19 +8786,8 @@ textarea:focus {
   width: 100%;
 }
 
-.pet-food-bg-img {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
 
-.pet-food-bg-img img {
-  width: 100%;
-  background-size: contain;
-  position: relative;
-  top: 200px;  
-}
+
 
 .slider-content-6 {
   padding-top: 55px;
@@ -15366,6 +15355,7 @@ textarea:focus {
 .product-wrap .product-action-wrap > .product-action-cart > button:hover {
   background-color: white;
   color: #ED4ACA;
+  border: #ED4ACA 1px solid;
 }
 
 .product-wrap .product-action-wrap > button {

@@ -576,14 +576,14 @@ def addto(request):
                     order_item.quantity = quantity
                     order_item.save()
                     order.items.add(order_item)
-                    messages.info(request, 'Este producto fue añadido satisfactoriamente a su carrito')
+                    messages.info(request, 'Este producto fue añadido con éxito a su carrito')
                     # return redirect('core:store')
                     return HttpResponseRedirect(next)
             else:
                 ordered_date = timezone.now()
                 order = Order.objects.create(user=request.user, ordered_date=ordered_date)
                 order.items.add(order_item)
-                messages.info(request, 'Este producto fue añadido satisfactoriamente a su carrito')
+                messages.info(request, 'Este producto fue añadido con éxito a su carrito')
             # return redirect('core:store')
             return HttpResponseRedirect(next)
     else:

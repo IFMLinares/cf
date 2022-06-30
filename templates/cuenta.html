@@ -22,7 +22,7 @@
                                 <div class="col-lg-3 col-md-4">
                                     <div class="myaccount-tab-menu nav" role="tablist">
                                         <a href="#dashboad" class="active" data-toggle="tab">Escritorio</a>
-                                        <a href="#orders" data-toggle="tab">Historial de Órdenes</a> 
+                                        <a href="#orders" data-toggle="tab">Pedidos</a> 
                                         <a href="#payment-method" data-toggle="tab"> Métodos de Pago</a>
                                         <a href="#address-edit" data-toggle="tab">Dirección</a>
                                         <a href="#account-info" data-toggle="tab">Detalles de la Cuenta</a>
@@ -40,7 +40,7 @@
                                             <div class="myaccount-content">
                                                 <h3>Panel de control</h3>
                                                 <div class="welcome">
-                                                    <p>Hola, <strong>{{ request.user.first_name }} {{ request.user.first_name }}{{ request.user.last_name }}</strong> (Si no eres <strong>{{ request.user.username }} !</strong><a href="{% url 'account_logout' %}" class="logout"> Salir</a>)</p>
+                                                    <p>Bienvenido, <strong>{{ request.user.first_name }} {{ request.user.first_name }}{{ request.user.last_name }}</strong> (Si no eres <strong>{{ request.user.username }} !</strong><a href="{% url 'account_logout' %}" class="logout"> Salir</a>)</p>
                                                 </div>
 
                                                 <p class="mb-0">Desde el panel de tu cuenta. puede verificar y ver fácilmente sus pedidos recientes, administrar sus direcciones de envío, facturación, editar su contraseña y los detalles de su cuenta.</p>
@@ -50,12 +50,12 @@
                                         <!-- Single Tab Content Start -->
                                         <div class="tab-pane fade" id="orders" role="tabpanel">
                                             <div class="myaccount-content">
-                                                <h3>Órdenes</h3>
+                                                <h3>Pedidos</h3>
                                                 <div class="myaccount-table table-responsive text-center">
                                                     <table class="table table-bordered">
                                                         <thead class="thead-light">
                                                             <tr style="font-weight: bold;">
-                                                                <th style="font-weight: bold;">Orden</th>
+                                                                <th style="font-weight: bold;">Pedidos</th>
                                                                 <th style="font-weight: bold;">Fecha</th>
                                                                 <th style="font-weight: bold;">Status</th>
                                                                 <th style="font-weight: bold;">Total</th> 
