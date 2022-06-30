@@ -30,7 +30,6 @@ from paypal.standard.forms import PayPalPaymentsForm
 from .models import Item, OrderItem, Order, Address, BillingAddress,User
 from .forms.forms import CheckoutForm, CheckoutForm1
 from .decoratorsp.decorators import login_required_message
-# Create your views here.
 
 class CartMixin(ContextMixin):
     def get_order(self):

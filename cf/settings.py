@@ -177,3 +177,29 @@ PAYPAL_RECEIVER_EMAIL = 'Luis.huerta.2507@gmail.com'
 
 # Django Jet settings
 # admin.site.site_header = "Administración Cositas Favoritas"
+
+JET_SIDE_MENU_ITEMS = [
+    # {'label': 'Usuarios','app_label': 'auth', 'items': [
+    #     {'name': 'group'},
+    # ]},
+    {'app_label': 'core', 'items': [
+        # {'name': 'orderitem'},
+        {'name': 'order'},
+        {'name': 'item'},
+        # {'name': 'address'},
+        # {'name': 'billingaddress'},
+        {'name': 'user'},
+    ]},
+    # {'app_label': 'account', 'items': [
+    #     {'name': 'emailaddress'},
+    # ]},
+    # {'app_label': 'ipn', 'items': [
+    #     {'name': 'paypalipn'},
+    # ]},
+    # {'app_label': 'sites', 'items': [
+    #     {'name': 'site'},
+    # ]},
+]
+
+JET_SIDE_MENU_COMPACT = True
+JET_CHANGE_FORM_SIBLING_LINKS = True
