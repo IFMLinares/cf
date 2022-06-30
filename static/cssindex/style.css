@@ -332,6 +332,21 @@ hr.hr-2 {
       font-size: 40px;
       color: #47d764;
   }
+  .area-height{
+    height: 300px !important; 
+  }
+  .subheader-img{
+    background-image: url(../assets/img/bannersubheader01.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 225px; 
+    margin-top: 100px;
+  }
+  .subheader-contain{
+    background-color: rgba(255, 255, 255, 0.76); 
+     position: relative;
+     top: 100px;
+  }
 /* laptop */
 @media only screen and (min-device-width: 800px) and (max-device-width: 1280px) {
   .mobile-logo-width img {
