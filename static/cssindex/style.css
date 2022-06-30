@@ -365,6 +365,14 @@ hr.hr-2 {
   .gradient-bg-6{
     display: none;
   }
+  .img-carousel{
+    /* background-image: url(../assets/img/cositas.jpeg);
+    background-repeat: no-repeat;
+    background-size: contain;  
+    height: 600px;
+    width: 100%;
+    border: black 1px solid; */
+  }
 /* laptop */
 @media only screen and (min-device-width: 800px) and (max-device-width: 1280px) {
   .mobile-logo-width img {
