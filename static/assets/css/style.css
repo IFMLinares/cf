@@ -2296,10 +2296,11 @@ textarea:focus {
   background: -o-linear-gradient(266deg, #fcf9f2 0%, #fce4d3 100%);
   background: linear-gradient(184deg, #fcf9f2 0%, #fce4d3 100%); */
   background-image: url(../img/movil.jpeg) !important;
-  background-size: 100% 90%; 
+  background-size: 100% 100%; 
   /* background-size cambia el tamaño de la imagenj */
-  background-repeat: no-repeat; 
-  background-position: 50% 0;  
+  background-repeat: no-repeat;
+  position: relative;
+  top: -25px;
   /* aqui se acomoda la imagen de movil */
 }
 
