@@ -1,19 +1,21 @@
 from turtle import width
 from django import forms
 from pkg_resources import require
+from requests import request
+from ..models import BillingAddress, Address
 
 class CheckoutForm(forms.Form):
     directionforms = forms.CharField(required=True, widget=forms.TextInput(attrs={
-        'placeholder':'Dirección', 'required':True
+        'placeholder':'Dirección', 'required':True, 
     }))
     CodeLocation = forms.CharField(required=True, widget=forms.TextInput(attrs={
-        'placeholder':'Código Postal','required':True
+        'placeholder':'Código Postal','required':True,
     }))
     Province = forms.CharField(required=True, widget=forms.TextInput(attrs={
-        'placeholder':'Provincia','required':True
+        'placeholder':'Provincia','required':True, 
     }))
     district = forms.CharField(required=True, widget=forms.TextInput(attrs={
-        'placeholder':'Distrito','required':True
+        'placeholder':'Distrito','required':True, 
     }))
     # CHOICES = (('Option 1', 'Option 1'),('Option 2', 'Option 2'),)
     # country = forms.ChoiceField(widget=forms.Select(attrs={

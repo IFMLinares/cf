@@ -67,7 +67,7 @@
                                                                 <td style="font-weight: bold;">{{ order.pk }}</td>
                                                                 <td style="font-weight: bold;">{{ order.ordered_date|date:"d/m/Y"  }}</td>
                                                                 <td style="font-weight: bold;">{{ order.status }}</td>
-                                                                <td style="font-weight: bold;">{{ order.totalOrden }}</td>
+                                                                <td style="font-weight: bold;">${{ order.get_total_order }}</td>
                                                             </tr>
                                                             {% endfor %}
                                                         </tbody>

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from .models import Item, OrderItem, Order, Address, User, BillingAddress
 
 # Register your models here.
@@ -12,13 +13,14 @@ class ItemAdmin(admin.ModelAdmin):
         'category',
         'stock',
         'outstanding',
+        'imageProduct'
     )
     # list_filter = ('ocultar', 'departamento', 'tallas', 'categoria')
     search_fields = ['description', 'sale_price',
                      'stock', 'sku_code', 'category', 'outstanding']
     list_editable = ['stock', 'outstanding']
     fields = ('description', 'sku_code', 'stock', 'category', 'l', 'h', 'v', 'cubic_meter', 'price_before_taxes',
-              'freight', 'custom_taxe', 'price', 'sale_price', 'discount_price', 'margin', 'gain', 'image')
+              'freight', 'custom_taxe', 'price', 'sale_price', 'discount_price', 'margin', 'gain', 'image',)
 
     readonly_fields = ('cubic_meter', 'price', 'slug', 'gain',)
     list_per_page = 10
@@ -28,6 +30,10 @@ class ItemAdmin(admin.ModelAdmin):
         'outstanding',
         'sku_code'
     ]
+
+    def imageProduct(self, obj):
+        return format_html('<img src="{}" width="130"/>', obj.image.url)
+    imageProduct.short_description = 'Imagen'
 
 
 class OrdenAdmin(admin.ModelAdmin):
@@ -55,7 +61,6 @@ class OrdenAdmin(admin.ModelAdmin):
         'get_total_order',
     ]
 
-    
     list_filter = [
         'ordered',
         'promoCode',
@@ -94,6 +99,7 @@ class OrderItemAdmin(admin.ModelAdmin):
     list_filter = [
         'ordered'
     ]
+
     def get_item_name(self, obj):
         return obj.item.description
     get_item_name.short_description = 'Item'
