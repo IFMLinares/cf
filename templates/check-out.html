@@ -42,7 +42,8 @@
                     <div class="col-lg-6">
                         <div class="checkout-left-wrap">
                             <div class="shipping-address-wrap">
-                                <h4 class="checkout-title">Dirección de Facturación</h4>
+                                <h4 class="checkout-title">Dirección de Facturación
+                                </h4>
                                 <div class="row">
                                     <!-- <div class="col-lg-6">
                                         <div class="billing-info">
@@ -186,5 +187,29 @@
                     $('#id_district1').prop('required', true)
                 }
             })
+
+            if('{{shipping_address}}' != ''){
+                let shipping_address_direction = '{{ shipping_address.direction }}'
+                let shipping_address_CodeLocation = '{{ shipping_address.CodeLocation }}'
+                let shipping_address_Province = '{{ shipping_address.Province }}'
+                let shipping_address_district = '{{ shipping_address.district }}'
+                $('#id_directionforms1').val(shipping_address_direction)
+                $('#id_CodeLocation1').val(shipping_address_CodeLocation)
+                $('#id_Province1').val(shipping_address_Province)
+                $('#id_district1').val(shipping_address_district)
+                $('#id_save1').prop("checked",true);
+            }
+            
+            if('{{billing_address}}' != ''){
+                let billing_address_direction = '{{ billing_address.direction }}'
+                let billing_address_CodeLocation = '{{ billing_address.CodeLocation }}'
+                let billing_address_Province = '{{ billing_address.Province }}'
+                let billing_address_district = '{{ billing_address.district }}'
+                $('#id_save').prop("checked",true);
+                $('#id_directionforms').val(billing_address_direction)
+                $('#id_CodeLocation').val(billing_address_CodeLocation)
+                $('#id_Province').val(billing_address_Province)
+                $('#id_district').val(billing_address_district)
+            }
         </script>
         {% endblock %}

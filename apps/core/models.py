@@ -157,7 +157,7 @@ class Order(models.Model):
     billing_address = models.ForeignKey('BillingAddress', on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Dirección de Facturación')
     shipping_address = models.ForeignKey('Address', on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Dirección de Compra')
     get_total_order = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2, verbose_name='Total de la orden')
-
+    image = models.ImageField(upload_to = 'media', blank=False, null=False, verbose_name='Imagen')
     def __str__ (self):
         return self.user.username
 

@@ -45,6 +45,7 @@ class OrdenAdmin(admin.ModelAdmin):
         'payment_method',
         'status',
         'ordered',
+        'ordered_date',
     )
     readonly_fields = [
         'user',
@@ -59,6 +60,7 @@ class OrdenAdmin(admin.ModelAdmin):
         'billing_address',
         'shipping_address',
         'get_total_order',
+        'image',
     ]
 
     list_filter = [
