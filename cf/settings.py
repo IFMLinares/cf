@@ -54,8 +54,9 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.google',
     'django.contrib.humanize',
     'paypal.standard.ipn',
+    'embed_video',
     # own apps
-    'apps.core'
+    'apps.core',
 ]
 
 MIDDLEWARE = [

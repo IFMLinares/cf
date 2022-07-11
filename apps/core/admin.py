@@ -20,7 +20,7 @@ class ItemAdmin(admin.ModelAdmin):
                      'stock', 'sku_code', 'category', 'outstanding']
     list_editable = ['stock', 'outstanding']
     fields = ('description', 'sku_code', 'stock', 'category', 'l', 'h', 'v', 'cubic_meter', 'price_before_taxes',
-              'freight', 'custom_taxe', 'price', 'sale_price', 'discount_price', 'margin', 'gain', 'image',)
+              'freight', 'custom_taxe', 'price', 'sale_price', 'discount_price', 'margin', 'gain', 'image','image_1','image_2','image_3','image_4','video_item',)
 
     readonly_fields = ('cubic_meter', 'price', 'slug', 'gain',)
     list_per_page = 10

@@ -1,11 +1,13 @@
 from cProfile import label
 from pyexpat import model
+from statistics import mode
 from turtle import title
 from django.db import models
 from django.conf import settings
 from django.forms import NullBooleanField
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import AbstractUser
+from embed_video.fields import EmbedVideoField
 from django.shortcuts import reverse
 
 import random
@@ -39,17 +41,22 @@ class Item(models.Model):
     sku_code = models.CharField(max_length=100, blank=False, null=False, verbose_name='Código SKU')
     description = models.CharField(max_length=100, blank=False, null=False, verbose_name='Nombre')
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
-    image = models.ImageField(upload_to = 'media', blank=False, null=False, verbose_name='Imagen')
+    image = models.ImageField(upload_to = 'media', blank=False, null=False, verbose_name='Imagen Principal')
+    image_1 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 1')
+    image_2 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 2')
+    image_3 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 3')
+    image_4 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 4')
     stock = models.IntegerField(default=1, blank=False, null=False, verbose_name='Cantidad en stock')
     category = models.CharField(max_length=2, choices=CATEGORY_CHOICES, verbose_name='Categoría')
     discount_price = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2, verbose_name='Precio de descuento')
     outstanding = models.BooleanField(default=False,blank=True, null=True, verbose_name='Destacados')
-
+    
+    video_item = EmbedVideoField(blank=True, null=True,verbose_name='Video del producto (Youtube)')
     
     # Dimensiones
     l = models.FloatField(blank=False, null=False)
     h = models.FloatField(blank=False, null=False)
-    v = models.FloatField(blank=False, null=False)
+    v = models.FloatField(blank=False, null=False,verbose_name='w')
     cubic_meter = models.CharField(max_length=100, blank=True, null=True, verbose_name='metro Cúbico')
 
     price_before_taxes = models.DecimalField(blank=False, null=False,max_digits=100, decimal_places=2, verbose_name='Costo del producto')
@@ -73,10 +80,10 @@ class Item(models.Model):
         self.price = price
         self.gain = self.sale_price - price
         
-        l = int(self.l)
-        h = int(self.h)
-        v = int(self.v)
-        cubic = l * h * v 
+        l = float(self.l)
+        h = float(self.h)
+        v = float(self.v)
+        cubic = str((l/100 * h/100 * v/100))
         self.cubic_meter = cubic
 
         titulo = self.description
