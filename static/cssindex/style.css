@@ -520,6 +520,20 @@ hr.hr-2 {
   display: block;
 }
 @media only screen and (max-width: 900px) {
+  .product-details-area {
+    margin-top: 80px;
+  }
+  .product-details-content h2{
+    margin-left: 0px;
+  }
+  .product-details-content p{
+    text-align: center;
+    width: 100%;
+  }
+ .responsive-text{
+  margin-top: 90px;
+ }
+  }
   .responsive-categori{
     display: block;
   }
