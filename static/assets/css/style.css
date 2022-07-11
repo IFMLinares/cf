@@ -24860,7 +24860,7 @@ textarea:focus {
 .product-details-content .pro-details-action-wrap .pro-details-buy-now a {
   display: inline-block;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: bold;
   color: white;
   line-height: 1;
   background-color: #ED4ACA;

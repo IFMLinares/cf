@@ -17,49 +17,68 @@
             <img src="{% static 'assets/img/juguetes.jpeg' %}" alt="">
         </div> -->
     </div>
-<div class="product-details-area">
-    <div class="container">
-        <div class="product-details-top-content">
-            <div class="product-details-content" style="visibility: hidden;">
-                <h2>{{ item.description }}</h2> 
-            </div>
-            <div class="product-details-content">
-                <div class="product-ratting-review-wrap product-ratting-mrg-none">
-                    <div class="product-ratting-digit-wrap">
-                        <div class="product-ratting">
-                            <i class="icon-rating"></i>
-                            <i class="icon-rating"></i>
-                            <i class="icon-rating"></i>
-                            <i class="icon-rating"></i>
-                            <i class="icon-star-empty"></i>
-                        </div>
-                        <!-- <div class="product-digit">
-                            <span style="font-weight: bold; color: black;">XXX</span>
-                        </div> -->
-                    </div>
-                    <!-- <div class="product-review-order">
-                        <span style="font-weight: bold; color: black;">XX Vistas</span>
-                        <span style="font-weight: bold; color: black;">XX ordenes</span>
-                    </div> -->
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="section-padding-7" style="position: relative; top:-70px;">
-        <div class="container-fluid">
+
+    <div class="product-details-area pt-50 pb-70">
+        <div class="container"> 
             <div class="row">
-                <div class="col-lg-7 col-md-6">
-                    <div class="pro-details-6-img pro-details-img-zoom m-auto" style="width: 65%; ">
-                        <img src="{{ item.image.url }}" alt="">
+                <div class="col-xl-7 col-lg-7 col-md-12">
+                    <div class="product-details-tab">
+                        <div class="product-dec-left">
+                            <div class="pro-dec-big-img-slider-2 product-big-img-style">
+                                <div class="easyzoom-style">
+                                    <div class="easyzoom easyzoom--overlay">
+                                        <a href="{{ item.image.url }}">
+                                            <img src="{{ item.image.url }}" alt="" >
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="easyzoom-style">
+                                    <div class="easyzoom easyzoom--overlay">
+                                        <a href="{{ item.image.url }}">
+                                            <img src="{{ item.image.url }}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="easyzoom-style">
+                                    <div class="easyzoom easyzoom--overlay">
+                                        <a href="{{ item.image.url }}">
+                                            <img src="{{ item.image.url }}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="easyzoom-style">
+                                    <div class="easyzoom easyzoom--overlay">
+                                        <a href="{{ item.image.url }}">
+                                            <img src="{{ item.image.url }}" alt="">
+                                        </a>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="product-dec-right" style="height: 0px !important;">
+                            <div class="product-dec-slider-2 product-small-img-style">
+                                <div class="product-dec-small active">
+                                    <img src="{{ item.image.url }}" alt="" style="width: 100px; height: 75px;">
+                                </div>
+                                <div class="product-dec-small">
+                                    <img src="{{ item.image.url }}" alt="" style="width: 100px; height: 75px;" alt="">
+                                </div>
+                                <div class="product-dec-small">
+                                    <img src="{{ item.image.url }}" alt="" style="width: 100px; height: 75px;" alt="">
+                                </div>
+                                <div class="product-dec-small">
+                                    <img src="{{ item.image.url }}" alt="" style="width: 100px; height: 75px;" alt="">
+                                </div> 
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-5 col-md-6">
-                    <div class="product-details-content ml-50 mb-50"> 
+                <div class="col-lg-5 col-md-6 responsive-text">
+                    <div class="product-details-content ml-50 "> 
                         <div class="product-details-content" >
                             <h2>{{ item.description }}</h2> 
                         </div>
-                        <p class="pro-dec-paragraph-2 " style="font-weight: bold; color: black;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque repellat libero </p>
+                        <p class="pro-dec-paragraph-2" style="font-weight: bold; color: black; margin-bottom: 25px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque repellat libero </p>
                     </div>
                     <div class="product-details-content product-details-content-6">
                         <div class="pro-details-price pro-details-price-4">
@@ -103,7 +122,7 @@
                         </div>
                         <div class="product-details-meta">
                             <ul>
-                                <li><span style="font-weight: bold; color: black;">SKU:</span> <a href="#">{{ item.sku_code }}</a></li>
+                                <li><span style="font-weight: bold; color: black;">SKU:</span> <a href="#" style="font-weight: bold; color: black;">{{ item.sku_code }}</a></li>
                                 <!-- <li><span>Ship To</span> <a href="#">2834 Laurel Lane</a>, <a href="#">Mentone</a> , <a href="#">Texas</a></li> -->
                             </ul>
                         </div>
@@ -117,179 +136,115 @@
                         </form>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
-    </div> 
-<div class="description-review-wrapper pb-155">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="dec-review-topbar nav mb-65">
-                    <a class="active" data-toggle="tab" href="#des-details1" style="font-weight: bold; color: black;">Descripción</a>
-                    <a data-toggle="tab" href="#des-details2" style="font-weight: bold; color: black;">Especificaciones</a>
-                    <!-- <a data-toggle="tab" href="#des-details3" style="font-weight: bold; color: black;">Material </a> -->
-                    <a data-toggle="tab" href="#des-details4" style="font-weight: bold; color: black;">Reseñas y calificaciones</a>
-                </div>
-                <div class="tab-content dec-review-bottom">
-                    <div id="des-details1" class="tab-pane active">
-                        <div class="description-wrap">
-                            <p style="font-weight: bold; color: black;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laborum quibusdam libero, necessitatibus voluptates voluptatibus fugiat,
-                                pariatur nihil quisquam, rem saepe optio mollitia? Ut hic corporis expedita repellendus esse cumque!</p>
-                            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit impedit laudantium molestiae autem,
-                                perspiciatis velit voluptatibus magni perferendis mollitia deserunt enim dicta sed, modi voluptatum fugit molestias eum libero veritatis?</p>
-                        </div>
+    </div>
+    <div class="description-review-wrapper pb-155" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="dec-review-topbar nav mb-65">
+                        <a class="active" data-toggle="tab" href="#des-details1" style="font-weight: bold; color: black;">Descripción</a>
+                        <a data-toggle="tab" href="#des-details2" style="font-weight: bold; color: black;">Especificaciones</a>
+                        <!-- <a data-toggle="tab" href="#des-details3" style="font-weight: bold; color: black;">Material </a> -->
+                        <!-- <a data-toggle="tab" href="#des-details4" style="font-weight: bold; color: black;">Reseñas y calificaciones</a> -->
                     </div>
-                    <div id="des-details2" class="tab-pane">
-                        <div class="specification-wrap table-responsive">
-                            <table>
-                                <tbody style="font-weight: bold; color: black;">
-                                    <tr>
-                                        <td class="width1">Nombre</td>
-                                        <td>XXXXXXX</td>
-                                    </tr>
-                                    <tr>
-                                        <td>SKU</td>
-                                        <td>XXXXX</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="width1">Modelo</td>
-                                        <td>XXXXXX</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="width1">Categoria</td>
-                                        <td>XXXXX</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="width1">Talla</td>
-                                        <td>XXXXX</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="width1">Marca </td>
-                                        <td>XXXXX</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="width1">Color</td>
-                                        <td>XXXXXXX</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- <div id="des-details3" class="tab-pane">
-                        <div class="specification-wrap table-responsive">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="width1" style="font-weight: bold; color: black;">XXXXX</td>
-                                        <td style="font-weight: bold; color: black;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus cumque quisquam doloremque sequi exercitationem repudiandae quibusdam,
-                                            iusto magnam, obcaecati totam doloribus omnis minima cupiditate accusantium est accusamus libero ipsum aliquid.</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="font-weight: bold; color: black;">Abajo</td>
-                                        <td style="font-weight: bold; color: black;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente eaque, ad consequuntur reprehenderit cupiditate
-                                            repudiandae quam ducimus temporibus quo dolorum, voluptate facere eveniet quasi facilis. At expedita nemo distinctio velit.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div> -->
-                    
-                        <div id="des-details4" class="tab-pane">
-                        <div class="review-wrapper">
-                            <h2>1 review for Sleeve Button Cowl Neck</h2>
-                            <div class="single-review">
-                                <div class="review-img">
-                                    <img src="{% static 'assets/images/product-details/client-1.png' %}" alt="">
-                                </div>
-                                <div class="review-content">
-                                    <div class="review-top-wrap">
-                                        <div class="review-name">
-                                            <h5 style="font-weight: bold; color: black;"><span style="font-weight: bold; color: black;">John Snow</span> Mayo 2022</h5>
-                                        </div>
-                                        <div class="review-rating">
-                                            <i class="yellow icon-rating"></i>
-                                            <i class="yellow icon-rating"></i>
-                                            <i class="yellow icon-rating"></i>
-                                            <i class="yellow icon-rating"></i>
-                                            <i class="yellow icon-rating"></i>
-                                        </div>
-                                    </div>
-                                    <p style="font-weight: bold; color: black;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque magnam, quod quibusdam rem quam officiis pariatu
-                                        r sapiente nulla necessitatibus laborum laudantium quia in quaerat facere eveniet aperiam ipsum. Tenetur, sed.</p>
-                                </div>
+                    <div class="tab-content dec-review-bottom">
+                        <div id="des-details1" class="tab-pane active">
+                            <div class="description-wrap">
+                                <p style="font-weight: bold; color: black;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laborum quibusdam libero, necessitatibus voluptates voluptatibus fugiat,
+                                    pariatur nihil quisquam, rem saepe optio mollitia? Ut hic corporis expedita repellendus esse cumque!</p>
+                                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit impedit laudantium molestiae autem,
+                                    perspiciatis velit voluptatibus magni perferendis mollitia deserunt enim dicta sed, modi voluptatum fugit molestias eum libero veritatis?</p>
                             </div>
                         </div>
-                        <div class="ratting-form-wrapper">
-                            <span style="font-weight: bold; color: black;">Agrega una reseña</span>
-                            <p style="font-weight: bold; color: black;">Su dirección de correo electrónico no será publicada. Los campos obligatorios están marcados <span>*</span></p>
-                            <div class="ratting-form">
-                                <form action="#">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-6">
-                                            <div class="rating-form-style mb-20">
-                                                <label style="font-weight: bold; color: black;">Nombre <span>*</span></label>
-                                                <input type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6">
-                                            <div class="rating-form-style mb-20">
-                                                <label style="font-weight: bold; color: black;">E-mail <span>*</span></label>
-                                                <input type="email">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="star-box-wrap">
-                                                <div class="single-ratting-star">
-                                                    <a href="#"><i class="icon-rating"></i></a>
-                                                </div>
-                                                <div class="single-ratting-star">
-                                                    <a href="#"><i class="icon-rating"></i></a>
-                                                    <a href="#"><i class="icon-rating"></i></a>
-                                                </div>
-                                                <div class="single-ratting-star">
-                                                    <a href="#"><i class="icon-rating"></i></a>
-                                                    <a href="#"><i class="icon-rating"></i></a>
-                                                    <a href="#"><i class="icon-rating"></i></a>
-                                                </div>
-                                                <div class="single-ratting-star">
-                                                    <a href="#"><i class="icon-rating"></i></a>
-                                                    <a href="#"><i class="icon-rating"></i></a>
-                                                    <a href="#"><i class="icon-rating"></i></a>
-                                                    <a href="#"><i class="icon-rating"></i></a>
-                                                </div>
-                                                <div class="single-ratting-star">
-                                                    <a href="#"><i class="icon-rating"></i></a>
-                                                    <a href="#"><i class="icon-rating"></i></a>
-                                                    <a href="#"><i class="icon-rating"></i></a>
-                                                    <a href="#"><i class="icon-rating"></i></a>
-                                                    <a href="#"><i class="icon-rating"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="rating-form-style mb-20">
-                                                <label style="font-weight: bold; color: black;">Tu reseña <span>*</span></label>
-                                                <textarea name="Your Review"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="form-submit">
-                                                <input type="submit" value="Enviar">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                        <div id="des-details2" class="tab-pane">
+                            <div class="specification-wrap table-responsive">
+                                <table>
+                                    <tbody style="font-weight: bold; color: black;">
+                                        <tr>
+                                            <td class="width1">Nombre</td>
+                                            <td>XXXXXXX</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SKU</td>
+                                            <td>XXXXX</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width1">Modelo</td>
+                                            <td>XXXXXX</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width1">Categoria</td>
+                                            <td>XXXXX</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width1">Talla</td>
+                                            <td>XXXXX</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width1">Marca </td>
+                                            <td>XXXXX</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width1">Color</td>
+                                            <td>XXXXXXX</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+                        </div>
+                        <!-- <div id="des-details3" class="tab-pane">
+                            <div class="specification-wrap table-responsive">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="width1" style="font-weight: bold; color: black;">XXXXX</td>
+                                            <td style="font-weight: bold; color: black;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus cumque quisquam doloremque sequi exercitationem repudiandae quibusdam,
+                                                iusto magnam, obcaecati totam doloribus omnis minima cupiditate accusantium est accusamus libero ipsum aliquid.</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold; color: black;">Abajo</td>
+                                            <td style="font-weight: bold; color: black;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente eaque, ad consequuntur reprehenderit cupiditate
+                                                repudiandae quam ducimus temporibus quo dolorum, voluptate facere eveniet quasi facilis. At expedita nemo distinctio velit.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> -->
+                        
+                            <div id="des-details4" class="tab-pane">
+                            <div class="review-wrapper">
+                                <h2>1 review for Sleeve Button Cowl Neck</h2>
+                                <div class="single-review">
+                                    <div class="review-img">
+                                        <img src="{% static 'assets/images/product-details/client-1.png' %}" alt="">
+                                    </div>
+                                    <div class="review-content">
+                                        <div class="review-top-wrap">
+                                            <div class="review-name">
+                                                <h5 style="font-weight: bold; color: black;"><span style="font-weight: bold; color: black;">John Snow</span> Mayo 2022</h5>
+                                            </div>
+                                            <div class="review-rating">
+                                                <i class="yellow icon-rating"></i>
+                                                <i class="yellow icon-rating"></i>
+                                                <i class="yellow icon-rating"></i>
+                                                <i class="yellow icon-rating"></i>
+                                                <i class="yellow icon-rating"></i>
+                                            </div>
+                                        </div>
+                                        <p style="font-weight: bold; color: black;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque magnam, quod quibusdam rem quam officiis pariatu
+                                            r sapiente nulla necessitatibus laborum laudantium quia in quaerat facere eveniet aperiam ipsum. Tenetur, sed.</p>
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-
+ 
 <div class="product-area pb-155">
     <div class="container">
         <div class="section-title-8 mb-65">
