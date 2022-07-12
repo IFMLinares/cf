@@ -32,27 +32,42 @@
                                         </a>
                                     </div>
                                 </div>
+                                {% if item.image_1 %}
+                                    <div class="easyzoom-style">
+                                        <div class="easyzoom easyzoom--overlay">
+                                            <a href="{{ item.image_1.url }}">
+                                                <img src="{{ item.image_1.url }}" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if item.image_2 %}
                                 <div class="easyzoom-style">
                                     <div class="easyzoom easyzoom--overlay">
-                                        <a href="{{ item.image.url }}">
-                                            <img src="{{ item.image.url }}" alt="">
+                                        <a href="{{ item.image_2.url }}">
+                                            <img src="{{ item.image_2.url }}" alt="">
                                         </a>
                                     </div>
                                 </div>
+                                {% endif %}
+                                {% if item.image_3 %}
                                 <div class="easyzoom-style">
                                     <div class="easyzoom easyzoom--overlay">
-                                        <a href="{{ item.image.url }}">
-                                            <img src="{{ item.image.url }}" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="easyzoom-style">
-                                    <div class="easyzoom easyzoom--overlay">
-                                        <a href="{{ item.image.url }}">
-                                            <img src="{{ item.image.url }}" alt="">
+                                        <a href="{{ item.image_3.url }}">
+                                            <img src="{{ item.image_3.url }}" alt="">
                                         </a>
                                     </div>
                                 </div> 
+                                {% endif %}
+                                {% if item.image_4 %}
+                                <div class="easyzoom-style">
+                                    <div class="easyzoom easyzoom--overlay">
+                                        <a href="{{ item.image_3.url }}">
+                                            <img src="{{ item.image_4.url }}" alt="">
+                                        </a>
+                                    </div>
+                                </div> 
+                                {% endif %}
                             </div>
                         </div>
                         <div class="product-dec-right" style="height: 0px !important;">
@@ -60,15 +75,26 @@
                                 <div class="product-dec-small active">
                                     <img src="{{ item.image.url }}" alt="" style="width: 100px; height: 75px;">
                                 </div>
+                                {% if item.image_1 %}
                                 <div class="product-dec-small">
-                                    <img src="{{ item.image.url }}" alt="" style="width: 100px; height: 75px;" alt="">
+                                    <img src="{{ item.image_1.url }}" alt="" style="width: 100px; height: 75px;" alt="">
                                 </div>
+                                {% endif %}
+                                {% if item.image_2 %}
                                 <div class="product-dec-small">
-                                    <img src="{{ item.image.url }}" alt="" style="width: 100px; height: 75px;" alt="">
+                                    <img src="{{ item.image_2.url }}" alt="" style="width: 100px; height: 75px;" alt="">
                                 </div>
+                                {% endif %}
+                                {% if item.image_3 %}
                                 <div class="product-dec-small">
-                                    <img src="{{ item.image.url }}" alt="" style="width: 100px; height: 75px;" alt="">
+                                    <img src="{{ item.image_3.url }}" alt="" style="width: 100px; height: 75px;" alt="">
                                 </div> 
+                                {% endif %}
+                                {% if item.image_4%}
+                                <div class="product-dec-small">
+                                    <img src="{{ item.image_4.url }}" alt="" style="width: 100px; height: 75px;" alt="">
+                                </div> 
+                                {% endif %}
                             </div>
                         </div>
                     </div>
