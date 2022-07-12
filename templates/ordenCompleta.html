@@ -41,7 +41,8 @@
                     <!-- <h3>su orden no ha sido procesada</h3> -->
                 </div>
                 <div class="order-product-details">
-                    <form action="#" enctype="multipart/form-data" id="paymentC">
+                    <form action="{% url 'core:updload_image' %}" enctype="multipart/form-data" id="paymentC" method="post" >
+                        {% csrf_token %}
                         <div class="table-content table-responsive">
                             <table>
                                 <thead>
@@ -77,6 +78,7 @@
                                             </div>
                                         </td>
                                         {% endif %}
+                                        <input type="hidden" name="orderpk" value="{{ order.pk }}">
                                     </tr>
                                 </tbody>
                             </table>

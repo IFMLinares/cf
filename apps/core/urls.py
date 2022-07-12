@@ -24,4 +24,5 @@ urlpatterns = [
     path('remove-single-from-cart/<slug>/', remove_single_item_from_cart, name='remove-single-item-from-cart'),
     path('paypal_return', paypal_return, name='paypal_return'),
     path('paypal_cancel', paypal_cancel, name='paypal_cancel'),
+    path('UploadImagePayment', UploadImagePayment, name='updload_image'),
 ]

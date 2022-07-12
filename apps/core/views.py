@@ -265,8 +265,8 @@ class PaymentView(LoginRequiredMixin, CartMixin, View):
         print(self.request.POST.get('payment_method'))
         payment_method = self.request.POST.get('payment_method')
         order.payment_method = payment_method
-        order.image = self.request.FILES.get('ImagePaymentField')
-        print( self.request.FILES.get('ImagePaymentField'))
+        # order.image = self.request.FILES.get['ImagePaymentField']
+        print(self.request.FILES.get('ImagePaymentField'))
         if payment_method == 'P':
             order.status = 'Pagado'
         else:
@@ -567,6 +567,15 @@ def paypal_return(request):
 def paypal_cancel(request):
     messages.error(request, 'Pago Cancelado')
     return redirect('core:index')
+
+def UploadImagePayment(request):
+    image = request.FILES.get('ImagePaymentField')
+    orderpk = request.POST['orderpk']
+    order = Order.objects.get(pk=orderpk)
+    order.image = image 
+    order.save()
+    messages.success(request, 'Comprobante Guardado exitosamente')
+    return redirect('core:cart')
 
 # función de añadir al carro
 @login_required_message(message='Debes iniciar sesión para completar está acción')
