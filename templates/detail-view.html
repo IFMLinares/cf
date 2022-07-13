@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 {% block title %}Productos{% endblock %}
 {% load static %}
-
+{% load embed_video_tags %}
 {% block content %}
 <div class="breadcrumb-area bg-gray subheader-img area-height" style="background-color: white;">
     <div class="container">
@@ -62,9 +62,18 @@
                                 {% if item.image_4 %}
                                 <div class="easyzoom-style">
                                     <div class="easyzoom easyzoom--overlay">
-                                        <a href="{{ item.image_3.url }}">
+                                        <a href="{{ item.image_4.url }}">
                                             <img src="{{ item.image_4.url }}" alt="">
                                         </a>
+                                    </div>
+                                </div> 
+                                {% endif %}
+                                {% if item.video_item %}
+                                <div class="easyzoom-style">
+                                    <div class="easyzoom easyzoom--overlay">
+                                            {% video item.video_item as my_video %}
+                                            {% video my_video 'small' %}
+                                            {% endvideo %}
                                     </div>
                                 </div> 
                                 {% endif %}
@@ -95,6 +104,16 @@
                                     <img src="{{ item.image_4.url }}" alt="" style="width: 100px; height: 75px;" alt="">
                                 </div> 
                                 {% endif %}
+                                {% if item.video_item %}
+                                <div class="product-dec-small">
+                                    {% video item.video_item as my_video %}
+                                    <img src="{{ my_video.thumbnail }}" alt="" style="width: 100px; height: 75px;" alt="">
+                                        <!-- URL: {{ my_video.url }} -->
+                                        <!-- Backend: {{ my_video.backend }} -->
+                                        <!-- {% video my_video 'small' %} -->
+                                    {% endvideo %}
+                                </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -102,7 +121,7 @@
                 <div class="col-lg-5 col-md-6 responsive-text">
                     <div class="product-details-content ml-50 "> 
                         <div class="product-details-content" >
-                            <h2>{{ item.description }}</h2> 
+                            <h2>{{ item.description }}</h2> {% video my_video '800x600' %}
                         </div>
                         <p class="pro-dec-paragraph-2" style="font-weight: bold; color: black; margin-bottom: 25px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque repellat libero </p>
                     </div>
@@ -139,6 +158,66 @@
                         </div> -->
                         
                         <form action="/addto/" method="post" id="detailform">
+                            <div class="pro-details-size">
+                                <span>Tipo:</span>
+                                <div class="pro-details-size-content">
+                                    <ul>
+                                        
+                                        <li><a href="#" style="width:60px;">Animales</a></li>
+                                        <li><a href="#" style="width:45px;">Frutas</a></li>
+                                        <li><a href="#" style="width:50px;">Formas</a></li>
+                                        <li><a href="#" style="width:58px;">Números</a></li>
+                                        <li><a href="#" style="width:50px;">Carros</a></li>
+                                        <li><a href="#" style="width:35px;">Niña</a></li>
+                                        <li><a href="#" style="width:35px;">Niño</a></li>
+                                    </ul>
+                                </div>
+                            </div> 
+                            <div class="pro-details-color-wrap">
+                                <span>Color:</span>
+                                <div class="pro-details-color-content">
+                                    <ul>
+                                        <li><a class="red" href="#">Rojo</a></li>
+                                        <li><a class="azalea" href="#">Azul</a></li>
+                                        <li><a class="dolly" href="#">Verde</a></li>
+                                        <li><a class="mona-lisa active" href="#">Rosado</a></li>
+                                        <li><a class="white" href="#">Blanco</a></li>
+                                        <li><a class="yellow" href="#">Amarillo</a></li>
+                                        <li><a class="black" href="#">black</a></li> 
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="pro-details-size">
+                                <span>Tamaño:</span>
+                                <div class="pro-details-size-content">
+                                    <ul>
+                                        <li><a href="#" style="width:60px;">Pequeño</a></li>
+                                        <li><a href="#" style="width:55px;">Mediano</a></li>
+                                        <li><a href="#" style="width:50px;">Grande</a></li>
+                                        <li><a href="#">2T</a></li>
+                                        <li><a href="#">3T</a></li>
+                                        <li><a href="#">4T</a></li>
+                                        <li><a href="#">5T</a></li>
+                                        <li><a href="#">6T</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="pro-details-size">
+                                <span>Cantidad:</span>
+                                <div class="pro-details-size-content">
+                                    <ul>
+                                        <li><a href="#" style="width:40px;">2PCS</a></li>
+                                        <li><a href="#" style="width:40px;">3PCS</a></li>
+                                        <li><a href="#" style="width:40px;">4PCS</a></li>
+                                        <li><a href="#" style="width:40px;">5PCS</a></li>
+                                        <li><a href="#" style="width:40px;">6PCS</a></li>
+                                        <li><a href="#" style="width:40px;">8PCS</a></li>
+                                        <li><a href="#" style="width:45px;">10PCS</a></li>
+                                        <li><a href="#" style="width:45px;">12PCS</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         <div class="pro-details-quality">
                             <span style="font-weight: bold; color: black;">Cantidad</span>
                             <div class="cart-plus-minus">

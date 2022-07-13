@@ -20,6 +20,49 @@ CATEGORY_CHOICES = (
         ('D', 'Otros'), 
     )
 
+TYPE_CHOICES = (
+    ('AN','animales'),
+    ('FR','Frutas'),
+    ('FO','Formas'),
+    ('NU','Números'),
+    ('CA','Carros'),
+    ('Na','Niña'),
+    ('NO','Niño'),
+)
+
+
+COLOR_CHOICES = (
+    ('RO','Rojo'),
+    ('AZ','Azul'),
+    ('VE','Verde'),
+    ('RA','Rosado'),
+    ('BL','Blanco'),
+    ('AM','Amarrillo'),
+    ('NE','Negro'),
+    ('MI','Mixto')
+)
+
+SIZE_CHOICES = (
+    ('Pe','Pequeño'),
+    ('Me','Mediano'),
+    ('Gr','Grande'),
+    ('2T','2T'),
+    ('3T','3T'),
+    ('4T','4T'),
+    ('5T','5T'),
+    ('6T','6T'),
+)
+
+QUANTITY_CHOICES = (
+    ('2P','2PCS'),
+    ('3P','3PCS'),
+    ('4P','4PCS'),
+    ('5P','5PCS'),
+    ('6P','6PCS'),
+    ('8P','8PCS'),
+    ('10','10PCS'),
+    ('12','12PCS'),
+)
 
 STATUS_CHOICES = (
         ('P', 'PAYPAL'),
@@ -42,12 +85,16 @@ class Item(models.Model):
     description = models.CharField(max_length=100, blank=False, null=False, verbose_name='Nombre')
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
     image = models.ImageField(upload_to = 'media', blank=False, null=False, verbose_name='Imagen Principal')
-    image_1 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 1',default='/media/transparent.png')
-    image_2 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 2',default='/media/transparent.png')
-    image_3 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 3',default='/media/transparent.png')
-    image_4 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 4',default='/media/transparent.png')
+    image_1 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 1')
+    image_2 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 2')
+    image_3 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 3')
+    image_4 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 4')
     stock = models.IntegerField(default=1, blank=False, null=False, verbose_name='Cantidad en stock')
     category = models.CharField(max_length=2, choices=CATEGORY_CHOICES, verbose_name='Categoría')
+    type = models.CharField(max_length=2,choices=TYPE_CHOICES, verbose_name='Tipo', null=True, blank=True)
+    size = models.CharField(max_length=2,choices=SIZE_CHOICES, verbose_name='Tamaño', null=True, blank=True)
+    cant = models.CharField(max_length=2,choices=QUANTITY_CHOICES, verbose_name='Cantidad', null=True, blank=True)
+    color = models.CharField(max_length=2,choices=COLOR_CHOICES, verbose_name='Color', null=True, blank=True)
     discount_price = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2, verbose_name='Precio de descuento')
     outstanding = models.BooleanField(default=False,blank=True, null=True, verbose_name='Destacados')
     
