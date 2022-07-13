@@ -25039,23 +25039,26 @@ textarea:focus {
 }
 
 .pro-details-color-content ul li a.white {
-  background-color: #fff;
+  background-color: White;
 }
 
 .pro-details-color-content ul li a.azalea {
-  background-color: #FBBBBB;
+  background-color: blue;
 }
 
 .pro-details-color-content ul li a.dolly {
-  background-color: #F3E66D;
+  background-color: green;
 }
 
 .pro-details-color-content ul li a.peach-orange {
-  background-color: #FFCC8A;
+  background-color: pink;
+}
+.pro-details-color-content ul li a.red {
+  background-color: red;
 }
 
 .pro-details-color-content ul li a.mona-lisa {
-  background-color: #FB9696;
+  background-color: pink;
 }
 
 .pro-details-color-content ul li a.cupid {

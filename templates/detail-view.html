@@ -140,10 +140,71 @@
                         
                         <form action="/addto/" method="post" id="detailform">
                         <div class="pro-details-quality">
+                            <div class="pro-details-size">
+                                <span>Tipo:</span>
+                                <div class="pro-details-size-content">
+                                    <ul>
+                                        
+                                        <li><a href="#">XS</a></li>
+                                        <li><a href="#">S</a></li>
+                                        <li><a href="#">M</a></li>
+                                        <li><a href="#">L</a></li>
+                                        <li><a href="#">XL</a></li>
+                                        <li><a href="#">XXL</a></li>
+                                    </ul>
+                                </div>
+                            </div> 
+                            <div class="pro-details-color-wrap">
+                                <span>Color:</span>
+                                <div class="pro-details-color-content">
+                                    <ul>
+                                        <li><a class="red" href="#">Rojo</a></li>
+                                        <li><a class="azalea" href="#">Azul</a></li>
+                                        <li><a class="dolly" href="#">Verde</a></li>
+                                        <li><a class="mona-lisa active" href="#">Rosado</a></li>
+                                        <li><a class="white" href="#">Blanco</a></li>
+                                        <li><a class="yellow" href="#">Amarillo</a></li>
+                                        <li><a class="black" href="#">black</a></li>
+                                        <li><a class="peach-orange" href="#">Orange</a></li>
+                                        <li><a class="cupid" href="#">gray</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="pro-details-size">
+                                <span>Tamaño:</span>
+                                <div class="pro-details-size-content">
+                                    <ul>
+                                        <li><a href="#">Pequeño</a></li>
+                                        <li><a href="#">Mediano</a></li>
+                                        <li><a href="#">Grande</a></li>
+                                        <li><a href="#">2T</a></li>
+                                        <li><a href="#">3T</a></li>
+                                        <li><a href="#">4T</a></li>
+                                        <li><a href="#">5T</a></li>
+                                        <li><a href="#">6T</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="pro-details-size">
+                                <span>Cantidad:</span>
+                                <div class="pro-details-size-content">
+                                    <ul>
+                                        <li><a href="#">2PCS</a></li>
+                                        <li><a href="#">3PCS</a></li>
+                                        <li><a href="#">4PCS</a></li>
+                                        <li><a href="#">5PCS</a></li>
+                                        <li><a href="#">6PCS</a></li>
+                                        <li><a href="#">8PCS</a></li>
+                                        <li><a href="#">10PCS</a></li>
+                                        <li><a href="#">12PCS</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                             <span style="font-weight: bold; color: black;">Cantidad</span>
                             <div class="cart-plus-minus">
                                 <input class="cart-plus-minus-box" type="number" name="quantity" value="1" style="font-weight: bold; color: black;" id="quantity">
-                            </div>
+                            </div> 
                             <span style="font-weight: bold; color: black;">Disponible: {{ item.stock }}</span>
                         </div>
                         <div class="product-details-meta">
