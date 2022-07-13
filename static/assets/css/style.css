@@ -25046,7 +25046,7 @@ input[type=number] { -moz-appearance:textfield; }
 }
 
 .pro-details-color-content ul li a.white {
-  background-color: #fff;
+  background-color: White;
 }
 .pro-details-color-content ul li a.red{
   background-color: red;
@@ -25066,7 +25066,10 @@ input[type=number] { -moz-appearance:textfield; }
 }
 
 .pro-details-color-content ul li a.peach-orange {
-  background-color: #FFCC8A;
+  background-color: pink;
+}
+.pro-details-color-content ul li a.red {
+  background-color: red;
 }
 
 .pro-details-color-content ul li a.mona-lisa {
