@@ -154,8 +154,8 @@ class Item(models.Model):
         return iva
     
     class Meta:
-        verbose_name = "Tienda: Producto"
-        verbose_name_plural = "Tienda: Productos"
+        verbose_name = "Producto"
+        verbose_name_plural = "Productos"
 
 class OrderItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Usuario')
@@ -234,8 +234,8 @@ class Order(models.Model):
         return total
 
     class Meta:
-        verbose_name = "Tienda: Orden"
-        verbose_name_plural = "Tienda: Ordenes"
+        verbose_name = "Orden"
+        verbose_name_plural = "Ordenes"
 
 
 class Address(models.Model):
