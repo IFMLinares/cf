@@ -271,7 +271,8 @@
         <div class="sidebar-cart-all">
           <a class="cart-close" href="#"><i class="icofont-close-line"></i></a>
           <div class="cart-content">
-            <h3>Añade productos al carrito</h3>
+            <h3 style="color: black;
+            font-weight: bold; font-size: 14px">Añade productos al carrito</h3>
             <ul>
               
               {% load humanize %}
@@ -283,8 +284,30 @@
                   /></a>
                 </div>
                 <div class="cart-title">
-                  <h4><a href="#">{{order_item.item.description}}</a></h4>
-                  <span> {{ order_item.quantity }} × ${{ order_item.totalItem }} </span>
+                  <h4><a href="#" style=" color: black;
+                    font-weight: bold; font-size: 14px;">{{order_item.item.description}}</a></h4>
+                  <span style="  color: black;
+                  font-weight: bold; font-size: 14px;"> {{ order_item.quantity }} × ${{ order_item.totalItem }} </span>
+                  <div class="pro-details-size" style=" height:50px;" >
+                    <span style="color: black;
+                    font-weight: bold; font-size: 14px">Color:</span>
+                    <div class="pro-details-size-content" style="padding: 0px 0px; ">
+                        <ul>
+                            <li><a href="#" style="width:100%; pointer-events: none; color: black;
+                                font-weight: bold; font-size: 14px; margin: 0px 0px;"> {{ order_item.color }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pro-details-size" style=" height:50px;">
+                  <span style="color: black;
+                  font-weight: bold; font-size: 14px">Cantidad de piezas:</span>
+                  <div class="pro-details-size-content">
+                      <ul>
+                          <li><a href="#" style="width:100%; pointer-events: none; color: black;
+                              font-weight: bold; font-size: 14px">{{ order_item.cant }}</a></li>
+                      </ul>
+                  </div>
+              </div>
                 </div>
                 <div class="cart-delete">
                   <a href="{% url 'core:remove-from-cart-modal' slug=order_item.item.slug  %}">×</a>
@@ -293,7 +316,8 @@
               {% endfor %}
             </ul>
             <div class="cart-total">
-              <h4>Subtotal: <span>${{ carro.get_total|floatformat:"2" }}</span></h4>
+              <h4 style=" color: black;
+              font-weight: bold; font-size: 14px;">Subtotal: <span>${{ carro.get_total|floatformat:"2" }}</span></h4>
             </div>
             <hr class="hr-2">
             <div class="cart-checkout-btn">

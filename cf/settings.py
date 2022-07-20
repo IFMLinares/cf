@@ -184,12 +184,16 @@ JET_SIDE_MENU_ITEMS = [
     #     {'name': 'group'},
     # ]},
     {'app_label': 'core', 'items': [
-        # {'name': 'orderitem'},
         {'name': 'order'},
         {'name': 'item'},
         # {'name': 'address'},
         # {'name': 'billingaddress'},
         {'name': 'user'},
+    ]},
+    {'app_label': 'core', 'items': [
+
+        {'name': 'coloritem'},
+        {'name': 'cantitem'},
     ]},
     # {'app_label': 'account', 'items': [
     #     {'name': 'emailaddress'},

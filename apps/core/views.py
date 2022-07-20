@@ -421,6 +421,7 @@ class miCuentaView(LoginRequiredMixin, CartMixin, View):
     template_name = 'cuenta.html' 
 
     def get(self, request, *args, **kwargs):
+        order = Order.objects.get(user=self.request.user, ordered=False)
         user = User.objects.get(username=self.request.user.username)
         try:
             orders_ordered = Order.objects.filter(user=self.request.user, ordered=True)
@@ -434,6 +435,7 @@ class miCuentaView(LoginRequiredMixin, CartMixin, View):
             user_billing_address = ''
             user_shipping_address = ''
         context = {
+            'carro': order,
             'user': user,
             'orders': orders_ordered,
             'billing_address': user_billing_address,
@@ -585,32 +587,46 @@ def addto(request):
         next = request.POST.get('next', '/store/')
         slug = request.POST['slug']
         item = get_object_or_404(Item, slug=slug)
+        color = request.POST['color_selected']
+        cant = request.POST['cant_selected']
+        print(color)
+        print(cant)
         quantity = int(request.POST.get('quantity', 1))
         if request.user.is_authenticated:
-            order_item, created = OrderItem.objects.get_or_create(item=item, user=request.user, ordered=False)
+            order_item, created = OrderItem.objects.get_or_create(item=item, user=request.user, ordered=False, color=color, cant=cant)
             order_qs = Order.objects.filter(user=request.user, ordered=False)
             if order_qs.exists():
                 order = order_qs[0]
                 # verificando si el item odernado ya está en la orden
-                if order.items.filter(item__slug=item.slug).exists():
+                if order.items.filter(item__slug=item.slug, color=color, cant=cant).exists():
                     order_item.quantity += quantity
                     order_item.save()
                     messages.info(request, 'La cantidad de este producto fue actualizada satisfactoriamente')
                     # return redirect('core:store')
+                    item.stock = int(item.stock) - quantity
+                    item.save()
                     return HttpResponseRedirect(next)
                 else:
                     order_item.quantity = quantity
+                    order_item.color = color
+                    order_item.cant = cant
                     order_item.save()
                     order.items.add(order_item)
                     messages.info(request, 'Este producto fue añadido con éxito a su carrito')
                     # return redirect('core:store')
+                    item.stock = int(item.stock) - quantity
+                    item.save()
                     return HttpResponseRedirect(next)
             else:
                 ordered_date = timezone.now()
                 order = Order.objects.create(user=request.user, ordered_date=ordered_date)
+                order_item.color = color
+                order_item.cant = cant
                 order.items.add(order_item)
                 messages.info(request, 'Este producto fue añadido con éxito a su carrito')
             # return redirect('core:store')
+            item.stock = int(item.stock) - quantity
+            item.save()
             return HttpResponseRedirect(next)
     else:
         return HttpResponseRedirect('/')
@@ -618,8 +634,10 @@ def addto(request):
 @login_required
 def add_to_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
-    order_item, created = OrderItem.objects.get_or_create(item=item, user=request.user, ordered=False)
-    order_qs = Order.objects.filter(user=request.user, ordered=False)
+    color = request.POST['color_selected']
+    cant = request.POST['cant_selected']
+    order_item, created = OrderItem.objects.get_or_create(item=item, user=request.user, ordered=False, color=color, cant=cant)
+    order_qs = Order.objects.filter(user=request.user, ordered=False, color=color, cant=cant)
     if order_qs.exists():
         order = order_qs[0]
         # verificando si el item odernado ya está en la orden
@@ -627,6 +645,8 @@ def add_to_cart(request, slug):
             order_item.quantity += 1
             order_item.save()
             messages.info(request, 'La cantidad de este producto fue actualizada satisfactoriamente')
+            item.stock = int(item.stock) - 1
+            item.save()
             return redirect('core:cart')
 
 # función para restar 1 del carrito
@@ -642,6 +662,8 @@ def remove_single_item_from_cart(request, slug):
             if order_item.quantity >1:
                 order_item.quantity -= 1
                 order_item.save() 
+                item.stock = int(item.stock) +1
+                item.save()
             else:
                 return redirect('core:remove-from-cart', slug=slug)
         else:

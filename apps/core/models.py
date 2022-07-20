@@ -1,10 +1,12 @@
 from cProfile import label
 from pyexpat import model
+from sre_constants import CHCODES
+from sre_parse import Verbose
 from statistics import mode
 from turtle import title
 from django.db import models
 from django.conf import settings
-from django.forms import NullBooleanField
+from django.forms import NullBooleanField, SelectMultiple
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import AbstractUser
 from embed_video.fields import EmbedVideoField
@@ -30,16 +32,15 @@ TYPE_CHOICES = (
     ('NO','Niño'),
 )
 
-
 COLOR_CHOICES = (
-    ('RO','Rojo'),
-    ('AZ','Azul'),
-    ('VE','Verde'),
-    ('RA','Rosado'),
-    ('BL','Blanco'),
-    ('AM','Amarrillo'),
-    ('NE','Negro'),
-    ('MI','Mixto')
+    ('Rojo','Rojo'),
+    ('Azul','Azul'),
+    ('Verde','Verde'),
+    ('Rosado','Rosado'),
+    ('Blanco','Blanco'),
+    ('Amarrillo','Amarrillo'),
+    ('Negro','Negro'),
+    ('Mixto','Mixto')
 )
 
 SIZE_CHOICES = (
@@ -54,14 +55,14 @@ SIZE_CHOICES = (
 )
 
 QUANTITY_CHOICES = (
-    ('2P','2PCS'),
-    ('3P','3PCS'),
-    ('4P','4PCS'),
-    ('5P','5PCS'),
-    ('6P','6PCS'),
-    ('8P','8PCS'),
-    ('10','10PCS'),
-    ('12','12PCS'),
+    ('2PCS','2PCS'),
+    ('3PCS','3PCS'),
+    ('4PCS','4PCS'),
+    ('5PCS','5PCS'),
+    ('6PCS','6PCS'),
+    ('8PCS','8PCS'),
+    ('10PCS','10PCS'),
+    ('12PCS','12PCS'),
 )
 
 STATUS_CHOICES = (
@@ -79,6 +80,26 @@ class User(AbstractUser):
         verbose_name = "Usuario"
         verbose_name_plural = "Usuarios"
 
+class ColorItem(models.Model):
+    color_name = models.CharField(max_length=100, blank=False, null=False, verbose_name='Nombre del color',choices=COLOR_CHOICES)
+
+    class Meta:
+        verbose_name = "Color"
+        verbose_name_plural = "Colores"
+
+    def __str__(self):
+        return self.color_name
+
+class CantItem(models.Model):
+    piezas = models.CharField(max_length=100, blank=False, null=False, verbose_name='Nombre del color', choices=QUANTITY_CHOICES,)
+
+    class Meta:
+        verbose_name = "Pieza"
+        verbose_name_plural = "Piezas"
+
+    
+    def __str__(self):
+        return self.piezas
 # PRODUCTOS
 class Item(models.Model):
     sku_code = models.CharField(max_length=100, blank=False, null=False, verbose_name='Código SKU')
@@ -93,8 +114,9 @@ class Item(models.Model):
     category = models.CharField(max_length=2, choices=CATEGORY_CHOICES, verbose_name='Categoría')
     type = models.CharField(max_length=2,choices=TYPE_CHOICES, verbose_name='Tipo', null=True, blank=True)
     size = models.CharField(max_length=2,choices=SIZE_CHOICES, verbose_name='Tamaño', null=True, blank=True)
-    cant = models.CharField(max_length=2,choices=QUANTITY_CHOICES, verbose_name='Cantidad', null=True, blank=True)
-    color = models.CharField(max_length=2,choices=COLOR_CHOICES, verbose_name='Color', null=True, blank=True)
+    cant = models.ManyToManyField(CantItem, verbose_name='Piezas')
+    # color = models.CharField(max_length=2,choices=COLOR_CHOICES, verbose_name='Color', null=True, blank=True)
+    colors = models.ManyToManyField(ColorItem, verbose_name='Color')
     discount_price = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2, verbose_name='Precio de descuento')
     outstanding = models.BooleanField(default=False,blank=True, null=True, verbose_name='Destacados')
     
@@ -161,6 +183,8 @@ class OrderItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Usuario')
     ordered = models.BooleanField(default=False, verbose_name='Pagado')
     item = models.ForeignKey(Item, on_delete=models.CASCADE, verbose_name='Producto')
+    color = models.CharField(max_length=100, blank=True, null=True, verbose_name='Color del producto')
+    cant = models.CharField(max_length=100, blank=True, null=True, verbose_name='Cantidad de piezas')
     quantity = models.IntegerField(default=1, verbose_name='cantidad')
     totalItem = models.DecimalField(null=True, blank=True,max_digits=100, decimal_places=2, verbose_name='Subtotal')
 

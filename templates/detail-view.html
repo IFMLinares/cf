@@ -158,66 +158,51 @@
                         </div> -->
                         
                         <form action="/addto/" method="post" id="detailform">
+                            {% if item.get_type_display %} 
                             <div class="pro-details-size">
-                                <span>Tipo:</span>
+                                <span style="color: black;
+                                font-weight: bold; font-size: 14px">Tipo:</span>
                                 <div class="pro-details-size-content">
                                     <ul>
-                                        
-                                        <li><a href="#" style="width:60px;">Animales</a></li>
-                                        <li><a href="#" style="width:45px;">Frutas</a></li>
-                                        <li><a href="#" style="width:50px;">Formas</a></li>
-                                        <li><a href="#" style="width:58px;">Números</a></li>
-                                        <li><a href="#" style="width:50px;">Carros</a></li>
-                                        <li><a href="#" style="width:35px;">Niña</a></li>
-                                        <li><a href="#" style="width:35px;">Niño</a></li>
+                                        <li><a href="#" style="width:60px; pointer-events: none; color: black;
+                                            font-weight: bold; font-size: 14px">{{ item.get_type_display }}</a></li>
                                     </ul>
                                 </div>
                             </div> 
-                            <div class="pro-details-color-wrap">
-                                <span>Color:</span>
-                                <div class="pro-details-color-content">
-                                    <ul>
-                                        <li><a class="red" href="#">Rojo</a></li>
-                                        <li><a class="azalea" href="#">Azul</a></li>
-                                        <li><a class="dolly" href="#">Verde</a></li>
-                                        <li><a class="mona-lisa active" href="#">Rosado</a></li>
-                                        <li><a class="white" href="#">Blanco</a></li>
-                                        <li><a class="yellow" href="#">Amarillo</a></li>
-                                        <li><a class="black" href="#">black</a></li> 
-                                    </ul>
-                                </div>
-                            </div>
+                            {% endif %}
                             
+                            {% if item.get_size_display %} 
                             <div class="pro-details-size">
-                                <span>Tamaño:</span>
+                                <span style="color: black;
+                                font-weight: bold; font-size: 14px">Tamaño:</span>
                                 <div class="pro-details-size-content">
                                     <ul>
-                                        <li><a href="#" style="width:60px;">Pequeño</a></li>
-                                        <li><a href="#" style="width:55px;">Mediano</a></li>
-                                        <li><a href="#" style="width:50px;">Grande</a></li>
-                                        <li><a href="#">2T</a></li>
-                                        <li><a href="#">3T</a></li>
-                                        <li><a href="#">4T</a></li>
-                                        <li><a href="#">5T</a></li>
-                                        <li><a href="#">6T</a></li>
+                                        <li><a href="#" style="width:60px;pointer-events: none; color: black;
+                                            font-weight: bold; font-size: 14px;">{{ item.get_size_display }}</a></li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="pro-details-size">
-                                <span>Cantidad:</span>
-                                <div class="pro-details-size-content">
-                                    <ul>
-                                        <li><a href="#" style="width:40px;">2PCS</a></li>
-                                        <li><a href="#" style="width:40px;">3PCS</a></li>
-                                        <li><a href="#" style="width:40px;">4PCS</a></li>
-                                        <li><a href="#" style="width:40px;">5PCS</a></li>
-                                        <li><a href="#" style="width:40px;">6PCS</a></li>
-                                        <li><a href="#" style="width:40px;">8PCS</a></li>
-                                        <li><a href="#" style="width:45px;">10PCS</a></li>
-                                        <li><a href="#" style="width:45px;">12PCS</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            {% endif %}
+                            {% if item.colors %} 
+                            <div class="pro-details-color-content">
+                                <span>Color:</span>
+                                <select id="color_selected" name="color_selected">
+                                    {% for color in item.colors.all %}
+                                    <option value="{{ color.color_name }}">{{ color.color_name }}</option> 
+                                    {% endfor %}
+                                </select>
+                            </div> 
+                            {% endif %}
+                            {% if item.cant %}
+                            <div class="pro-details-color-content">
+                                <span>Cantidad de piezas:</span>
+                                <select id="cant_selected" name="cant_selected">
+                                    {% for cant in item.cant.all %}
+                                    <option value="{{ cant.piezas }}">{{ cant.piezas }}</option> 
+                                    {% endfor %}
+                                </select>
+                            </div> 
+                            {% endif %}
                         <div class="pro-details-quality"> 
                             <span style="font-weight: bold; color: black;">Cantidad</span>
                             <div class="cart-plus-minus">
@@ -269,32 +254,37 @@
                                     <tbody style="font-weight: bold; color: black;">
                                         <tr>
                                             <td class="width1">Nombre</td>
-                                            <td>XXXXXXX</td>
+                                            <td>{{ item.description }}</td>
                                         </tr>
                                         <tr>
                                             <td>SKU</td>
-                                            <td>XXXXX</td>
+                                            <td>{{ item.sku_code}}</td>
                                         </tr>
-                                        <tr>
-                                            <td class="width1">Modelo</td>
-                                            <td>XXXXXX</td>
-                                        </tr>
+                                        <!-- <tr>4 -->
                                         <tr>
                                             <td class="width1">Categoria</td>
-                                            <td>XXXXX</td>
+                                            <td>{{ item.category }}</td>
                                         </tr>
                                         <tr>
+                                            <td class="width1">Precio</td>
+                                            <td>${{ item.sale_price }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width1">Precio de descuento</td>
+                                            <td>{% if item.discount_price %} ${{ item.discount_price }} {% else %} N/A {% endif %}</td>
+                                        </tr>
+                                        <!-- <tr>
                                             <td class="width1">Talla</td>
                                             <td>XXXXX</td>
-                                        </tr>
-                                        <tr>
+                                        </tr> -->
+                                        <!-- <tr>
                                             <td class="width1">Marca </td>
                                             <td>XXXXX</td>
-                                        </tr>
-                                        <tr>
+                                        </tr> -->
+                                        <!-- <tr>
                                             <td class="width1">Color</td>
                                             <td>XXXXXXX</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -404,7 +394,8 @@
 
 {% block extra_js %}
 <script>
-    var quantity = '{{ item.stock }}'
+    var quantity = parseInt('{{ item.stock }}')
+    console.log(quantity)
     $('#quantity').on('keyup', function(){
         if($(this).val() > quantity){
             $(this).val(quantity)

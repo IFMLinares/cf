@@ -1,11 +1,19 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Item, OrderItem, Order, Address, User, BillingAddress
+from .models import Item, OrderItem, Order, Address, User, BillingAddress, ColorItem, CantItem
 
 # Register your models here.
-
+class ColorItemAdmin(admin.ModelAdmin):
+    list_display = (
+        'color_name',
+    )
+class CantItemAdmin(admin.ModelAdmin):
+    list_display = (
+        'piezas',
+    )
 
 class ItemAdmin(admin.ModelAdmin):
+    filter_horizontal = ("colors", "colors")
     list_display = (
         'sku_code',
         'description',
@@ -19,7 +27,7 @@ class ItemAdmin(admin.ModelAdmin):
     # search_fields = ['description', 'sale_price',
     #                  'stock', 'sku_code', 'category', 'outstanding']
     list_editable = ['stock', 'outstanding']
-    fields = ('description', 'sku_code', 'stock', 'category', 'type', 'size','cant', 'color', 'l', 'h', 'v', 'cubic_meter', 'price_before_taxes', 'freight', 'custom_taxe', 'price', 'sale_price', 'discount_price', 'margin', 'gain', 'image', 'image_1', 'image_2', 'image_3', 'image_4', 'video_item',)
+    fields = ('description', 'sku_code', 'stock', 'category', 'type', 'size','cant', 'colors','l', 'h', 'v', 'cubic_meter', 'price_before_taxes', 'freight', 'custom_taxe', 'price', 'sale_price', 'discount_price', 'margin', 'gain', 'image', 'image_1', 'image_2', 'image_3', 'image_4', 'video_item',)
 
     readonly_fields = ('cubic_meter', 'price', 'slug', 'gain',)
     list_per_page = 10
@@ -30,7 +38,7 @@ class ItemAdmin(admin.ModelAdmin):
         'type',
         'size',
         'cant',
-        'color',
+        'colors',
     ]
 
     def imageProduct(self, obj):
@@ -97,6 +105,8 @@ class OrderItemAdmin(admin.ModelAdmin):
     readonly_fields = ['user',
                        'ordered',
                        'item',
+                       'color',
+                       'cant',
                        'quantity',
                        'totalItem', ]
 
@@ -206,12 +216,15 @@ class UserAdmin(admin.ModelAdmin):
     ]
 
 
+
 admin.site.register(Item, ItemAdmin)
 admin.site.register(Order, OrdenAdmin)
 admin.site.register(OrderItem, OrderItemAdmin)
 admin.site.register(Address, AddressAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(BillingAddress, BillingAddressadmin)
+admin.site.register(ColorItem, ColorItemAdmin)
+admin.site.register(CantItem, CantItemAdmin)
 
 admin.site.site_header = 'Admin Cositas favoritas'
 admin.site.index_title = 'Panel de control Cositas favoritas'
