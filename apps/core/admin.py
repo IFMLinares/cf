@@ -3,14 +3,14 @@ from django.utils.html import format_html
 from .models import Item, OrderItem, Order, Address, User, BillingAddress, ColorItem, CantItem
 
 # Register your models here.
-class ColorItemAdmin(admin.ModelAdmin):
-    list_display = (
-        'color_name',
-    )
-class CantItemAdmin(admin.ModelAdmin):
-    list_display = (
-        'piezas',
-    )
+# class ColorItemAdmin(admin.ModelAdmin):
+#     list_display = (
+#         'color_name',
+#     )
+# class CantItemAdmin(admin.ModelAdmin):
+#     list_display = (
+#         'piezas',
+#     )
 
 class ItemAdmin(admin.ModelAdmin):
     filter_horizontal = ("colors", "colors")
@@ -223,8 +223,8 @@ admin.site.register(OrderItem, OrderItemAdmin)
 admin.site.register(Address, AddressAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(BillingAddress, BillingAddressadmin)
-admin.site.register(ColorItem, ColorItemAdmin)
-admin.site.register(CantItem, CantItemAdmin)
+# admin.site.register(ColorItem, ColorItemAdmin)
+# admin.site.register(CantItem, CantItemAdmin)
 
 admin.site.site_header = 'Admin Cositas favoritas'
 admin.site.index_title = 'Panel de control Cositas favoritas'
