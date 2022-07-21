@@ -190,11 +190,11 @@ JET_SIDE_MENU_ITEMS = [
         # {'name': 'billingaddress'},
         {'name': 'user'},
     ]},
-    {'app_label': 'core', 'items': [
+    # {'app_label': 'core', 'items': [
 
-        {'name': 'coloritem'},
-        {'name': 'cantitem'},
-    ]},
+    #     {'name': 'coloritem'},
+    #     {'name': 'cantitem'},
+    # ]},
     # {'app_label': 'account', 'items': [
     #     {'name': 'emailaddress'},
     # ]},
