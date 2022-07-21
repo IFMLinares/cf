@@ -40,7 +40,11 @@ COLOR_CHOICES = (
     ('Blanco','Blanco'),
     ('Amarrillo','Amarrillo'),
     ('Negro','Negro'),
-    ('Mixto','Mixto')
+    ('Mixto','Mixto'),
+    ('Naranja','Naranja'),
+    ('Chocolate','Chocolate'),
+    ('Gris','Gris'),
+    ('Morado','Morado'),
 )
 
 SIZE_CHOICES = (
@@ -114,9 +118,9 @@ class Item(models.Model):
     category = models.CharField(max_length=2, choices=CATEGORY_CHOICES, verbose_name='Categoría')
     type = models.CharField(max_length=2,choices=TYPE_CHOICES, verbose_name='Tipo', null=True, blank=True)
     size = models.CharField(max_length=2,choices=SIZE_CHOICES, verbose_name='Tamaño', null=True, blank=True)
-    cant = models.ManyToManyField(CantItem, verbose_name='Piezas')
+    cant = models.ManyToManyField(CantItem, verbose_name='Piezas', blank=True, null=True)
     # color = models.CharField(max_length=2,choices=COLOR_CHOICES, verbose_name='Color', null=True, blank=True)
-    colors = models.ManyToManyField(ColorItem, verbose_name='Color')
+    colors = models.ManyToManyField(ColorItem, verbose_name='Color', blank=True, null=True)
     discount_price = models.DecimalField(blank=True, null=True,max_digits=100, decimal_places=2, verbose_name='Precio de descuento')
     outstanding = models.BooleanField(default=False,blank=True, null=True, verbose_name='Destacados')
     
