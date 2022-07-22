@@ -228,7 +228,7 @@
                             <div class="pro-pagination-style text-center mt-50 mb-xl-5">
                                 <ul>
                                     {% if page_obj.has_previous %}
-                                      <li><a class="active" href="?page={{ page_obj.previous_page_number }}"><i class="icofont-long-arrow-left"></i></a></li>
+                                      <li><a class="" href="?page={{ page_obj.previous_page_number }}"><i class="icofont-long-arrow-left"></i></a></li>
                                     {% endif %}
                                   {% for i in paginator.page_range %}
                                   <!-- <li><a {% if page_obj.number == i %} class="active page-link" {% endif %} class="page-link" href="?page={{ i }}" >{{ i }}</a>1</a></li> -->
@@ -237,7 +237,7 @@
                                   </li>
                                   {% endfor %}
                                     {% if page_obj.has_next %}
-                                      <li><a class="active" href="?page={{ page_obj.next_page_number }}"><i class="icofont-long-arrow-right"></i></a></li>
+                                      <li><a class="" href="?page={{ page_obj.next_page_number }}"><i class="icofont-long-arrow-right"></i></a></li>
                                     {% endif %}
                                 </ul>
                             </div>
