@@ -10,7 +10,7 @@
   align-items: end;
 }
 .color_rose {
-  color: #ed4aca !important;
+  color: #f45152 !important;
 }
 .complete-banner_100 {
   display: flex;
@@ -42,7 +42,7 @@
 }
 .midle-baner_color {
   width: 50%;
-  background-color: #ed4aca;
+  background-color: #0cb7f2;
   height: 500px;
 }
 /* cuadro ventas */
@@ -67,7 +67,7 @@
   transition: width 2s;
  }
  .card-deck .card:hover{
-  /* background-color: #ed4aca; */
+  /* background-color: #f45152; */
   position: relative;
   top: -20px;
   transition: 4s;
@@ -100,7 +100,7 @@
 }
 .contain-titulo h4 {
   font-size: 20px;
-  color: #ed4aca;
+  color: #f45152;
   font-weight: bolder;
   text-align: center;
 }
@@ -132,8 +132,8 @@
 .contain_button button {
   width: 100%;
   height: 30px;
-  background-color: #ed4aca;
-  border: 1px solid #ed4aca;
+  background-color: #f45152;
+  border: 1px solid #f45152;
   color: white;
   font-weight: bold;
   border-radius: 5px;
@@ -142,8 +142,8 @@
 .contain_button button:hover {
   width: 100%;
   background-color: white;
-  border: 1px solid #ed4aca;
-  color: #ed4aca;
+  border: 1px solid #f45152;
+  color: #f45152;
 }
 
 /* modal inicio de sesion */
@@ -201,7 +201,7 @@ h2.linea span {
   text-decoration: none;
 }
 .card-header button:hover {
-  color: #ed4aca;
+  color: #f45152;
   text-decoration: none;
 }
 .card-body {
@@ -227,7 +227,7 @@ h2.linea span {
   color: #ffff;
   width: 50px;
   height: 50px;
-  background-color: #ed4aca;
+  background-color: #f45152;
   border-radius: 30px;
   text-align: center;
   line-height: 50px;
@@ -245,7 +245,7 @@ h2.linea span {
   color: #ffff;
   width: 50px;
   height: 50px;
-  background-color: #ed4acaf5;
+  background-color: #f45152f5;
   border-radius: 30px;
   text-align: center;
   line-height: 50px;
@@ -259,13 +259,13 @@ hr.hr-1 {
   border: 0;
   width: 50%;
   height: 4px;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #ed4aca, rgba(0, 0, 0, 0));
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #0cb7f2, rgba(0, 0, 0, 0));
 }
 hr.hr-2 {
   border: 0;
   width: 100%;
   height: 4px;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #ed4aca, rgba(0, 0, 0, 0));
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #0cb7f2, rgba(0, 0, 0, 0));
 }
 .responsive-tab{
   display: none;
@@ -591,7 +591,7 @@ hr.hr-2 {
   }
   .midle-baner_color {
     width: 100%;
-    background-color: #ed4aca;
+    background-color: #f45152;
     height: 250px;
   }
   .baner-center {
@@ -641,7 +641,7 @@ hr.hr-2 {
   }
   .contain-titulo h4 {
     font-size: 15px;
-    color: #ed4aca;
+    color: #f45152;
     text-align: center;
   }
   .contain-form_input {
@@ -672,12 +672,12 @@ hr.hr-2 {
   .contain_button button {
     width: 100%;
     background-color: white;
-    border: 1px solid #ed4aca;
-    color: #ed4aca;
+    border: 1px solid #f45152;
+    color: #f45152;
   }
   .contain_button button:hover {
     width: 100%;
-    background-color: #ed4aca;
+    background-color: #f45152;
     border: none;
     color: white;
   }
