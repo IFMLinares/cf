@@ -23,7 +23,7 @@ CATEGORY_CHOICES = (
     )
 
 TYPE_CHOICES = (
-    ('AN','animales'),
+    ('AN','Animales'),
     ('FR','Frutas'),
     ('FO','Formas'),
     ('NU','Números'),
@@ -114,7 +114,7 @@ class Item(models.Model):
     image_2 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 2')
     image_3 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 3')
     image_4 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 4')
-    stock = models.IntegerField(default=1, blank=False, null=False, verbose_name='Cantidad en stock')
+    stock = models.PositiveIntegerField(default=1, blank=False, null=False, verbose_name='Cantidad en stock')
     category = models.CharField(max_length=2, choices=CATEGORY_CHOICES, verbose_name='Categoría')
     type = models.CharField(max_length=2,choices=TYPE_CHOICES, verbose_name='Tipo', null=True, blank=True)
     size = models.CharField(max_length=2,choices=SIZE_CHOICES, verbose_name='Tamaño', null=True, blank=True)
@@ -193,7 +193,10 @@ class OrderItem(models.Model):
     totalItem = models.DecimalField(null=True, blank=True,max_digits=100, decimal_places=2, verbose_name='Subtotal')
 
     def __str__(self):
-        return f"{self.item.description} x{self.quantity} \n"
+        piezasText = 'N/a'
+        if(self.cant !=''):
+            piezasText = self.cant
+        return f"{self.item.description} \n--------Color: {self.color}. \n--------Piezas: {piezasText} \n--------Cantidad: x{self.quantity} \n\n"
 
     def get_total_item_price(self):
         return self.quantity * self.totalItem

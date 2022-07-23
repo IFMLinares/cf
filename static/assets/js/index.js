@@ -18,7 +18,42 @@ function modalproduct(sku,des,inv,precio,imagen,slug){
     $('#exampleModal').modal('show');
     $('#slug-modal').val(slug)
     $('#sku_code').text(sku)
-    console.log(slug)
+    // console.log(slug)
+    var options= $('#'+ sku +'color option:not(:selected)')
+    var options1= $('#'+ sku +'cant option:not(:selected)')
+    console.log(options.length)
+    console.log(options1.length)
+    // console.log(options[1].innerHTML)
+    // cant_selected
+    if(options.length > 0){
+    $('#color_selected').empty()
+        for (var i = 0; i < options.length; i++) {
+            // console.log(options[i].innerHTML)
+            $('#color_selected').append($('<option>', { value : options[i].innerHTML })
+            .text(options[i].innerHTML))
+        }
+    }else{
+        $('#color_selected').empty()
+        $('#color_selected').append($('<option>', { value : '' })
+        .text(''))
+        $('#modal-color').addClass('d-none')
+        
+    }
+    if(options1.length > 0){
+        $('#cant_selected').empty()
+        for (var i = 0; i < options1.length; i++) {
+        console.log(options1[i].innerHTML)
+        $('#cant_selected').append($('<option>', { value : options1[i].innerHTML })
+        .text(options1[i].innerHTML))
+        }
+    }else{
+        $('#cant_selected').empty()
+        $('#cant_selected').append($('<option>', { value : '' })
+        .text(''))
+        $('#modal-cant').addClass('d-none')
+        
+    }
+    
 
 }
 

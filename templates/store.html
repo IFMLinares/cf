@@ -114,6 +114,7 @@
                                         </div> -->
                                         {% if items %}
                                         {% for item in items %}
+                                          {% if item.stock >= 1 %}
                                             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-6  ">
                                                 <div class="product-wrap mb-50">
                                                     <div class="product-img product-img-zoom mb-25">
@@ -169,7 +170,22 @@
 
                                                                 {% if user.is_anonymous %}
                                                                 <input type="hidden" name="visitor" value="{{ visitantId }}">
+                                                                  
                                                                 {% endif %}
+                                                                <div class="d-none">
+                                                                  <select name="" id="{{ item.sku_code }}color">
+                                                                    <option value="" selected></option>
+                                                                    {% for color in item.colors.all %}
+                                                                    <option value="{{ color.color_name }}">{{ color.color_name }}</option>
+                                                                    {% endfor %}
+                                                                  </select>
+                                                                  <select name="" id="{{ item.sku_code }}cant">
+                                                                    <option value="" selected></option>
+                                                                    {% for cant in item.cant.all %}
+                                                                    <option value="{{ cant.piezas }}">{{ cant.piezas }}</option>
+                                                                    {% endfor %}
+                                                                  </select>
+                                                                </div>
                                                                 <button type="button" onclick="modalproduct('{{ item.sku_code }}','{{ item.description }}','{{ item.stock }}','{{ item.sale_price }}', '{{item.image.url}}', '{{item.slug}}')"><i class="icon-zoom"></i></button>
                                                             </div>
                                                             <!-- <button data-toggle="modal" data-target="#exampleModal"><i class="icon-zoom"></i></button> -->
@@ -178,6 +194,7 @@
                                                     </div>
                                                 </div>
                                             </div> 
+                                          {% endif %}
                                         {% endfor %}
                                         {% else %}
                                         <div class="container" style="text-align: center;">
@@ -371,13 +388,13 @@
 
                     <form action="/addto/" method="post" id="form-modal">
                       <!-- FUNCIÓN PARA ENVIAR COLORES AL MODAL (PENDIENTE) -->
-                      <div class="pro-details-color-content">
+                      <div class="pro-details-color-content" id="modal-color">
                           <span>Color:</span>
                           <select id="color_selected" name="color_selected">
                               <option value=""></option> 
                           </select>
                       </div> 
-                      <div class="pro-details-color-content">
+                      <div class="pro-details-color-content" id="modal-cant">
                           <span>Cantidad de piezas:</span>
                           <select id="cant_selected" name="cant_selected">
                               <option value=""></option>

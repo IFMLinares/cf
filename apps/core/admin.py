@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from django.forms import SelectMultiple
+from django.db import models
 from .models import Item, OrderItem, Order, Address, User, BillingAddress, ColorItem, CantItem
 
 # Register your models here.
@@ -13,7 +15,7 @@ from .models import Item, OrderItem, Order, Address, User, BillingAddress, Color
 #     )
 
 class ItemAdmin(admin.ModelAdmin):
-    filter_horizontal = ("colors", "colors")
+    formfield_overrides = { models.ManyToManyField: {'widget': SelectMultiple(attrs={'style': 'height: 180%; width: 50%;'})}, }
     list_display = (
         'sku_code',
         'description',
