@@ -151,6 +151,22 @@
                                                             <div class="product-action-cart">
                                                                 <input type="hidden" name="slug" id="slug" value="{{ item.slug }}">
                                                                 <button title="Añadir al Carrito" type="submit">Añadir al Carrito</button>
+                                                                {% if item.colors %}
+                                                                  {% for color in item.colors.all|slice:":1" %}
+                                                                  <input type="hidden" name="color_selected" value="{{ color.color_name }}">
+                                                                  {% endfor %}
+                                                                {% else %}
+                                                                  <input type="hidden" name="color_selected" value="">
+                                                                {% endif %}
+                                                                
+                                                                {% if item.cant %}
+                                                                  {% for cant in item.cant.all|slice:":1" %}
+                                                                  <input type="hidden" name="cant_selected" value="{{ cant.piezas }}">
+                                                                  {% endfor %}
+                                                                {% else %}
+                                                                  <input type="hidden" name="cant_selected" value="">
+                                                                {% endif %}
+
                                                                 {% if user.is_anonymous %}
                                                                 <input type="hidden" name="visitor" value="{{ visitantId }}">
                                                                 {% endif %}
@@ -354,6 +370,20 @@
                     </div> -->
 
                     <form action="/addto/" method="post" id="form-modal">
+                      <!-- FUNCIÓN PARA ENVIAR COLORES AL MODAL (PENDIENTE) -->
+                      <div class="pro-details-color-content">
+                          <span>Color:</span>
+                          <select id="color_selected" name="color_selected">
+                              <option value=""></option> 
+                          </select>
+                      </div> 
+                      <div class="pro-details-color-content">
+                          <span>Cantidad de piezas:</span>
+                          <select id="cant_selected" name="cant_selected">
+                              <option value=""></option>
+                          </select>
+                      </div>
+
                     <div class="pro-details-quality">
                       <span>Cantidad:</span>
                       <div class="cart-plus-minus">

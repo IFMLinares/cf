@@ -290,24 +290,11 @@
                   font-weight: bold; font-size: 14px;"> {{ order_item.quantity }} × ${{ order_item.totalItem }} </span>
                   <div class="pro-details-size" style=" height:50px;" >
                     <span style="color: black;
-                    font-weight: bold; font-size: 14px">Color:</span>
-                    <div class="pro-details-size-content" style="padding: 0px 0px; ">
-                        <ul>
-                            <li><a href="#" style="width:100%; pointer-events: none; color: black;
-                                font-weight: bold; font-size: 14px; margin: 0px 0px;"> {{ order_item.color }}</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="pro-details-size" style=" height:50px;">
+                    font-weight: bold; font-size: 14px">Color: {{ order_item.color }}</span> <br>
+                    
                   <span style="color: black;
-                  font-weight: bold; font-size: 14px">Cantidad de piezas:</span>
-                  <div class="pro-details-size-content">
-                      <ul>
-                          <li><a href="#" style="width:100%; pointer-events: none; color: black;
-                              font-weight: bold; font-size: 14px">{{ order_item.cant }}</a></li>
-                      </ul>
-                  </div>
-              </div>
+                  font-weight: bold; font-size: 14px">Cantidad de piezas: {{ order_item.cant }}</span>
+                </div>
                 </div>
                 <div class="cart-delete">
                   <a href="{% url 'core:remove-from-cart-modal' slug=order_item.item.slug  %}">×</a>

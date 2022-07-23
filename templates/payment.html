@@ -76,12 +76,21 @@
                             <h4 class="checkout-title">  Detalles de pago</h4>
                             <ul>
                                 {% for item in order.items.all %}
-                                 <li>{{ item.item.description }} x{{ item.quantity }} <span>${{ item.get_total_item_price }}</span></li>
-                                 <p style="font-size: 14p; font-weight:bold; color:black; margin-left:50px; position: relative; top: -20px;">Tipo: formas</p>
-                                 <p style="font-size: 14p; font-weight:bold; color:black; margin-left:50px; position: relative; top: -20px;">Tamaño: Grande</p>
-                                 <p style="font-size: 14p; font-weight:bold; color:black; margin-left:50px; position: relative; top: -20px;">color: rojo</p>
-                                 <p style="font-size: 14p; font-weight:bold; color:black; margin-left:50px; position: relative; top: -20px;">Cantidad de Piezas: 2 PCS</p>
-                            <hr class="hr-2">
+                                <li>{{ item.item.description }} x{{ item.quantity }} <span>${{ item.get_total_item_price }}</span></li> 
+                                {% if item.item.type %}
+                                <p style="font-size: 14p; font-weight:bold; color:black; margin-left:50px; position: relative; top: -20px;">Tipo: {{ item.item.get_type_display }}</p>
+                                {% endif %}
+                                {% if item.item.size %}
+                                 <p style="font-size: 14p; font-weight:bold; color:black; margin-left:50px; position: relative; top: -20px;">Tamaño: {{ item.item.get_size_display }}</p>
+                                {% endif %}
+                                {% if item.color %}
+                                 <p style="font-size: 14p; font-weight:bold; color:black; margin-left:50px; position: relative; top: -20px;">color: {{ item.color }}</p>
+                                {% endif %}
+                                {% if item.cant %}
+                                 <p style="font-size: 14p; font-weight:bold; color:black; margin-left:50px; position: relative; top: -20px;">Cantidad de Piezas: {{ item.cant }}</p>
+                                {% endif %}
+                                <hr class="hr-2">
+                                
                                 {% endfor %}
                                 <div class="border-carrito">
 
