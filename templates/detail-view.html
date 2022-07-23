@@ -183,7 +183,8 @@
                                 </div>
                             </div>
                             {% endif %}
-                            {% if item.colors %} 
+
+                            {% if item.colors.all %} 
                             <div class="pro-details-color-content">
                                 <span>Color:</span>
                                 <select id="color_selected" name="color_selected">
@@ -193,7 +194,7 @@
                                 </select>
                             </div> 
                             {% endif %}
-                            {% if item.cant %}
+                            {% if item.cant.all %}
                             <div class="pro-details-color-content">
                                 <span>Cantidad de piezas:</span>
                                 <select id="cant_selected" name="cant_selected">
