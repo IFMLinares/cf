@@ -202,9 +202,9 @@ JET_SIDE_MENU_ITEMS = [
     # {'app_label': 'ipn', 'items': [
     #     {'name': 'paypalipn'},
     # ]},
-    {'app_label': 'sites', 'items': [
-        {'name': 'site'},
-    ]},
+    # {'app_label': 'sites', 'items': [
+    #     {'name': 'site'},
+    # ]},
 ]
 
 JET_SIDE_MENU_COMPACT = True
