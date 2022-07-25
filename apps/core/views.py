@@ -587,8 +587,10 @@ def addto(request):
         next = request.POST.get('next', '/store/')
         slug = request.POST['slug']
         item = get_object_or_404(Item, slug=slug)
-        color = request.POST['color_selected']
-        cant = request.POST['cant_selected']
+        color = request.POST.get('color_selected', '')
+        cant = request.POST.get('cant_selected', '')
+        # color = request.POST['color_selected']
+        # cant = request.POST['cant_selected']
         print(color)
         print(cant)
         quantity = int(request.POST.get('quantity', 1))
@@ -634,8 +636,10 @@ def addto(request):
 @login_required
 def add_to_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
-    color = request.POST['color_selected']
-    cant = request.POST['cant_selected']
+    color = request.POST.get('color_selected', '')
+    cant = request.POST.get('cant_selected', '')
+    # color = request.POST['color_selected']
+    # cant = request.POST['cant_selected']
     order_item, created = OrderItem.objects.get_or_create(item=item, user=request.user, ordered=False, color=color, cant=cant)
     order_qs = Order.objects.filter(user=request.user, ordered=False, color=color, cant=cant)
     if order_qs.exists():
