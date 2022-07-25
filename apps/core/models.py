@@ -10,6 +10,7 @@ from django.forms import NullBooleanField, SelectMultiple
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import AbstractUser
 from embed_video.fields import EmbedVideoField
+from ckeditor.fields import RichTextField
 from django.shortcuts import reverse
 
 import random
@@ -108,6 +109,7 @@ class CantItem(models.Model):
 class Item(models.Model):
     sku_code = models.CharField(max_length=100, blank=False, null=False, verbose_name='Código SKU')
     description = models.CharField(max_length=100, blank=False, null=False, verbose_name='Nombre')
+    description_text = RichTextField(blank=False, null=False, verbose_name='Texto Descriptivo del producto:')
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
     image = models.ImageField(upload_to = 'media', blank=False, null=False, verbose_name='Imagen Principal')
     image_1 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 1')

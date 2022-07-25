@@ -29,7 +29,7 @@ class ItemAdmin(admin.ModelAdmin):
     # search_fields = ['description', 'sale_price',
     #                  'stock', 'sku_code', 'category', 'outstanding']
     list_editable = ['stock', 'outstanding']
-    fields = ('description', 'sku_code', 'stock', 'category', 'type', 'size','cant', 'colors','l', 'h', 'v', 'cubic_meter', 'price_before_taxes', 'freight', 'custom_taxe', 'price', 'sale_price', 'discount_price', 'margin', 'gain', 'image', 'image_1', 'image_2', 'image_3', 'image_4', 'video_item',)
+    fields = ('description', 'sku_code', 'stock', 'category', 'type', 'size','cant', 'colors','l', 'h', 'v', 'cubic_meter', 'price_before_taxes', 'freight', 'custom_taxe', 'price', 'sale_price', 'discount_price', 'margin', 'gain', 'image', 'image_1', 'image_2', 'image_3', 'image_4', 'video_item', 'description_text')
 
     readonly_fields = ('cubic_meter', 'price', 'slug', 'gain',)
     list_per_page = 10

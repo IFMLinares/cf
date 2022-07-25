@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'paypal.standard.ipn',
     'embed_video',
+    'ckeditor',
     # own apps
     'apps.core',
 ]
@@ -208,3 +209,9 @@ JET_SIDE_MENU_ITEMS = [
 
 JET_SIDE_MENU_COMPACT = True
 JET_CHANGE_FORM_SIBLING_LINKS = True
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}
