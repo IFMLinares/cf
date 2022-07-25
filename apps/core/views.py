@@ -666,7 +666,7 @@ def remove_single_item_from_cart(request, slug):
             if order_item.quantity >1:
                 order_item.quantity -= 1
                 order_item.save() 
-                item.stock = int(item.stock) +1
+                item.stock = int(item.stock) + 1
                 item.save()
             else:
                 return redirect('core:remove-from-cart', slug=slug)
@@ -688,6 +688,8 @@ def remove_from_cart(request, slug):
         # verificando si el item odernado ya está en la orden
         if order.items.filter(item__slug=item.slug).exists():
             order_item = OrderItem.objects.filter(item=item, user=request.user, ordered=False)[0]
+            item.stock = item.stock + order_item.quantity
+            item.save()
             order.items.remove(order_item)
             order_item.delete()
             messages.info(request, 'Este Producto fue eliminado satisfactoriamente')
@@ -708,6 +710,7 @@ def remove_from_cart_modal(request, slug):
         # verificando si el item odernado ya está en la orden
         if order.items.filter(item__slug=item.slug).exists():
             order_item = OrderItem.objects.filter(item=item, user=request.user, ordered=False)[0]
+            item.stock = item.stock + order_item.quantity
             order.items.remove(order_item)
             order_item.delete()
             messages.info(request, 'Este Producto fue eliminado satisfactoriamente')
