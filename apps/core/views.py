@@ -321,8 +321,8 @@ class PaymentView(LoginRequiredMixin, CartMixin, View):
         wsdl = 'http://demoemision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
         client = zeep.Client(wsdl=wsdl)
         datos = dict(
-            tokenEmpresa="blzjnlwebrgp_tfhka",
-            tokenPassword="d-$k;$4a$p++",
+            tokenEmpresa="ipqwuhhqnqgk_tfhka",
+            tokenPassword="-2,o.aY-F_Xw",
             documento=dict(
                 codigoSucursalEmisor="0000",
                 tipoSucursal="1",
@@ -503,8 +503,8 @@ def paypal_return(request):
         wsdl = 'http://demoemision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
         client = zeep.Client(wsdl=wsdl)
         datos = dict(
-            tokenEmpresa="blzjnlwebrgp_tfhka",
-            tokenPassword="d-$k;$4a$p++",
+            tokenEmpresa="ipqwuhhqnqgk_tfhka",
+            tokenPassword="-2,o.aY-F_Xw",
             documento=dict(
                 codigoSucursalEmisor="0000",
                 tipoSucursal="1",

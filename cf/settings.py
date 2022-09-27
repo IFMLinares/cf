@@ -166,8 +166,8 @@ EMAIL_USE_TLS = True
 # SEND AUTHENTICATION EMAIL HOST
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = 'titolfalcon1@gmail.com'
-EMAIL_HOST_PASSWORD = '12022021Ab$'
+EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = 'titolfalcon@gmail.com'
+EMAIL_HOST_PASSWORD = 'rrnxabbbadrrteqq'
 EMAIL_SUBJECT_PREFIX = 'Miguel Linares'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
