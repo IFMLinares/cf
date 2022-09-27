@@ -318,11 +318,11 @@ class PaymentView(LoginRequiredMixin, CartMixin, View):
 
         # FACTURACIÓN THE FACTORYHKA
         numeroDocumentoFiscal =  int(((7 - len(str(order.pk))) * '0') + str(order.pk))
-        wsdl = 'http://emision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
+        wsdl = 'http://demoemision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
         client = zeep.Client(wsdl=wsdl)
         datos = dict(
-            tokenEmpresa="ipqwuhhqnqgk_tfhka",
-            tokenPassword="-2,o.aY-F_Xw",
+            tokenEmpresa="udttsqmoliou_tfhka",
+            tokenPassword="*.f/lgW!*BSW",
             documento=dict(
                 codigoSucursalEmisor="0000",
                 tipoSucursal="1",
@@ -500,11 +500,14 @@ def paypal_return(request):
 
         # FACTURACIÓN THE FACTORYHKA
         numeroDocumentoFiscal =  ((7 - len(str(order.pk))) * '0') + str(order.pk)
-        wsdl = 'http://emision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
+        wsdl = 'http://demoemision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
         client = zeep.Client(wsdl=wsdl)
         datos = dict(
-            tokenEmpresa="ipqwuhhqnqgk_tfhka",
-            tokenPassword="-2,o.aY-F_Xw",
+            # tokenEmpresa="ipqwuhhqnqgk_tfhka",
+            # tokenPassword="-2,o.aY-F_Xw",
+            
+            tokenEmpresa="udttsqmoliou_tfhka",
+            tokenPassword="*.f/lgW!*BSW",
             documento=dict(
                 codigoSucursalEmisor="0000",
                 tipoSucursal="1",
