@@ -318,11 +318,12 @@ class PaymentView(LoginRequiredMixin, CartMixin, View):
 
         # FACTURACIÓN THE FACTORYHKA
         numeroDocumentoFiscal =  int(((7 - len(str(order.pk))) * '0') + str(order.pk))
-        wsdl = 'http://demoemision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
+        wsdl = 'https://emision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
         client = zeep.Client(wsdl=wsdl)
+        
         datos = dict(
-            tokenEmpresa="udttsqmoliou_tfhka",
-            tokenPassword="*.f/lgW!*BSW",
+            tokenEmpresa="ipqwuhhqnqgk_tfhka",
+            tokenPassword="-2,o.aY-F_Xw",
             documento=dict(
                 codigoSucursalEmisor="0000",
                 tipoSucursal="1",
@@ -370,15 +371,49 @@ class PaymentView(LoginRequiredMixin, CartMixin, View):
             )
         )
         res = (client.service.Enviar(**datos))
+        print('OKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK')
         print(res)
+        print(res['codigo'])
         print(datos)
-        order.save()
-        context ={
-            # 'res': res,
-            'order': order
-        }
-        messages.success(self.request, 'Pago procesado exitosamente')
-        return render(self.request, 'ordenCompleta.html', context)
+        if(res['codigo'] == '200'):
+            order.save()
+            context ={
+                # 'res': res,
+                'order': order
+            }
+            messages.success(self.request, 'Pago procesado exitosamente')
+            return render(self.request, 'ordenCompleta.html', context)
+        else:
+            for item in order.items.all():
+                item.ordered = False
+                item.save()
+                quantity = str(round(float(item.quantity),2) ) + '0'
+                precioItem = item.item.sale_price
+                precioItem2 = str(round(float(precioItem * item.quantity),2))
+                if precioItem2[-2] == '.':
+                    precioItem2 = precioItem2 + '0'
+                precioItemIVa = item.item.get_price_iva()
+                precioIba = item.item.get_iva_item()
+                itemsList ={
+                    "descripcion": 'Prueba',
+                    "cantidad": quantity,
+                    "precioUnitario": str(precioItem),
+                    "precioUnitarioDescuento": " ",
+                    "precioItem": str(precioItem2),
+                    "valorTotal": str(precioItemIVa),
+                    "tasaITBMS": "01",
+                    "valorITBMS": str(precioIba),
+            }
+            itemlist.append(itemsList)
+            context ={
+                'codigo': res['codigo'],
+                'resultado': res['resultado'],
+                'mensaje': res['mensaje'],
+            }
+            messages.success(self.request, 'Pago fallido')
+            return render(self.request, 'ordenFallida.html', context)
+
+
 
 
     def get(self, request, *args, **kwargs):
@@ -500,14 +535,11 @@ def paypal_return(request):
 
         # FACTURACIÓN THE FACTORYHKA
         numeroDocumentoFiscal =  ((7 - len(str(order.pk))) * '0') + str(order.pk)
-        wsdl = 'http://demoemision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
+        wsdl = 'https://emision.thefactoryhka.com.pa/ws/obj/v1.0/Service.svc?singleWsdl'
         client = zeep.Client(wsdl=wsdl)
         datos = dict(
-            # tokenEmpresa="ipqwuhhqnqgk_tfhka",
-            # tokenPassword="-2,o.aY-F_Xw",
-            
-            tokenEmpresa="udttsqmoliou_tfhka",
-            tokenPassword="*.f/lgW!*BSW",
+            tokenEmpresa="ipqwuhhqnqgk_tfhka",
+            tokenPassword="-2,o.aY-F_Xw",
             documento=dict(
                 codigoSucursalEmisor="0000",
                 tipoSucursal="1",
