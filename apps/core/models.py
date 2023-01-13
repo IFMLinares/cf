@@ -117,7 +117,7 @@ class Item(models.Model):
     image_3 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 3')
     image_4 = models.ImageField(upload_to = 'media', blank=True, null=True, verbose_name='Imagen 4')
     stock = models.PositiveIntegerField(default=1, blank=False, null=False, verbose_name='Cantidad en stock')
-    category = models.CharField(max_length=2, choices=CATEGORY_CHOICES, verbose_name='Categoría')
+    category = models.CharField(max_length=2, choices=CATEGORY_CHOICES, verbose_name='Categoría', blank=False, null=False,)
     type = models.CharField(max_length=2,choices=TYPE_CHOICES, verbose_name='Tipo', null=True, blank=True)
     size = models.CharField(max_length=2,choices=SIZE_CHOICES, verbose_name='Tamaño', null=True, blank=True)
     cant = models.ManyToManyField(CantItem, verbose_name='Piezas', blank=True, null=True)
@@ -164,7 +164,7 @@ class Item(models.Model):
         titulo = self.description
         titulo = titulo.strip()
         num = random.randint(1, 100)
-        self.slug = slugify('product-{}-{}'.format(titulo, self.pk))
+        self.slug = slugify('product-{}-{}'.format(titulo, (self.pk + num)))
 
         super(Item, self).save(*args,**kwargs)
     
