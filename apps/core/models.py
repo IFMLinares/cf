@@ -164,7 +164,7 @@ class Item(models.Model):
         titulo = self.description
         titulo = titulo.strip()
         num = random.randint(1, 100)
-        self.slug = slugify('product-{}-{}'.format(titulo, self.pk)
+        self.slug = slugify('product-{}-{}'.format(titulo, self.pk+''+num))
 
         super(Item, self).save(*args,**kwargs)
     
